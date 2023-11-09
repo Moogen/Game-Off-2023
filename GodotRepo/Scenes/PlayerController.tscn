@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://d3fxdij8gxr2p"]
 
 [ext_resource type="Script" path="res://Scripts/BasicPlayer.gd" id="1_jtj3m"]
-[ext_resource type="SpriteFrames" path="res://sprites/Animations/PlayerController.tres" id="2_7dg1n"]
+[ext_resource type="SpriteFrames" uid="uid://tqtkw4xfceq6" path="res://sprites/Animations/PlayerController.tres" id="2_7dg1n"]
 [ext_resource type="Script" path="res://Scripts/State Machine.gd" id="3_ad318"]
 [ext_resource type="Script" path="res://Scripts/jump.gd" id="4_5f5su"]
 [ext_resource type="Script" path="res://Scripts/idle.gd" id="4_p82wp"]
@@ -13,31 +13,34 @@ radius = 7.0
 height = 28.0
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(599, 382)
 floor_stop_on_slope = false
 script = ExtResource("1_jtj3m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2, -33)
-scale = Vector2(0.997601, 0.99516)
+position = Vector2(1, 18)
 offset = Vector2(0, 20)
 limit_top = -1000
 limit_bottom = 200
-limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 6.0
+position_smoothing_speed = 20.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 43)
 shape = SubResource("CapsuleShape2D_ulmm2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visibility_layer = 4
+position = Vector2(1, 42)
 sprite_frames = ExtResource("2_7dg1n")
 animation = &"fall"
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "current_state")]
 script = ExtResource("3_ad318")
-starting_state = NodePath("fall")
-current_state = NodePath("fall")
+starting_state = NodePath("idle")
+current_state = NodePath("idle")
 
 [node name="fall" type="Node" parent="State Machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state")]
 script = ExtResource("4_sobar")

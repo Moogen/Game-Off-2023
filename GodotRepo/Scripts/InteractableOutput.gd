@@ -10,16 +10,16 @@ var is_active = false #what is the state of the logic input to this output
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    print(animation_name)
-    animations.play(animation_name)
-    pass
+	print(animation_name)
+	animations.play(animation_name)
+	pass
 
 func _activate():
-    pass
-    
+	pass
+	
 func _deactivate():
-    pass
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-    pass
+	pass

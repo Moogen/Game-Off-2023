@@ -13,17 +13,17 @@ var parent: Player
 
 
 func enter(prev_state: State) -> void:
-    parent.animations.play(animation_name)
-    pass 
-    
+	parent.animations.play(animation_name)
+	pass 
+	
 func exit() -> void:
-    pass
+	pass
 
 func process_input(event: InputEvent) -> State:
-    return null
+	return null
 
 func process_frame(delta: float) -> State:
-    return null
+	return null
 
-func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_x: float) -> State:
-    return null
+func process_physics(delta: float, gravity_influence: Vector2) -> State:
+	return null

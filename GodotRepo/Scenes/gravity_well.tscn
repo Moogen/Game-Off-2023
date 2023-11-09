@@ -1,47 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dptl7rt8a65hx"]
+[gd_scene load_steps=3 format=3 uid="uid://dptl7rt8a65hx"]
 
 [ext_resource type="Script" path="res://Scripts/GravityWell.gd" id="1_k6cux"]
-[ext_resource type="Texture2D" uid="uid://raej4vyjje2t" path="res://Sprites/dark_hole.png" id="2_hmhry"]
-[ext_resource type="Script" path="res://Scenes/BlackholeSprite.gd" id="3_sicav"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ssj3i"]
-resource_local_to_scene = true
-radius = 83.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xne5h"]
-resource_local_to_scene = true
+[ext_resource type="Texture2D" uid="uid://raej4vyjje2t" path="res://sprites/dark_hole.png" id="2_hmhry"]
 
 [node name="GravityWell" type="Node2D"]
 script = ExtResource("1_k6cux")
 
-[node name="BlackholeSprite" type="Sprite2D" parent="."]
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+lock_rotation = true
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-119, -70)
 scale = Vector2(0.025, 0.025)
 texture = ExtResource("2_hmhry")
-script = ExtResource("3_sicav")
-
-[node name="Blackhole" type="Area2D" parent="."]
-gravity_space_override = 1
-gravity_point = true
-gravity_point_center = Vector2(0, 0)
-gravity_direction = Vector2(0, 0)
-gravity = 3000.0
-linear_damp_space_override = 1
-linear_damp = 0.0
-angular_damp = 0.1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Blackhole"]
-shape = SubResource("CircleShape2D_ssj3i")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="Center" type="Area2D" parent="."]
-gravity_space_override = 3
-gravity_point = true
-gravity_point_center = Vector2(0, 0)
-gravity_direction = Vector2(0, 0)
-gravity = 0.0
-linear_damp = 0.0
-angular_damp_space_override = 3
-angular_damp = 0.01
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Center"]
-shape = SubResource("CircleShape2D_xne5h")

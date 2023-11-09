@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwyid7w1ptqjb"]
 
 [ext_resource type="Script" path="res://Scripts/Lever.gd" id="1_0t64q"]
-[ext_resource type="SpriteFrames" uid="uid://bnsk1u7atw4qn" path="res://Sprites/Animations/Lever.tres" id="1_p5fhy"]
+[ext_resource type="SpriteFrames" uid="uid://bnsk1u7atw4qn" path="res://sprites/Animations/Lever.tres" id="1_p5fhy"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="3_u3jvo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfj2s"]
