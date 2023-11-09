@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://tqtkw4xfceq6" path="res://Sprites/Animations/PlayerController.tres" id="2_7dg1n"]
 [ext_resource type="Script" path="res://Scripts/State Machine.gd" id="3_ad318"]
 [ext_resource type="Script" path="res://Scripts/jump.gd" id="4_5f5su"]
-[ext_resource type="Script" path="res://Scripts/side_attack.gd" id="4_e1qiq"]
 [ext_resource type="Script" path="res://Scripts/idle.gd" id="4_p82wp"]
+[ext_resource type="Script" path="res://Scenes/side_attack.gd" id="4_q42im"]
 [ext_resource type="Script" path="res://Scripts/fall.gd" id="4_sobar"]
 [ext_resource type="Script" path="res://Scripts/move.gd" id="5_3oo7e"]
 
@@ -52,12 +52,11 @@ starting_state = NodePath("fall")
 current_state = NodePath("fall")
 side_attack_state = NodePath("side_attack")
 
-[node name="side_attack" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idle_state") groups=["Debug Group"]]
-script = ExtResource("4_e1qiq")
+[node name="side_attack" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state") groups=["Debug Group"]]
+script = ExtResource("4_q42im")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
-idle_state = NodePath("../idle")
 
 [node name="fall" type="Node" parent="State Machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state")]
 script = ExtResource("4_sobar")

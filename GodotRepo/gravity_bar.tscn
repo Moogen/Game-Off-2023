@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://2twd8nh8qmy4"]
 
-[ext_resource type="Script" path="res://Scenes/GravityBar.gd" id="1_7pj4k"]
+[ext_resource type="Script" path="res://Scripts/GravityBar.gd" id="1_7pj4k"]
 [ext_resource type="Texture2D" uid="uid://h5x3amanm0fp" path="res://Sprites/GravityBar.png" id="2_a3off"]
-[ext_resource type="SpriteFrames" uid="uid://dsjx5ysii1cyg" path="res://sprites/Animations/Gravity_bar.tres" id="3_hq8xi"]
+[ext_resource type="SpriteFrames" uid="uid://dsjx5ysii1cyg" path="res://Sprites/Animations/Gravity_bar.tres" id="3_hq8xi"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="4_p5icd"]
 
 [node name="GravityBar" type="Node2D"]
