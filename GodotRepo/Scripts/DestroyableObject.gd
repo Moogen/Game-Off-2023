@@ -20,12 +20,10 @@ func _process(delta):
     pass
 
 func destroy_self():
-    
     get_tree().call_group("Gravity Bar", "modify_mass", object_mass)
     var parent = get_parent()  # This will get the parent of the current node.
     if parent:
         parent.queue_free()  # This will queue the parent for deletion.
-        
     pass
     
     

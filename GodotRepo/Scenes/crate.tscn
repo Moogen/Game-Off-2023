@@ -227,7 +227,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxxqp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4ou8"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -258,12 +258,12 @@ shader_parameter/hue_variation_max = 0.0
 shader_parameter/anim_speed_max = 0.0
 shader_parameter/anim_offset_max = 0.0
 shader_parameter/lifetime_randomness = 0.0
-shader_parameter/emission_sphere_radius = 1000.0
-shader_parameter/color_value = Color(0.431373, 0.317647, 0.505882, 1)
+shader_parameter/emission_sphere_radius = 10.0
+shader_parameter/color_value = Color(0.4, 0.298039, 0.0588235, 1)
 shader_parameter/gravity = Vector3(0, -1e-06, 0)
 shader_parameter/player_loc = null
-shader_parameter/attractor_str = 1000.0
-shader_parameter/obj_destroy_distance = null
+shader_parameter/attractor_str = 250.0
+shader_parameter/obj_destroy_distance = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj8ej"]
 size = Vector2(16, 16)
@@ -286,7 +286,9 @@ animations = [{
 [node name="Crate" type="Node2D"]
 
 [node name="MassParticles" parent="." instance=ExtResource("1_bkkfb")]
-process_material = SubResource("ShaderMaterial_cxxqp")
+emitting = true
+process_material = SubResource("ShaderMaterial_c4ou8")
+lifetime = 2.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 disable_mode = 1
