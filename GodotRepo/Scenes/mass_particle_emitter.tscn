@@ -1,8 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cghv5qiclr43p"]
-
-[ext_resource type="PackedScene" uid="uid://cmf3gp63pr2et" path="res://Scenes/mass_particle_emitter.tscn" id="1_bkkfb"]
-[ext_resource type="Script" path="res://Scenes/crate.gd" id="1_bur3a"]
-[ext_resource type="Texture2D" path="res://sprites/Interactables.png" id="1_eqf4v"]
+[gd_scene load_steps=3 format=3 uid="uid://cmf3gp63pr2et"]
 
 [sub_resource type="Shader" id="Shader_kfeqs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's ParticleProcessMaterial.
@@ -227,7 +223,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4ou8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebiyf"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -259,45 +255,17 @@ shader_parameter/anim_speed_max = 0.0
 shader_parameter/anim_offset_max = 0.0
 shader_parameter/lifetime_randomness = 0.0
 shader_parameter/emission_sphere_radius = 10.0
-shader_parameter/color_value = Color(0.4, 0.298039, 0.0588235, 1)
+shader_parameter/color_value = Color(0.431373, 0.317647, 0.505882, 1)
 shader_parameter/gravity = Vector3(0, -1e-06, 0)
 shader_parameter/player_loc = null
-shader_parameter/attractor_str = 250.0
-shader_parameter/obj_destroy_distance = 0.0
+shader_parameter/attractor_str = 1000.0
+shader_parameter/obj_destroy_distance = null
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tj8ej"]
-size = Vector2(16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vtrcn"]
-atlas = ExtResource("1_eqf4v")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_j34tc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vtrcn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="Crate" type="Node2D"]
-
-[node name="MassParticles" parent="." instance=ExtResource("1_bkkfb")]
-emitting = true
-process_material = SubResource("ShaderMaterial_c4ou8")
-lifetime = 2.0
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-disable_mode = 1
-can_sleep = false
-constant_force = Vector2(0, 1)
-script = ExtResource("1_bur3a")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("RectangleShape2D_tj8ej")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
-sprite_frames = SubResource("SpriteFrames_j34tc")
+[node name="MassParticles" type="GPUParticles2D"]
+emitting = false
+amount = 100
+process_material = SubResource("ShaderMaterial_ebiyf")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(-100, 100, 1000, 1000)

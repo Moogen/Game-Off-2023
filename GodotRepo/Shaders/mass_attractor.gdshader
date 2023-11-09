@@ -1,11 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cghv5qiclr43p"]
-
-[ext_resource type="PackedScene" uid="uid://cmf3gp63pr2et" path="res://Scenes/mass_particle_emitter.tscn" id="1_bkkfb"]
-[ext_resource type="Script" path="res://Scenes/crate.gd" id="1_bur3a"]
-[ext_resource type="Texture2D" path="res://sprites/Interactables.png" id="1_eqf4v"]
-
-[sub_resource type="Shader" id="Shader_kfeqs"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's ParticleProcessMaterial.
+// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's ParticleProcessMaterial.
 
 shader_type particles;
 uniform vec3 direction;
@@ -39,11 +32,8 @@ uniform float lifetime_randomness;
 uniform float emission_sphere_radius;
 uniform vec4 color_value : source_color;
 uniform vec3 gravity;
-uniform vec3 player_loc;
-uniform float attractor_str;
-
+uniform vec3 attractor_pos;
 uniform float obj_destroy_distance;
-
 
 float rand_from_seed(inout uint seed) {
 	int k;
@@ -150,19 +140,10 @@ void process() {
 	// apply tangential acceleration;
 	float tangent_accel_val = tex_tangent_accel * mix(tangent_accel_min, tangent_accel_max, rand_from_seed(alt_seed));
 	force += length(diff.yx) > 0.0 ? vec3(normalize(diff.yx * vec2(-1.0, 1.0)), 0.0) * tangent_accel_val : vec3(0.0);
-	
-    
-    //Attractor Force is = to the location of the player - location of the projectile * attractor force 
-    vec3 player_attractor_force = normalize(player_loc - pos)*attractor_str;//* attractor_str;
-    force += player_attractor_force; 
-    VELOCITY = player_attractor_force;
-    if(length(player_loc - pos) < obj_destroy_distance)
-    {
-        ACTIVE = false;
-    }
+	force += ATTRACTOR_FORCE;
 
 	// apply attractor forces
-	//VELOCITY += force * DELTA;
+	VELOCITY += force * DELTA;
 	
 	// orbit velocity
 	float orbit_amount = tex_orbit_velocity * mix(orbit_velocity_min, orbit_velocity_max, rand_from_seed(alt_seed));
@@ -205,6 +186,9 @@ void process() {
 			vec4(1.250, -1.050, -0.203, 0.0),
 			vec4(0.000, 0.000, 0.000, 0.0)) * hue_rot_s;
 	COLOR = hue_rot_mat * color_value;
+    
+    //attractor force
+    ATTRACTOR_FORCE = attractor_pos
 
 	TRANSFORM[0] = vec4(cos(CUSTOM.x), -sin(CUSTOM.x), 0.0, 0.0);
 	TRANSFORM[1] = vec4(sin(CUSTOM.x), cos(CUSTOM.x), 0.0, 0.0);
@@ -215,89 +199,10 @@ void process() {
 	TRANSFORM[0].xyz *= base_scale * sign(tex_scale.r) * max(abs(tex_scale.r), 0.001);
 	TRANSFORM[1].xyz *= base_scale * sign(tex_scale.g) * max(abs(tex_scale.g), 0.001);
 	TRANSFORM[2].xyz *= base_scale * sign(tex_scale.b) * max(abs(tex_scale.b), 0.001);
-    
-	if (COLLIDED) {
+	if (CUSTOM.y > CUSTOM.w) {
 		ACTIVE = false;
 	}
     
-	//if (CUSTOM.y > CUSTOM.w) {
-	//	ACTIVE = false;
-	//}
+    
 }
 
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4ou8"]
-resource_local_to_scene = true
-shader = SubResource("Shader_kfeqs")
-shader_parameter/direction = Vector3(0, 0, 0)
-shader_parameter/spread = 180.0
-shader_parameter/flatness = 0.0
-shader_parameter/initial_linear_velocity_min = 0.0
-shader_parameter/initial_angle_min = 0.0
-shader_parameter/angular_velocity_min = 0.0
-shader_parameter/orbit_velocity_min = 0.0
-shader_parameter/linear_accel_min = 0.0
-shader_parameter/radial_accel_min = 0.0
-shader_parameter/tangent_accel_min = 0.0
-shader_parameter/damping_min = 0.0
-shader_parameter/scale_min = 1.0
-shader_parameter/hue_variation_min = 0.0
-shader_parameter/anim_speed_min = 0.0
-shader_parameter/anim_offset_min = 0.0
-shader_parameter/initial_linear_velocity_max = 0.0
-shader_parameter/initial_angle_max = 0.0
-shader_parameter/angular_velocity_max = 0.0
-shader_parameter/orbit_velocity_max = 0.0
-shader_parameter/linear_accel_max = 0.0
-shader_parameter/radial_accel_max = 0.0
-shader_parameter/tangent_accel_max = 0.0
-shader_parameter/damping_max = 0.0
-shader_parameter/scale_max = 2.0
-shader_parameter/hue_variation_max = 0.0
-shader_parameter/anim_speed_max = 0.0
-shader_parameter/anim_offset_max = 0.0
-shader_parameter/lifetime_randomness = 0.0
-shader_parameter/emission_sphere_radius = 10.0
-shader_parameter/color_value = Color(0.4, 0.298039, 0.0588235, 1)
-shader_parameter/gravity = Vector3(0, -1e-06, 0)
-shader_parameter/player_loc = null
-shader_parameter/attractor_str = 250.0
-shader_parameter/obj_destroy_distance = 0.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tj8ej"]
-size = Vector2(16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vtrcn"]
-atlas = ExtResource("1_eqf4v")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_j34tc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vtrcn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="Crate" type="Node2D"]
-
-[node name="MassParticles" parent="." instance=ExtResource("1_bkkfb")]
-emitting = true
-process_material = SubResource("ShaderMaterial_c4ou8")
-lifetime = 2.0
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-disable_mode = 1
-can_sleep = false
-constant_force = Vector2(0, 1)
-script = ExtResource("1_bur3a")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("RectangleShape2D_tj8ej")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
-sprite_frames = SubResource("SpriteFrames_j34tc")

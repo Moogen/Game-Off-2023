@@ -6,6 +6,8 @@ var starting_state: State
 var current_state: State
 @export
 var previous_state: State
+@export
+var side_attack_state : State
 
 var timestop = false
 
@@ -54,6 +56,10 @@ func process_input(event: InputEvent) -> void:
             Engine.set_time_scale(0.1)
         else:
             Engine.set_time_scale(1)
+    pass
+    
+    if Input.is_action_just_pressed('side_attack'): #automatically send us to the side_attack state
+        new_state = side_attack_state 
     pass
     
     if new_state:

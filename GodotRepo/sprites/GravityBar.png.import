@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://h5x3amanm0fp"
-path="res://.godot/imported/GravityBar.png-d75553417a1b713dd39dbf75bca4d2d0.ctex"
+path="res://.godot/imported/GravityBar.png-594fa5aa79da2b23d7f5402495b70cd8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/GravityBar.png"
-dest_files=["res://.godot/imported/GravityBar.png-d75553417a1b713dd39dbf75bca4d2d0.ctex"]
+source_file="res://sprites/GravityBar.png"
+dest_files=["res://.godot/imported/GravityBar.png-594fa5aa79da2b23d7f5402495b70cd8.ctex"]
 
 [params]
 
