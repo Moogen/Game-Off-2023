@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://di8j2j2iwxw7r"
-path="res://.godot/imported/Portal_Tiles.png-5f9a4ee0a44fca589d4941e55e266b66.ctex"
+path="res://.godot/imported/Portal_Tiles.png-12584b5492850ccfe67f0bf4c984e89c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Portal_Tiles.png"
-dest_files=["res://.godot/imported/Portal_Tiles.png-5f9a4ee0a44fca589d4941e55e266b66.ctex"]
+source_file="res://sprites/Portal_Tiles.png"
+dest_files=["res://.godot/imported/Portal_Tiles.png-12584b5492850ccfe67f0bf4c984e89c.ctex"]
 
 [params]
 

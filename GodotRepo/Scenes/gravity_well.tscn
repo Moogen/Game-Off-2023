@@ -26,7 +26,8 @@ gravity_point_center = Vector2(0, 0)
 gravity_direction = Vector2(0, 0)
 gravity = 3000.0
 linear_damp_space_override = 1
-linear_damp = 0.0
+linear_damp = 10.118
+angular_damp_space_override = 1
 angular_damp = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blackhole"]
@@ -38,8 +39,9 @@ gravity_space_override = 3
 gravity_point = true
 gravity_point_center = Vector2(0, 0)
 gravity_direction = Vector2(0, 0)
-gravity = 0.0
-linear_damp = 0.0
+gravity = 100.0
+linear_damp_space_override = 3
+linear_damp = 10.0
 angular_damp_space_override = 3
 angular_damp = 0.01
 

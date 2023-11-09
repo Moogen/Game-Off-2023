@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://raej4vyjje2t"
-path="res://.godot/imported/dark_hole.png-27556280006d9c8edc53f8c856beab5f.ctex"
+path="res://.godot/imported/dark_hole.png-222d603650f0f8048e62d3515617cf94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/dark_hole.png"
-dest_files=["res://.godot/imported/dark_hole.png-27556280006d9c8edc53f8c856beab5f.ctex"]
+source_file="res://sprites/dark_hole.png"
+dest_files=["res://.godot/imported/dark_hole.png-222d603650f0f8048e62d3515617cf94.ctex"]
 
 [params]
 

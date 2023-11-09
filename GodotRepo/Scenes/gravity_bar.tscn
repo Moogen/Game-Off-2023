@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/GravityBar.gd" id="1_7pj4k"]
 [ext_resource type="Texture2D" uid="uid://h5x3amanm0fp" path="res://Sprites/GravityBar.png" id="2_a3off"]
-[ext_resource type="SpriteFrames" path="res://sprites/Animations/Gravity_bar.tres" id="3_hq8xi"]
+[ext_resource type="SpriteFrames" uid="uid://dsjx5ysii1cyg" path="res://sprites/Animations/Gravity_bar.tres" id="3_hq8xi"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="4_p5icd"]
 
 [node name="GravityBar" type="Node2D"]
@@ -26,13 +26,11 @@ offset = Vector2(3, 5)
 offset_left = 5.0
 offset_top = 128.0
 offset_right = 150.0
-offset_bottom = 185.0
+offset_bottom = 176.0
 theme = ExtResource("4_p5icd")
 theme_override_font_sizes/normal_font_size = 0
 text = "Mass
-Press \"m\" to add
-Press \"e\" to return
-mass from wells"
+Press \"m\" to add"
 
 [node name="MassBar" type="ProgressBar" parent="."]
 offset_left = 5.0

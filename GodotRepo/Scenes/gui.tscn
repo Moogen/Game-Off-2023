@@ -7,8 +7,8 @@
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.007
-offset_right = -386.0
-offset_bottom = -150.89
+offset_right = -404.0
+offset_bottom = -195.89
 scale = Vector2(1.00155, 1)
 theme = ExtResource("1_db2cy")
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dx86aggwohfna"]
 
 [ext_resource type="PackedScene" uid="uid://cw4qiiaoo7gks" path="res://Scenes/parallax_background.tscn" id="1_japse"]
-[ext_resource type="Texture2D" path="res://sprites/Portal_Tiles.png" id="2_8t5eh"]
+[ext_resource type="Texture2D" uid="uid://di8j2j2iwxw7r" path="res://sprites/Portal_Tiles.png" id="2_8t5eh"]
 [ext_resource type="PackedScene" uid="uid://d3fxdij8gxr2p" path="res://Scenes/PlayerController.tscn" id="3_uorjl"]
 [ext_resource type="PackedScene" uid="uid://iuvnvfilq35o" path="res://Scenes/gui.tscn" id="4_6nwub"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="5_2ieyx"]
@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bk125ytsyqjkk" path="res://Scenes/door.tscn" id="7_gd657"]
 [ext_resource type="Script" path="res://Scripts/click_create.gd" id="9_h3jjg"]
 [ext_resource type="PackedScene" uid="uid://cghv5qiclr43p" path="res://Scenes/crate.tscn" id="10_ls8h6"]
-[ext_resource type="PackedScene" uid="uid://c1a7g4prruqay" path="res://Scenes/gravity_bar.tscn" id="11_bqpom"]
-[ext_resource type="PackedScene" uid="uid://byov6sd1wck5m" path="res://Scenes/big_crate.tscn" id="12_vrtnx"]
+[ext_resource type="PackedScene" uid="uid://431ff7onnhpi" path="res://gravity_bar.tscn" id="11_bqpom"]
+[ext_resource type="PackedScene" uid="uid://cfq62gjch0j3a" path="res://Scenes/enemy.tscn" id="12_nlfef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ly3ew"]
 texture = ExtResource("2_8t5eh")
@@ -173,5 +173,6 @@ logic_outputs = [NodePath("../Light2")]
 [node name="Crate" parent="." instance=ExtResource("10_ls8h6")]
 position = Vector2(28, 85)
 
-[node name="Big_Crate" parent="." instance=ExtResource("12_vrtnx")]
-position = Vector2(1, 79)
+[node name="Enemy" parent="." instance=ExtResource("12_nlfef")]
+position = Vector2(600, 91)
+gravity_scale = 1.0
