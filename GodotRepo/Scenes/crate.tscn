@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cghv5qiclr43p"]
 
-[ext_resource type="PackedScene" uid="uid://cmf3gp63pr2et" path="res://Scenes/mass_particle_emitter.tscn" id="1_bkkfb"]
+[ext_resource type="PackedScene" uid="uid://bvkrjaespa85r" path="res://Scenes/mass_particle_emitter.tscn" id="1_bkkfb"]
 [ext_resource type="Script" path="res://Scenes/crate.gd" id="1_bur3a"]
-[ext_resource type="Texture2D" path="res://sprites/Interactables.png" id="1_eqf4v"]
+[ext_resource type="Texture2D" uid="uid://bbdjjuxpulipr" path="res://sprites/Interactables.png" id="1_eqf4v"]
 
 [sub_resource type="Shader" id="Shader_kfeqs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's ParticleProcessMaterial.
@@ -227,7 +227,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4ou8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_264ts"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -286,8 +286,7 @@ animations = [{
 [node name="Crate" type="Node2D"]
 
 [node name="MassParticles" parent="." instance=ExtResource("1_bkkfb")]
-emitting = true
-process_material = SubResource("ShaderMaterial_c4ou8")
+process_material = SubResource("ShaderMaterial_264ts")
 lifetime = 2.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
