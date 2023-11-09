@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://7xvcsbe3ap11"]
+
+[ext_resource type="FontFile" uid="uid://je2lewpffqbe" path="res://Fonts/m5x7.ttf" id="1_nn847"]
+[ext_resource type="FontFile" uid="uid://bo8svhr8110rd" path="res://Fonts/m3x6.ttf" id="1_tpufa"]
+
+[resource]
+default_font = ExtResource("1_tpufa")
+default_font_size = 16
+Fonts/fonts/large = ExtResource("1_nn847")
+Fonts/fonts/normal = ExtResource("1_tpufa")

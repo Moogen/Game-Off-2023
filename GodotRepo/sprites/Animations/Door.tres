@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://bugpth50klabx"]
+
+[ext_resource type="Texture2D" uid="uid://cgoritx4khrj5" path="res://sprites/Interactable Outputs.png" id="1_fjb2q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xynyp"]
+atlas = ExtResource("1_fjb2q")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uij3n"]
+atlas = ExtResource("1_fjb2q")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xynyp")
+}],
+"loop": true,
+"name": &"Closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uij3n")
+}],
+"loop": true,
+"name": &"Open",
+"speed": 5.0
+}]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1a7g4prruqay"]
+
+[ext_resource type="Script" path="res://Scenes/GravityBar.gd" id="1_7pj4k"]
+[ext_resource type="Texture2D" uid="uid://h5x3amanm0fp" path="res://Sprites/GravityBar.png" id="2_a3off"]
+[ext_resource type="SpriteFrames" path="res://sprites/Animations/Gravity_bar.tres" id="3_hq8xi"]
+[ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="4_p5icd"]
+
+[node name="GravityBar" type="Node2D"]
+script = ExtResource("1_7pj4k")
+
+[node name="Frame" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(16, 64)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_a3off")
+
+[node name="Bar" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(16, 64)
+scale = Vector2(0.1, 0.1)
+sprite_frames = ExtResource("3_hq8xi")
+animation = &"4"
+offset = Vector2(3, 5)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 5.0
+offset_top = 128.0
+offset_right = 150.0
+offset_bottom = 185.0
+theme = ExtResource("4_p5icd")
+theme_override_font_sizes/normal_font_size = 0
+text = "Mass
+Press \"m\" to add
+Press \"e\" to return
+mass from wells"
+
+[node name="MassBar" type="ProgressBar" parent="."]
+offset_left = 5.0
+offset_top = 24.0
+offset_right = 34.0
+offset_bottom = 121.0
+theme = ExtResource("4_p5icd")
+value = 100.0
+fill_mode = 3

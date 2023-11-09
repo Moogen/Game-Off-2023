@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://yiamk2uihkl0"]
+
+[ext_resource type="Texture2D" uid="uid://c2gpn1cume3l0" path="res://sprites/Bar4.png" id="1_ned0w"]
+[ext_resource type="Script" path="res://Scenes/projectile.gd" id="1_ugnmv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rub6k"]
+size = Vector2(1, 12)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+script = ExtResource("1_ugnmv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_rub6k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("1_ned0w")

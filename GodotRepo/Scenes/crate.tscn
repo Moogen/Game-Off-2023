@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cghv5qiclr43p"]
+
+[ext_resource type="Texture2D" path="res://sprites/Interactables.png" id="1_eqf4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tj8ej"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtrcn"]
+atlas = ExtResource("1_eqf4v")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j34tc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtrcn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Crate" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+disable_mode = 1
+can_sleep = false
+constant_force = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_tj8ej")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+sprite_frames = SubResource("SpriteFrames_j34tc")

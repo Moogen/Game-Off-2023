@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfq62gjch0j3a"]
+
+[ext_resource type="Texture2D" uid="uid://dlxn0utrw7p6g" path="res://sprites/CUBE.png" id="1_22u6q"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_b2pdy"]
+[ext_resource type="Script" path="res://Scripts/EnemyStateMachine.gd" id="3_2odlt"]
+[ext_resource type="Script" path="res://Scripts/EnemyMove.gd" id="5_pt7me"]
+[ext_resource type="Script" path="res://Scripts/EnemyIdle.gd" id="6_78k3w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tj8ej"]
+size = Vector2(44.4, 39.775)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j34tc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_22u6q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+disable_mode = 1
+gravity_scale = 20.0
+can_sleep = false
+constant_force = Vector2(0, 1)
+script = ExtResource("1_b2pdy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+top_level = true
+position = Vector2(-0.2, -0.1125)
+shape = SubResource("RectangleShape2D_tj8ej")
+debug_color = Color(0.909804, 0.207843, 0.54902, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_j34tc")
+
+[node name="EnemyStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "current_state")]
+script = ExtResource("3_2odlt")
+starting_state = NodePath("EnemyMove")
+current_state = NodePath("EnemyMove")
+
+[node name="EnemyMove" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("5_pt7me")
+idle_state = NodePath("../EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("move_state")]
+script = ExtResource("6_78k3w")
+move_state = NodePath("../EnemyMove")
