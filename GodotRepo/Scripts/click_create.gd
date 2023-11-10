@@ -111,7 +111,7 @@ func _input(event: InputEvent) -> void:
             timer = Time.get_ticks_msec()
             spawning_well = gravity_well_template.instantiate().duplicate()
             add_child(spawning_well)
-
+            mass_cost = 0
             well_spawning_flag = 1
             well_size = 0
         elif event.button_index == MOUSE_BUTTON_LEFT and event.is_released() and (all_wells.size() < max_wells):
