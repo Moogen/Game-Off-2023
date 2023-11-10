@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://d3fxdij8gxr2p"]
 
 [ext_resource type="Script" path="res://Scripts/BasicPlayer.gd" id="1_jtj3m"]
-[ext_resource type="SpriteFrames" uid="uid://tqtkw4xfceq6" path="res://Sprites/Animations/PlayerController.tres" id="2_7dg1n"]
+[ext_resource type="SpriteFrames" uid="uid://tqtkw4xfceq6" path="res://sprites/Animations/PlayerController.tres" id="2_7dg1n"]
 [ext_resource type="Script" path="res://Scripts/State Machine.gd" id="3_ad318"]
 [ext_resource type="Script" path="res://Scripts/jump.gd" id="4_5f5su"]
 [ext_resource type="Script" path="res://Scripts/side_attack.gd" id="4_e1qiq"]

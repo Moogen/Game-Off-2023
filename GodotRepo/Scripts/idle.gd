@@ -18,7 +18,7 @@ func enter(previous_state: State) -> void:
 func process_input(event: InputEvent) -> State:
     if Input.is_action_just_pressed('ui_accept') and parent.is_on_floor():
         return jump_state
-    if Input.is_action_just_pressed('ui_left') or Input.is_action_just_pressed('ui_right'):
+    if Input.is_action_pressed('ui_left') or Input.is_action_pressed('ui_right'):
         return move_state
     return null
 

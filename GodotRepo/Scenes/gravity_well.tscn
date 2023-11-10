@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dptl7rt8a65hx"]
 
 [ext_resource type="Script" path="res://Scripts/GravityWell.gd" id="1_k6cux"]
-[ext_resource type="Texture2D" uid="uid://raej4vyjje2t" path="res://Sprites/dark_hole.png" id="2_hmhry"]
+[ext_resource type="Texture2D" uid="uid://raej4vyjje2t" path="res://sprites/dark_hole.png" id="2_hmhry"]
 [ext_resource type="Script" path="res://Scripts/BlackholeSprite.gd" id="3_jgrx1"]
 [ext_resource type="PackedScene" uid="uid://cmf3gp63pr2et" path="res://Scenes/mass_particle_emitter.tscn" id="4_qeu1r"]
 
@@ -233,7 +233,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oiub7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jje12"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -307,4 +307,5 @@ angular_damp = 0.01
 shape = SubResource("CircleShape2D_xne5h")
 
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
-process_material = SubResource("ShaderMaterial_oiub7")
+process_material = SubResource("ShaderMaterial_jje12")
+lifetime = 2.0

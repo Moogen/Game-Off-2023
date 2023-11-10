@@ -41,10 +41,10 @@ func enter(previous_state: State) -> void:
 
 func process_input(event: InputEvent) -> State:
     #if there's any input change the state here
-    if Input.is_action_pressed('ui_accept') and parent.is_on_floor():
-        return jump_state
-    if Input.is_action_pressed('ui_left') or Input.is_action_pressed('ui_right'):
-        return move_state
+   # if Input.is_action_pressed('ui_accept') and parent.is_on_floor():
+   #     return jump_state
+   # if Input.is_action_pressed('ui_left') or Input.is_action_pressed('ui_right'):
+ #       return move_state
     return null
 
 
@@ -55,8 +55,11 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
     parent.velocity.y += gravity * delta + gravity_influence.y * delta
     parent.velocity.x = movement + gravity_velocity_x
     
-
-    parent.animations.flip_h = movement > 0
+    if(movement > 0):
+        parent.animations.flip_h = true
+    elif(movement < 0):
+        parent.animations.flip_h = false
+        
     get_tree().call_group("Debug Group", "update_velocity", parent.velocity)
     parent.move_and_slide()
   
@@ -66,9 +69,11 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
     return null
     
 func process_frame(delta) -> State:
-    
-    if anim_complete == 1:
+    var movement = Input.get_axis('ui_left', 'ui_right')
+    if anim_complete == 1 && movement == 0:
         return idle_state
+    elif anim_complete == 1:
+        return move_state #go to the move state if player is currently moving
         
     return null
     
@@ -77,4 +82,5 @@ func attack_timeout():
     #deactivate the attack area
     remove_child(timer)
     side_attack_area_shape.disabled = true
+    print("leaving state")
     anim_complete = 1 #set the anim_complete flag

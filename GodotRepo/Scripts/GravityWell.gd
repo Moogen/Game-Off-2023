@@ -15,20 +15,28 @@ const click_timer_scale : float = 0.01 #.1 seconds is = the base size of the bla
 const sprite_scale      : float = 0.025*4
 #const particle_disappear_coeff  : float = 0.015
 const particle_ammount_coef     : float = 100
+const particle_dying_coef       : float = 50
 const particle_center_size      : float = 83/2
 const mass_particle_gravity     : float = 250 #controls the force at which the mass particles are attracted to the player
+const well_dying_timer : float = 1000 #lose 1 tick of mass on the well per second
+const well_dying_val   : int = 1
+
 
 var click_time = 0
 var mass_cost = 0
 
 var mass_return_anim_time = 10
-
+var timer
+var well_active
 @onready var template_particle_emitter : GPUParticles2D = $MassParticles
 var particle_emitter : GPUParticles2D
-
+var gravity_bar
 # Called when the node enters the scene tree for the first time.
 func _ready():
     print("Supermassive black hole")
+    gravity_bar=get_node("../../CanvasLayer/GravityBar")
+    well_active = true
+    timer = Time.get_ticks_msec()
     set_size(0,0)
     particle_emitter = template_particle_emitter.duplicate(true)
     add_child(particle_emitter)
@@ -40,8 +48,18 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     set_particles_direction() #set the particle direction of the emitter
-    set_particles_size()
+
    
+    if(well_active && Time.get_ticks_msec() - timer > well_dying_timer):
+        timer = Time.get_ticks_msec()
+        mass_cost -= well_dying_val
+        click_time -= well_dying_val
+        lose_mass(well_dying_val)
+        set_size(click_time, mass_cost)
+        gravity_bar.modify_mass(well_dying_val)
+        if(mass_cost == 0):
+            remove_gravity()
+
     #if we overlap with the player, apply gravity to them
     for body in grav_area.get_overlapping_bodies():
         if body is Player:
@@ -49,6 +67,8 @@ func _process(delta):
     pass
 
 func remove_gravity():
+    set_particles_size()
+    well_active = false
     grav_area.gravity_space_override = Area2D.SPACE_OVERRIDE_DISABLED
     grav_area.linear_damp_space_override = Area2D.SPACE_OVERRIDE_DISABLED
     grav_center_area.gravity_space_override = Area2D.SPACE_OVERRIDE_DISABLED
@@ -62,11 +82,21 @@ func remove_gravity():
         if body is Player:
             body.set_influence(0, self.global_position, 0)
             
+    particle_emitter.one_shot = true        
     particle_emitter.visibility_rect.grow(25)  #programatically adjust this rect
     particle_emitter.emitting = true
     
     pass
 
+func lose_mass(lost_mass):
+    #remove mass, emit particles = to the mass lost in an area = to the total area
+    particle_emitter.amount = 0 #this is a janky way to activate the emitter on tick
+    particle_emitter.process_material.set_shader_parameter("emission_sphere_radius", particle_center_size * click_timer_scale * click_time)  #use the same math as center size
+    particle_emitter.amount = lost_mass * particle_dying_coef
+    particle_emitter.emitting = true
+    particle_emitter.one_shot = false
+    pass
+    
 func finish_mass_anim():
     queue_free()
     
