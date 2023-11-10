@@ -69,9 +69,11 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
     return null
     
 func process_frame(delta) -> State:
-    
-    if anim_complete == 1:
+    var movement = Input.get_axis('ui_left', 'ui_right')
+    if anim_complete == 1 && movement == 0:
         return idle_state
+    elif anim_complete == 1:
+        return move_state #go to the move state if player is currently moving
         
     return null
     
@@ -80,4 +82,5 @@ func attack_timeout():
     #deactivate the attack area
     remove_child(timer)
     side_attack_area_shape.disabled = true
+    print("leaving state")
     anim_complete = 1 #set the anim_complete flag
