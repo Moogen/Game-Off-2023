@@ -107,7 +107,6 @@ func _input(event: InputEvent) -> void:
         # Left click creates
         if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
             # Start a timer to start figuring out the size of the black hole
-            print("click down")
             timer = Time.get_ticks_msec()
             spawning_well = gravity_well_template.instantiate().duplicate()
             add_child(spawning_well)

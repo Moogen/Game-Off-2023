@@ -1,10 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cghv5qiclr43p"]
 
-
 [ext_resource type="PackedScene" uid="uid://cmf3gp63pr2et" path="res://Scenes/mass_particle_emitter.tscn" id="1_bkkfb"]
 [ext_resource type="Texture2D" uid="uid://bbdjjuxpulipr" path="res://sprites/Interactables.png" id="1_eqf4v"]
 [ext_resource type="Script" path="res://Scripts/crate.gd" id="2_s46g1"]
-
 
 [sub_resource type="Shader" id="Shader_kfeqs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's ParticleProcessMaterial.
@@ -229,7 +227,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0aruk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6jvq"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -288,8 +286,7 @@ animations = [{
 [node name="Crate" type="Node2D"]
 
 [node name="MassParticles" parent="." instance=ExtResource("1_bkkfb")]
-process_material = SubResource("ShaderMaterial_0aruk")
-
+process_material = SubResource("ShaderMaterial_r6jvq")
 lifetime = 2.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
