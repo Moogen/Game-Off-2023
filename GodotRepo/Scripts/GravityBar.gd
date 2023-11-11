@@ -1,7 +1,7 @@
 extends Node2D
 
 var max_mass = 100;
-var cur_mass = 100;
+var cur_mass = 25;
 
 @onready var mass_bar : ProgressBar = $MassBar;
 
@@ -22,7 +22,6 @@ func _input(event: InputEvent) -> void:
     pass
     
 func modify_mass(massToAdd: int):
-    print(massToAdd)
     if(cur_mass + massToAdd <= max_mass && cur_mass + massToAdd >= 0):
         cur_mass += massToAdd
     elif(cur_mass + massToAdd > max_mass):
