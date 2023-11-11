@@ -95,7 +95,10 @@ func remove_gravity():
                 
         particle_emitter.one_shot = true        
         particle_emitter.visibility_rect.grow(25)  #programatically adjust this rect
-        particle_emitter.emitting = true
+        
+        if(mass_cost > 0): #if the well dies with 0 mass, don't return any mass particles
+            particle_emitter.emitting = true
+            
         print("returning well of size %d", mass_cost)
         gravity_bar.modify_mass(mass_cost)
         mass_returned = true

@@ -40,7 +40,7 @@ func _process(delta):
         
         # Click position is adjusted by player movement so we must place our gravity well accordingly
         spawning_well.position = get_global_mouse_position() 
-        # print("Time elapsed: ", click_time)
+        
         
         if(click_time >= 10): #every 0.1 seconds add to the size 
             timer = Time.get_ticks_msec()
@@ -52,11 +52,8 @@ func _process(delta):
             else:
                 #out of mass, so we place the well
                 well_spawning_flag = 0
-                print("creating well of size %d", well_size)
                 spawning_well = null
-                print("Out of mass to add")
-                
-                
+                print("Out of mass to add")  
                 
         # Check if we have any more mass to add to the size
         
@@ -113,19 +110,22 @@ func _input(event: InputEvent) -> void:
         if well_deleted_on_input == false:
             # Start a timer to start figuring out the size of the black hole
             if(gravity_bar.has_mass(1)):
+                well_spawning_flag = 1 #set this flag first, seems like it might need a semaphore with process
                 gravity_bar.spend_mass(1)
                 well_size = 1
                 mass_cost = 1
                 spawning_well = gravity_well_template.instantiate()
                 add_child(spawning_well)
                 spawning_well.set_size(well_size, mass_cost)
-                well_spawning_flag = 1
-    
+                
     #If we get the input that create or destroy key is released        
-    if Input.is_action_just_released("create_or_destroy_well"):
+    if !Input.is_action_pressed("create_or_destroy_well"):
         #all_wells.append(spawning_well)
-        well_spawning_flag = 0
-        spawning_well = null
+        if(well_spawning_flag):
+            print("creating well of size %d", well_size)
+            
+            well_spawning_flag = 0
+            spawning_well = null
 
                   
                 
