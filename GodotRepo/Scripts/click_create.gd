@@ -48,11 +48,13 @@ func _process(delta):
                 gravity_bar.spend_mass(1)
                 well_size += 1
                 mass_cost += 1
+                
                 spawning_well.set_size(well_size, mass_cost)
             else:
                 #out of mass, so we place the well
                 well_spawning_flag = 0
-                all_wells.append(spawning_well)
+                print("creating well of size %d", well_size)
+                #all_wells.append(spawning_well)
                 print("Out of mass to add")
                 
                 
@@ -75,46 +77,53 @@ func _physics_process(delta):
 func _input(event: InputEvent) -> void:
     
     if Input.is_action_just_pressed('delete_wells'):
-        var temp_wells = all_wells.duplicate()
-        #so that we're not iterating through an array that is actively being deleted create a temp 
-        
-        for well in temp_wells: #search the temp array for all wells
-            gravity_bar.modify_mass(well.get_mass()) #remove the wells and return them to the player
-            well.remove_gravity()
-            #remove_child(well)
-            all_wells.erase(well)
+        # Get all objects in the "Gravity Well Group".
+        var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
+
+        # Iterate through each well in the group.
+        for well in wells_in_group:
+        # Ensure the well is not null and has a 'remove_gravity' method.
+            if well and well.has_method("remove_gravity"):
+                # Delete (free) the well.()
+                well.remove_gravity()
+            
+
+           
             
     if event is InputEventMouseButton and gravity_createable:
         # Right click deletes
         
         if event.button_index == MOUSE_BUTTON_RIGHT and event.is_released():
-
-            for well in all_wells:
-                # Look I know this is complicated, and I'm sorry
-                # We're comparing the click position against each well position, but because click position
-                # is adjusted by player movement we must adjust our calculation accordingly
+            # Get all objects in the "Gravity Well Group".
+            var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
+            
+            for well in wells_in_group:
                 
-                if (get_global_mouse_position().distance_to(well.position) < delete_distance):
-                    gravity_bar.modify_mass(well.get_mass())
-                    well.remove_gravity()
-                    #remove_child(well)
-                    all_wells.erase(well)
-                else:
-                    #probably we want to trigger a failure noise here
+                #See if the player clicks near the well
+                if (get_global_mouse_position().distance_to(well.position) < delete_distance):    
+                    # Ensure the well is not null and has a 'remove_gravity' method.
+                    if well and well.has_method("remove_gravity"):
+                    # Delete (free) the well.()
+                        well.remove_gravity()
+                    else:
+                        #probably we want to trigger a failure noise here
+                        print("failed to delete any wells")
                     pass
             pass
         
         # Left click creates
         if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
             # Start a timer to start figuring out the size of the black hole
-            timer = Time.get_ticks_msec()
-            spawning_well = gravity_well_template.instantiate().duplicate()
-            add_child(spawning_well)
-            mass_cost = 0
-            well_spawning_flag = 1
-            well_size = 0
+           if(gravity_bar.has_mass(1)):
+                gravity_bar.spend_mass(1)
+                well_size = 1
+                mass_cost = 1
+                spawning_well = gravity_well_template.instantiate().duplicate()
+                add_child(spawning_well)
+                well_spawning_flag = 1
+            
         elif event.button_index == MOUSE_BUTTON_LEFT and event.is_released() and (all_wells.size() < max_wells):
-            all_wells.append(spawning_well)
+            #all_wells.append(spawning_well)
             well_spawning_flag = 0  
 
                   
