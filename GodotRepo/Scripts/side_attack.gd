@@ -18,18 +18,19 @@ var timer
 @onready var side_attack_area_shape : CollisionShape2D = $"../../SideAttackArea/CollisionShape2D"
 
 func enter(previous_state: State) -> void:
-    
+    print("side attacker")
     #activate the attack on 1 side of the player
     side_attack_area_shape.disabled = false
-    
+        
     #using parent.animations.flip_h to determine the side we'll attack on
     if(parent.animations.flip_h):
         side_attack_area_shape.position.x = attack_area_size
     else:
         side_attack_area_shape.position.x = -attack_area_size
-    
+
     super(previous_state)
     anim_complete = 0 #set the animation complete flag to 0
+    
     #start an animation timer to change the state when the animation is completed
     timer = Timer.new()
     timer.wait_time = attack_duration
