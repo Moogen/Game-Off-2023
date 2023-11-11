@@ -18,10 +18,7 @@ func _process(delta):
     pass
     
 func destroy_self():
-    super.destroy_self()
-    #particle_emitter.emitting = true
-    #+ also activate the animation
-    
+    super.destroy_self()    
     pass
     
 func set_particles_direction():

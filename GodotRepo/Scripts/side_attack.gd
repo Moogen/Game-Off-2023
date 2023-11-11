@@ -11,7 +11,7 @@ var idle_state: State
 
 var gravity_x = 0
 const attack_area_size : float = 10
-const attack_duration : float = .25
+const attack_duration : float = .5
 var anim_complete = 0
 var timer 
 @onready var side_attack_area : Area2D = $"../../SideAttackArea"

@@ -175,3 +175,21 @@ position = Vector2(28, 85)
 
 [node name="Big_Crate" parent="." instance=ExtResource("12_vrtnx")]
 position = Vector2(1, 79)
+
+[node name="Crate2" parent="." instance=ExtResource("10_ls8h6")]
+position = Vector2(60, 34)
+
+[node name="Crate3" parent="." instance=ExtResource("10_ls8h6")]
+position = Vector2(39, 54)
+
+[node name="Crate4" parent="." instance=ExtResource("10_ls8h6")]
+position = Vector2(56, 72)
+
+[node name="Crate5" parent="." instance=ExtResource("10_ls8h6")]
+position = Vector2(62, 54)
+
+[node name="Crate6" parent="." instance=ExtResource("10_ls8h6")]
+position = Vector2(36, 24)
+
+[node name="Crate7" parent="." instance=ExtResource("10_ls8h6")]
+position = Vector2(61, 1)

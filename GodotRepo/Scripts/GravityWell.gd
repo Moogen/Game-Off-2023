@@ -14,7 +14,7 @@ const center_size       : float = 83
 const click_timer_scale : float = 0.01 #.1 seconds is = the base size of the black hole
 const sprite_scale      : float = 0.025*4
 #const particle_disappear_coeff  : float = 0.015
-const particle_ammount_coef     : float = 100
+const particle_ammount_coef     : float = 200
 const particle_dying_coef       : float = 1
 const particle_center_size      : float = 83/2
 const mass_particle_gravity     : float = 250 #controls the force at which the mass particles are attracted to the player
@@ -31,12 +31,11 @@ var well_active
 @onready var template_particle_emitter : GPUParticles2D = $MassParticles
 
 var particle_emitter : GPUParticles2D
-var gravity_bar
 var mass_returned
 # Called when the node enters the scene tree for the first time.
 func _ready():
     print("Supermassive black hole")
-    gravity_bar=get_node("../../CanvasLayer/GravityBar")
+   
     add_to_group("Gravity Well Group")
     well_active = true
     mass_returned = false
@@ -64,7 +63,7 @@ func _process(delta):
         click_time -= well_dying_val
         set_size(click_time, mass_cost)
         if(return_dying_mass):
-            gravity_bar.modify_mass(well_dying_val)
+            get_tree().call_group("Gravity Bar", "modify_mass", well_dying_val)
             
         if(mass_cost == 0):
             remove_gravity() #somehow this needs to be removed from the wells list?
@@ -101,7 +100,7 @@ func remove_gravity():
             particle_emitter.emitting = true
             
         print("returning well of size %d", mass_cost)
-        gravity_bar.modify_mass(mass_cost)
+        get_tree().call_group("Gravity Bar", "modify_mass", mass_cost)
         mass_returned = true
         
         #set up the kill_timer for when we want to delete the well
