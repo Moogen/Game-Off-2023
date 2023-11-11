@@ -18,18 +18,18 @@ var timer
 @onready var side_attack_area_shape : CollisionShape2D = $"../../SideAttackArea/CollisionShape2D"
 
 func enter(previous_state: State) -> void:
-    
-    #activate the attack on 1 side of the player
-    side_attack_area_shape.disabled = false
-    
+    print("side attacker")
+
+        
     #using parent.animations.flip_h to determine the side we'll attack on
     if(parent.animations.flip_h):
         side_attack_area_shape.position.x = attack_area_size
     else:
         side_attack_area_shape.position.x = -attack_area_size
-    
+
     super(previous_state)
-    anim_complete = 0 #set the animation complete flag to 0
+    anim_complete = 0 #set the animation complete sflag to 0
+    
     #start an animation timer to change the state when the animation is completed
     timer = Timer.new()
     timer.wait_time = attack_duration
@@ -37,6 +37,13 @@ func enter(previous_state: State) -> void:
     add_child(timer)
     timer.start()
     
+    #do damage to overlapping bodies
+    for body in side_attack_area.get_overlapping_bodies():
+        print("next to some bodies")
+        if body.is_in_group("Destroyable"):
+            print("do some damage to the object")       
+            body.damage_object(parent.side_attack_damage)
+        pass
         
 
 func process_input(event: InputEvent) -> State:
@@ -81,6 +88,5 @@ func attack_timeout():
     
     #deactivate the attack area
     remove_child(timer)
-    side_attack_area_shape.disabled = true
     print("leaving state")
     anim_complete = 1 #set the anim_complete flag

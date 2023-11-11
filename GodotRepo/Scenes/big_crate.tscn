@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://byov6sd1wck5m"]
+[gd_scene load_steps=6 format=3 uid="uid://byov6sd1wck5m"]
 
-[ext_resource type="Texture2D" path="res://sprites/Interactables.png" id="1_ltlcm"]
+[ext_resource type="Script" path="res://Scripts/crate.gd" id="1_8hck0"]
+[ext_resource type="Texture2D" uid="uid://bbdjjuxpulipr" path="res://sprites/Interactables.png" id="1_ltlcm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj8ej"]
 size = Vector2(16, 16)
@@ -27,6 +28,8 @@ disable_mode = 1
 mass = 1000.0
 can_sleep = false
 constant_force = Vector2(0, 1)
+script = ExtResource("1_8hck0")
+object_health = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 scale = Vector2(2, 2)

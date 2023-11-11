@@ -40,7 +40,7 @@ func _process(delta):
         
         # Click position is adjusted by player movement so we must place our gravity well accordingly
         spawning_well.position = get_global_mouse_position() 
-        # print("Time elapsed: ", click_time)
+        
         
         if(click_time >= 10): #every 0.1 seconds add to the size 
             timer = Time.get_ticks_msec()
@@ -48,34 +48,15 @@ func _process(delta):
                 gravity_bar.spend_mass(1)
                 well_size += 1
                 mass_cost += 1
-                
                 spawning_well.set_size(well_size, mass_cost)
             else:
                 #out of mass, so we place the well
                 well_spawning_flag = 0
-                print("creating well of size %d", well_size)
-                #all_wells.append(spawning_well)
-                print("Out of mass to add")
+                spawning_well = null
+                print("Out of mass to add")  
                 
-                
-                
-        # Check if we have any more mass to add to the size
-        
-        #if we do, spend the mass and increase the well size
-        
-        #if we don't do nothing (play a noise later)
-        
-        # if(gravity_bar.spend_mass(int(click_time/100))):
-        # create a new well                  
-    pass
-    
-func _physics_process(delta):
-    pass
-    
 
-        
-func _input(event: InputEvent) -> void:
-    
+    #moved inputs into process since we are no longer using input events
     if Input.is_action_just_pressed('delete_wells'):
         # Get all objects in the "Gravity Well Group".
         var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
@@ -89,45 +70,55 @@ func _input(event: InputEvent) -> void:
             
 
            
-            
-    if event is InputEventMouseButton and gravity_createable:
-        # Right click deletes
+       
+    
+    #If we get the input that create or destroy key is pressed     
+    if Input.is_action_just_pressed("create_or_destroy_well"): 
+        # Get all objects in the "Gravity Well Group".
+        var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
+        var well_deleted_on_input = false   
         
-        if event.button_index == MOUSE_BUTTON_RIGHT and event.is_released():
-            # Get all objects in the "Gravity Well Group".
-            var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
-            
-            for well in wells_in_group:
-                
-                #See if the player clicks near the well
-                if (get_global_mouse_position().distance_to(well.position) < delete_distance):    
-                    # Ensure the well is not null and has a 'remove_gravity' method.
-                    if well and well.has_method("remove_gravity"):
-                    # Delete (free) the well.()
-                        well.remove_gravity()
-                    else:
-                        #probably we want to trigger a failure noise here
-                        print("failed to delete any wells")
-                    pass
-            pass
+        for well in wells_in_group:
+            #See if the player clicks near the well
+            if (get_global_mouse_position().distance_to(well.position) < delete_distance):    
+                # Ensure the well is not null and has a 'remove_gravity' method.
+                if well and well.has_method("remove_gravity"):
+                # Delete (free) the well.()
+                    well.remove_gravity()
+                    well_deleted_on_input = true
+                else:
+                    #failed to delete any wells so do the creation logic
+                    print("failed to delete any wells")
         
+    
         # Left click creates
-        if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+        if well_deleted_on_input == false:
             # Start a timer to start figuring out the size of the black hole
-           if(gravity_bar.has_mass(1)):
+            if(gravity_bar.has_mass(1)):
+                well_spawning_flag = 1 #set this flag first, seems like it might need a semaphore with process
                 gravity_bar.spend_mass(1)
                 well_size = 1
                 mass_cost = 1
-                spawning_well = gravity_well_template.instantiate().duplicate()
+                spawning_well = gravity_well_template.instantiate()
                 add_child(spawning_well)
-                well_spawning_flag = 1
+                spawning_well.set_size(well_size, mass_cost)
+                
+    #If we get the input that create or destroy key is released        
+    if !Input.is_action_pressed("create_or_destroy_well"):
+        #all_wells.append(spawning_well)
+        if(well_spawning_flag):
+            print("creating well of size %d", well_size)
             
-        elif event.button_index == MOUSE_BUTTON_LEFT and event.is_released() and (all_wells.size() < max_wells):
-            #all_wells.append(spawning_well)
-            well_spawning_flag = 0  
+            well_spawning_flag = 0
+            spawning_well = null
 
                   
-                
-
+       
+             
     pass
     
+func _physics_process(delta):
+    pass
+    
+
+        

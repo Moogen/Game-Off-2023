@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmf3gp63pr2et"]
+[gd_scene load_steps=3 format=3 uid="uid://dwriqxoxhlar3"]
 
 [sub_resource type="Shader" id="Shader_kfeqs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's ParticleProcessMaterial.
@@ -229,7 +229,7 @@ shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
 shader_parameter/spread = 180.0
 shader_parameter/flatness = 0.0
-shader_parameter/initial_linear_velocity_min = 0.0
+shader_parameter/initial_linear_velocity_min = 10.0
 shader_parameter/initial_angle_min = 0.0
 shader_parameter/angular_velocity_min = 0.0
 shader_parameter/orbit_velocity_min = 0.0
@@ -241,7 +241,7 @@ shader_parameter/scale_min = 1.0
 shader_parameter/hue_variation_min = 0.0
 shader_parameter/anim_speed_min = 0.0
 shader_parameter/anim_offset_min = 0.0
-shader_parameter/initial_linear_velocity_max = 0.0
+shader_parameter/initial_linear_velocity_max = 10.0
 shader_parameter/initial_angle_max = 0.0
 shader_parameter/angular_velocity_max = 0.0
 shader_parameter/orbit_velocity_max = 0.0
@@ -258,7 +258,7 @@ shader_parameter/emission_sphere_radius = 10.0
 shader_parameter/color_value = Color(0.431373, 0.317647, 0.505882, 1)
 shader_parameter/gravity = Vector3(0, -1e-06, 0)
 shader_parameter/player_loc = null
-shader_parameter/attractor_str = 1000.0
+shader_parameter/attractor_str = 10.0
 shader_parameter/obj_destroy_distance = null
 
 [node name="MassParticles" type="GPUParticles2D"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cghv5qiclr43p"]
 
-[ext_resource type="PackedScene" uid="uid://cmf3gp63pr2et" path="res://Scenes/mass_particle_emitter.tscn" id="1_bkkfb"]
+[ext_resource type="PackedScene" uid="uid://dwriqxoxhlar3" path="res://Scenes/mass_particle_emitter.tscn" id="1_bkkfb"]
 [ext_resource type="Texture2D" uid="uid://bbdjjuxpulipr" path="res://sprites/Interactables.png" id="1_eqf4v"]
 [ext_resource type="Script" path="res://Scripts/crate.gd" id="2_s46g1"]
 
@@ -227,7 +227,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wrkss"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wkb8g"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -286,14 +286,17 @@ animations = [{
 [node name="Crate" type="Node2D"]
 
 [node name="MassParticles" parent="." instance=ExtResource("1_bkkfb")]
-process_material = SubResource("ShaderMaterial_wrkss")
+process_material = SubResource("ShaderMaterial_wkb8g")
 lifetime = 2.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 disable_mode = 1
+collision_layer = 3
+collision_mask = 3
 can_sleep = false
 constant_force = Vector2(0, 1)
 script = ExtResource("2_s46g1")
+object_health = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_tj8ej")

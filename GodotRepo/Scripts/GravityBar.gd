@@ -1,13 +1,14 @@
 extends Node2D
 
 var max_mass = 100;
-var cur_mass = 25;
+var cur_mass = 75;
 
 @onready var mass_bar : ProgressBar = $MassBar;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     #mass_bar = get_node("Bar")
+    add_to_group("Gravity Bar")
     adjust_mass_bar()
     pass # Replace with function body.
 
@@ -22,6 +23,7 @@ func _input(event: InputEvent) -> void:
     pass
     
 func modify_mass(massToAdd: int):
+    print("modify mass", massToAdd)
     if(cur_mass + massToAdd <= max_mass && cur_mass + massToAdd >= 0):
         cur_mass += massToAdd
     elif(cur_mass + massToAdd > max_mass):
