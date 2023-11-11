@@ -119,7 +119,7 @@ func _input(event: InputEvent) -> void:
                 gravity_bar.spend_mass(1)
                 well_size = 1
                 mass_cost = 1
-                spawning_well = gravity_well_template.instantiate().duplicate()
+                spawning_well = gravity_well_template.instantiate()
                 add_child(spawning_well)
                 spawning_well.set_size(well_size, mass_cost)
                 well_spawning_flag = 1
