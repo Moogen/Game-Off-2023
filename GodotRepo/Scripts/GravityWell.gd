@@ -41,6 +41,7 @@ func _ready():
     well_active = true
     mass_returned = false
     timer = Time.get_ticks_msec()
+
    
     particle_emitter = template_particle_emitter.duplicate(true)
     add_child(particle_emitter)
@@ -102,7 +103,17 @@ func remove_gravity():
         print("returning well of size %d", mass_cost)
         gravity_bar.modify_mass(mass_cost)
         mass_returned = true
+        
+        #set up the kill_timer for when we want to delete the well
+        var kill_timer = Timer.new()
+        kill_timer.wait_time = 2
+        kill_timer.autostart = true
+        kill_timer.connect("timeout", on_Timer_timeout)
+        add_child(kill_timer)
     pass
+    
+func on_Timer_timeout():
+    queue_free()
 
 func lose_mass(lost_mass):
     #remove mass, emit particles = to the mass lost in an area = to the total area
