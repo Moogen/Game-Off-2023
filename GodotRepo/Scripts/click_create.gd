@@ -48,13 +48,12 @@ func _process(delta):
                 gravity_bar.spend_mass(1)
                 well_size += 1
                 mass_cost += 1
-                
                 spawning_well.set_size(well_size, mass_cost)
             else:
                 #out of mass, so we place the well
                 well_spawning_flag = 0
                 print("creating well of size %d", well_size)
-                #all_wells.append(spawning_well)
+                spawning_well = null
                 print("Out of mass to add")
                 
                 
@@ -89,12 +88,13 @@ func _input(event: InputEvent) -> void:
             
 
            
-    var well_deleted_on_input = false      
+       
     
     #If we get the input that create or destroy key is pressed     
-    if Input.is_action_just_pressed("create_or_destroy_well"):
+    if Input.is_action_just_pressed("create_or_destroy_well"): 
         # Get all objects in the "Gravity Well Group".
         var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
+        var well_deleted_on_input = false   
         
         for well in wells_in_group:
             #See if the player clicks near the well
@@ -107,9 +107,6 @@ func _input(event: InputEvent) -> void:
                 else:
                     #failed to delete any wells so do the creation logic
                     print("failed to delete any wells")
-                    
-                pass
-        pass
         
     
         # Left click creates
@@ -127,7 +124,8 @@ func _input(event: InputEvent) -> void:
     #If we get the input that create or destroy key is released        
     if Input.is_action_just_released("create_or_destroy_well"):
         #all_wells.append(spawning_well)
-        well_spawning_flag = 0  
+        well_spawning_flag = 0
+        spawning_well = null
 
                   
                 

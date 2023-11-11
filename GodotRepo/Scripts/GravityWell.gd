@@ -41,7 +41,7 @@ func _ready():
     well_active = true
     mass_returned = false
     timer = Time.get_ticks_msec()
-    set_size(0,0)
+   
     particle_emitter = template_particle_emitter.duplicate(true)
     add_child(particle_emitter)
     #grav_area.connect("body_entered", self._on_body_entered)
@@ -53,6 +53,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+    #set_size(55,55)
     set_particles_direction() #set the particle direction of the emitter
 
    
