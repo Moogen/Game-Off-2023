@@ -14,7 +14,7 @@ radius = 7.0
 height = 28.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a488x"]
-size = Vector2(21, 20)
+size = Vector2(21.25, 22)
 
 [node name="Player" type="CharacterBody2D"]
 floor_stop_on_slope = false
@@ -41,9 +41,8 @@ animation = &"fall"
 [node name="SideAttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SideAttackArea"]
-position = Vector2(-10, 0)
+position = Vector2(-10.375, 1)
 shape = SubResource("RectangleShape2D_a488x")
-disabled = true
 debug_color = Color(0.988235, 0, 0.286275, 0.419608)
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "current_state", "side_attack_state")]
