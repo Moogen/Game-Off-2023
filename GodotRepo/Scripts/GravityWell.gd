@@ -98,7 +98,6 @@ func remove_gravity():
         print("returning well of size %d", mass_cost)
         gravity_bar.modify_mass(mass_cost)
         mass_returned = true
-    
     pass
 
 func lose_mass(lost_mass):

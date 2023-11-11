@@ -46,11 +46,10 @@ shape = SubResource("RectangleShape2D_a488x")
 disabled = true
 debug_color = Color(0.988235, 0, 0.286275, 0.419608)
 
-[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "current_state", "side_attack_state")]
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "current_state")]
 script = ExtResource("3_ad318")
 starting_state = NodePath("fall")
 current_state = NodePath("fall")
-side_attack_state = NodePath("side_attack")
 
 [node name="side_attack" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idle_state") groups=["Debug Group"]]
 script = ExtResource("4_e1qiq")

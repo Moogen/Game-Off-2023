@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmf3gp63pr2et"]
+[gd_scene load_steps=3 format=3 uid="uid://dwriqxoxhlar3"]
 
 [sub_resource type="Shader" id="Shader_kfeqs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's ParticleProcessMaterial.

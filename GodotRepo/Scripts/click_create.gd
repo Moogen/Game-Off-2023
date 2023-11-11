@@ -89,42 +89,45 @@ func _input(event: InputEvent) -> void:
             
 
            
-            
-    if event is InputEventMouseButton and gravity_createable:
-        # Right click deletes
+    var well_deleted_on_input = false      
+    
+    #If we get the input that create or destroy key is pressed     
+    if Input.is_action_just_pressed("create_or_destroy_well"):
+        # Get all objects in the "Gravity Well Group".
+        var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
         
-        if event.button_index == MOUSE_BUTTON_RIGHT and event.is_released():
-            # Get all objects in the "Gravity Well Group".
-            var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
-            
-            for well in wells_in_group:
-                
-                #See if the player clicks near the well
-                if (get_global_mouse_position().distance_to(well.position) < delete_distance):    
-                    # Ensure the well is not null and has a 'remove_gravity' method.
-                    if well and well.has_method("remove_gravity"):
-                    # Delete (free) the well.()
-                        well.remove_gravity()
-                    else:
-                        #probably we want to trigger a failure noise here
-                        print("failed to delete any wells")
-                    pass
-            pass
+        for well in wells_in_group:
+            #See if the player clicks near the well
+            if (get_global_mouse_position().distance_to(well.position) < delete_distance):    
+                # Ensure the well is not null and has a 'remove_gravity' method.
+                if well and well.has_method("remove_gravity"):
+                # Delete (free) the well.()
+                    well.remove_gravity()
+                    well_deleted_on_input = true
+                else:
+                    #failed to delete any wells so do the creation logic
+                    print("failed to delete any wells")
+                    
+                pass
+        pass
         
+    
         # Left click creates
-        if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+        if well_deleted_on_input == false:
             # Start a timer to start figuring out the size of the black hole
-           if(gravity_bar.has_mass(1)):
+            if(gravity_bar.has_mass(1)):
                 gravity_bar.spend_mass(1)
                 well_size = 1
                 mass_cost = 1
                 spawning_well = gravity_well_template.instantiate().duplicate()
                 add_child(spawning_well)
+                spawning_well.set_size(well_size, mass_cost)
                 well_spawning_flag = 1
-            
-        elif event.button_index == MOUSE_BUTTON_LEFT and event.is_released() and (all_wells.size() < max_wells):
-            #all_wells.append(spawning_well)
-            well_spawning_flag = 0  
+    
+    #If we get the input that create or destroy key is released        
+    if Input.is_action_just_released("create_or_destroy_well"):
+        #all_wells.append(spawning_well)
+        well_spawning_flag = 0  
 
                   
                 
