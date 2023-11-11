@@ -233,7 +233,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wu8up"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nh6d6"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -280,6 +280,8 @@ texture = ExtResource("2_hmhry")
 script = ExtResource("3_jgrx1")
 
 [node name="Blackhole" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
 gravity_space_override = 1
 gravity_point = true
 gravity_point_center = Vector2(0, 0)
@@ -294,6 +296,8 @@ shape = SubResource("CircleShape2D_ssj3i")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Center" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
 gravity_space_override = 3
 gravity_point = true
 gravity_point_center = Vector2(0, 0)
@@ -307,5 +311,5 @@ angular_damp = 0.01
 shape = SubResource("CircleShape2D_xne5h")
 
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
-process_material = SubResource("ShaderMaterial_wu8up")
+process_material = SubResource("ShaderMaterial_nh6d6")
 lifetime = 2.0

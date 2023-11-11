@@ -55,23 +55,8 @@ func _process(delta):
                 spawning_well = null
                 print("Out of mass to add")  
                 
-        # Check if we have any more mass to add to the size
-        
-        #if we do, spend the mass and increase the well size
-        
-        #if we don't do nothing (play a noise later)
-        
-        # if(gravity_bar.spend_mass(int(click_time/100))):
-        # create a new well                  
-    pass
-    
-func _physics_process(delta):
-    pass
-    
 
-        
-func _input(event: InputEvent) -> void:
-    
+    #moved inputs into process since we are no longer using input events
     if Input.is_action_just_pressed('delete_wells'):
         # Get all objects in the "Gravity Well Group".
         var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
@@ -128,7 +113,12 @@ func _input(event: InputEvent) -> void:
             spawning_well = null
 
                   
-                
-
+       
+             
     pass
     
+func _physics_process(delta):
+    pass
+    
+
+        

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://chxsfh52542wq"]
+
+[ext_resource type="Script" path="res://Scripts/player_projectile.gd" id="1_2xjik"]
+[ext_resource type="Texture2D" uid="uid://raej4vyjje2t" path="res://sprites/dark_hole.png" id="1_bru4x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5y5y"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbsun"]
+radius = 3.0
+
+[node name="player_projectile" type="Node2D"]
+script = ExtResource("1_2xjik")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 6
+collision_mask = 6
+constant_force = Vector2(0, -980)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_j5y5y")
+
+[node name="CollisionArea" type="Area2D" parent="RigidBody2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/CollisionArea"]
+shape = SubResource("CircleShape2D_bbsun")
+debug_color = Color(0.243137, 0.709804, 0.0705882, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(0.005, 0.005)
+texture = ExtResource("1_bru4x")

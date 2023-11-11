@@ -6,7 +6,7 @@ var state_machine = $"State Machine"
 var animations = $"AnimatedSprite2D"
 
 var side_attack_damage = 1 #how much damage should each side attack do
-
+var shooting_damage = 1
 
 #implement some signal functions to pass player data to GUI
 func _ready() -> void:
