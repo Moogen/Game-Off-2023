@@ -8,7 +8,7 @@ enum State {
 
 var current_state = State.Off
 @export var activated_animation : String = "On"
-
+    
 func _on_player_interaction() -> void:
     
     if(current_state == State.Off):
@@ -33,7 +33,9 @@ func update_anim() -> void:
 #func _ready():
 #	pass # Replace with function body.s
 #
-#
+
+
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+# Overload this so we can just change lever states with damage
+func _process(delta):
+    pass

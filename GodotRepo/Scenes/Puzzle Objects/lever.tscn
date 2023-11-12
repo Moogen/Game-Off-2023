@@ -1,14 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwyid7w1ptqjb"]
+[gd_scene load_steps=7 format=3 uid="uid://bwyid7w1ptqjb"]
 
 [ext_resource type="Script" path="res://Scripts/Lever.gd" id="1_0t64q"]
-[ext_resource type="SpriteFrames" uid="uid://bnsk1u7atw4qn" path="res://Sprites/Animations/Lever.tres" id="1_p5fhy"]
+[ext_resource type="SpriteFrames" uid="uid://bnsk1u7atw4qn" path="res://sprites/Animations/Lever.tres" id="1_p5fhy"]
+[ext_resource type="Script" path="res://Scenes/Puzzle Objects/LeverDamagable.gd" id="3_8ires"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="3_u3jvo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1y51"]
+size = Vector2(14, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfj2s"]
 size = Vector2(34, 18)
 
 [node name="Lever" type="Node2D" node_paths=PackedStringArray("animations", "collision_area", "interact_text")]
 script = ExtResource("1_0t64q")
+activated_animation = null
 animation_name = "Off"
 animations = NodePath("AnimatedSprite2D")
 collision_area = NodePath("Area2D")
@@ -18,6 +23,17 @@ interact_text = NodePath("RichTextLabel")
 sprite_frames = ExtResource("1_p5fhy")
 animation = &"Off"
 
+[node name="LeverDamagable" type="RigidBody2D" parent="." groups=["Destroyables"]]
+collision_mask = 9
+max_contacts_reported = 1
+contact_monitor = true
+freeze = true
+script = ExtResource("3_8ires")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeverDamagable"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_j1y51")
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -26,8 +42,8 @@ shape = SubResource("RectangleShape2D_qfj2s")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = -2.0
-offset_top = -24.0
+offset_top = -25.0
 offset_right = 38.0
-offset_bottom = 16.0
+offset_bottom = 15.0
 theme = ExtResource("3_u3jvo")
 text = "E"

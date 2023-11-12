@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://d3fxdij8gxr2p" path="res://Scenes/PlayerController.tscn" id="3_uorjl"]
 [ext_resource type="PackedScene" uid="uid://iuvnvfilq35o" path="res://Scenes/gui.tscn" id="4_6nwub"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="5_2ieyx"]
-[ext_resource type="PackedScene" uid="uid://bwyid7w1ptqjb" path="res://Scenes/lever.tscn" id="6_tavke"]
-[ext_resource type="PackedScene" uid="uid://clqjy1emhqjpt" path="res://Scenes/light.tscn" id="7_d365r"]
-[ext_resource type="PackedScene" uid="uid://bk125ytsyqjkk" path="res://Scenes/door.tscn" id="7_gd657"]
+[ext_resource type="PackedScene" uid="uid://bwyid7w1ptqjb" path="res://Scenes/Puzzle Objects/lever.tscn" id="6_tavke"]
+[ext_resource type="PackedScene" uid="uid://clqjy1emhqjpt" path="res://Scenes/Puzzle Objects/light.tscn" id="7_d365r"]
+[ext_resource type="PackedScene" uid="uid://bk125ytsyqjkk" path="res://Scenes/Puzzle Objects/door.tscn" id="7_gd657"]
 [ext_resource type="Script" path="res://Scripts/click_create.gd" id="9_h3jjg"]
-[ext_resource type="PackedScene" uid="uid://cghv5qiclr43p" path="res://Scenes/crate.tscn" id="10_ls8h6"]
+[ext_resource type="PackedScene" uid="uid://cghv5qiclr43p" path="res://Scenes/Destroyables/crate.tscn" id="10_ls8h6"]
 [ext_resource type="PackedScene" uid="uid://c1a7g4prruqay" path="res://Scenes/gravity_bar.tscn" id="11_bqpom"]
-[ext_resource type="PackedScene" uid="uid://byov6sd1wck5m" path="res://Scenes/big_crate.tscn" id="12_vrtnx"]
+[ext_resource type="PackedScene" uid="uid://byov6sd1wck5m" path="res://Scenes/Destroyables/big_crate.tscn" id="12_vrtnx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ly3ew"]
 texture = ExtResource("2_8t5eh")

@@ -29,8 +29,7 @@ func _on_body_exited(body: PhysicsBody2D) -> void:
         is_interactable = false
 
 func _input(event: InputEvent) -> void:
-    if Input.is_action_just_pressed('interact') and is_interactable:
-        _on_player_interaction()
+
     pass
 
 func _activate_outputs() -> void:
@@ -53,4 +52,6 @@ func _on_player_interaction() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+    if Input.is_action_just_pressed('interact') and is_interactable:
+        _on_player_interaction()
     pass
