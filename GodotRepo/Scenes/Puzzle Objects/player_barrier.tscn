@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx3a0euctavgo"]
+
+[ext_resource type="Script" path="res://Scripts/player_barrier.gd" id="1_pbvxm"]
+[ext_resource type="SpriteFrames" uid="uid://ceknaegxbckku" path="res://sprites/Animations/force-field.tres" id="2_ovo32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_piwqx"]
+size = Vector2(6.01316, 16.7692)
+
+[node name="barrier" type="Node2D" node_paths=PackedStringArray("animations")]
+scale = Vector2(0.997812, 0.95413)
+script = ExtResource("1_pbvxm")
+animation_name = "On"
+animations = NodePath("forcefield animation")
+
+[node name="forcefield animation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 1)
+sprite_frames = ExtResource("2_ovo32")
+animation = &"Off"
+speed_scale = 2.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="forcefield animation"]
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="forcefield animation/StaticBody2D"]
+position = Vector2(2.38941e-07, 1.2494e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_piwqx")

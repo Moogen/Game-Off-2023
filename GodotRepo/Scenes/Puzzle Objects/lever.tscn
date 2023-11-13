@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Lever.gd" id="1_0t64q"]
 [ext_resource type="SpriteFrames" uid="uid://bnsk1u7atw4qn" path="res://sprites/Animations/Lever.tres" id="1_p5fhy"]
-[ext_resource type="Script" path="res://Scenes/Puzzle Objects/LeverDamagable.gd" id="3_8ires"]
+[ext_resource type="Script" path="res://Scripts/LeverDamagable.gd" id="3_5usmg"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="3_u3jvo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1y51"]
@@ -13,7 +13,6 @@ size = Vector2(34, 18)
 
 [node name="Lever" type="Node2D" node_paths=PackedStringArray("animations", "collision_area", "interact_text")]
 script = ExtResource("1_0t64q")
-activated_animation = null
 animation_name = "Off"
 animations = NodePath("AnimatedSprite2D")
 collision_area = NodePath("Area2D")
@@ -28,7 +27,7 @@ collision_mask = 9
 max_contacts_reported = 1
 contact_monitor = true
 freeze = true
-script = ExtResource("3_8ires")
+script = ExtResource("3_5usmg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeverDamagable"]
 position = Vector2(0, 0.5)
