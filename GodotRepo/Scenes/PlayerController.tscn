@@ -57,9 +57,11 @@ position = Vector2(-10.375, 1)
 shape = SubResource("RectangleShape2D_a488x")
 debug_color = Color(0.988235, 0, 0.286275, 0.419608)
 
-[node name="projectile_launcher" type="Node2D" parent="."]
+[node name="projectile_launcher" type="Node2D" parent="." node_paths=PackedStringArray("idle_state", "move_state")]
 script = ExtResource("3_8vu7v")
 shooting_offset = Vector2(0, 3)
+idle_state = NodePath("../State Machine/idle")
+move_state = NodePath("../State Machine/move")
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "current_state", "side_attack_state")]
 script = ExtResource("3_ad318")
