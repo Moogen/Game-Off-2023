@@ -12,6 +12,7 @@ var stand_collider = $"Stand Collider"
 var side_attack_damage = 1 #how much damage should each side attack do
 var shooting_damage = 1
 var aiming_angle = 0.0
+var is_aiming = false
 
 #implement some signal functions to pass player data to GUI
 func _ready() -> void:

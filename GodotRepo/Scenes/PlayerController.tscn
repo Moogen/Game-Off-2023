@@ -46,7 +46,7 @@ shape = SubResource("CapsuleShape2D_ulmm2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visibility_layer = 4
 sprite_frames = ExtResource("2_7dg1n")
-animation = &"idle"
+animation = &"aiming"
 
 [node name="SideAttackArea" type="Area2D" parent="."]
 
@@ -96,6 +96,7 @@ script = ExtResource("5_3oo7e")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
+aiming_animation_name = "aiming"
 animation_name = "move"
 
 [node name="idle" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "crouch_state", "crouch_move_state") groups=["Debug Group"]]

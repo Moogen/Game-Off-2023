@@ -7,6 +7,9 @@ var idle_state: State
 @export
 var jump_state: State
 var gravity_x : float = 0
+
+@export var aiming_animation_name : String = ""
+
 func enter(previous_state: State) -> void:
     super(previous_state)
 
@@ -17,6 +20,13 @@ func process_input(event: InputEvent) -> State:
     return null
 
 func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_x: float) -> State:
+    
+    #operate animations
+    
+    if(parent.is_aiming):
+        parent.animations.play(aiming_animation_name)
+    else:
+        parent.animations.play(animation_name)
     
     var movement = Input.get_axis('ui_left', 'ui_right') * move_speed
     
