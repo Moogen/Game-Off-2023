@@ -1,11 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://chxsfh52542wq"]
+[gd_scene load_steps=5 format=3 uid="uid://chxsfh52542wq"]
 
 [ext_resource type="Script" path="res://Scripts/player_projectile.gd" id="1_2xjik"]
 [ext_resource type="Texture2D" uid="uid://raej4vyjje2t" path="res://sprites/dark_hole.png" id="1_bru4x"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1tdlr"]
-friction = 0.0
-bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j5y5y"]
 radius = 2.0
@@ -17,13 +13,10 @@ radius = 2.0
 script = ExtResource("1_2xjik")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
-collision_layer = 14
-collision_mask = 14
-mass = 100.0
-physics_material_override = SubResource("PhysicsMaterial_1tdlr")
-max_contacts_reported = 1
+collision_layer = 6
+collision_mask = 6
 contact_monitor = true
-constant_force = Vector2(0, -98000)
+constant_force = Vector2(0, -980)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CircleShape2D_j5y5y")

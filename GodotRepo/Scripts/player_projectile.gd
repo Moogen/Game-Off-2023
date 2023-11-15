@@ -8,17 +8,24 @@ var damage = 0
 func _ready():
     #set up the kill_timer for when we want to delete the well
     var kill_timer = Timer.new()
-    kill_timer.wait_time = 2
+    kill_timer.wait_time = 10
     kill_timer.autostart = true
     kill_timer.connect("timeout", on_Timer_timeout)
     add_child(kill_timer)
     
-    projectile_area.connect("body_entered", self.on_body_entered)
+    projectile_body.connect("body_entered", self.on_body_entered)
     pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+    print(projectile_body.get_contact_count())
+    var bodies = projectile_body.get_colliding_bodies()
+    for body in bodies:
+        if body.is_in_group("Destroyable"):
+            print("do some damage to the object")       
+            body.damage_object(damage)
+            queue_free()
     pass
 
 func on_Timer_timeout():
@@ -30,10 +37,5 @@ func set_velocity(new_velocity : Vector2):
     pass
     
 func on_body_entered(body):
-    
-    if body.is_in_group("Destroyable"):
-        print("do some damage to the object")       
-        body.damage_object(damage)
-    
-        queue_free()
     pass
+

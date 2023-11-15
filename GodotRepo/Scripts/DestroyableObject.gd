@@ -1,4 +1,4 @@
-class_name DestroyableObject extends RigidBody2D
+class_name DestroyableObject extends Node2D
 #Destroyable object class that all destroyable objects will be part of
 
 
@@ -13,7 +13,6 @@ var max_health = 10
 func _ready():
     add_to_group("Destroyable")
     pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

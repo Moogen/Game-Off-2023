@@ -37,7 +37,7 @@ shape = SubResource("CapsuleShape2D_ulmm2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visibility_layer = 4
 sprite_frames = ExtResource("2_7dg1n")
-animation = &"fall"
+animation = &"jump_fall"
 
 [node name="SideAttackArea" type="Area2D" parent="."]
 
@@ -70,7 +70,7 @@ jump_state = NodePath("../jump")
 jump_buffer_time = 0.1
 coyote_time = 0.15
 gravity_constant = 1.0
-animation_name = "fall"
+animation_name = "jump_fall"
 move_speed = 150.0
 
 [node name="jump" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state") groups=["Debug Group"]]
@@ -79,7 +79,7 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 jump_force = 425.0
-animation_name = "jump"
+animation_name = "jump_rise"
 move_speed = 100.0
 
 [node name="move" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state") groups=["Debug Group"]]
@@ -94,4 +94,5 @@ script = ExtResource("4_p82wp")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
+landing_animation_name = "jump_land"
 animation_name = "idle"

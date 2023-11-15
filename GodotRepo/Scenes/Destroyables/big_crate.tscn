@@ -25,7 +25,9 @@ animations = [{
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 disable_mode = 1
-mass = 1000.0
+collision_layer = 3
+collision_mask = 3
+mass = 100.0
 can_sleep = false
 constant_force = Vector2(0, 1)
 script = ExtResource("1_8hck0")

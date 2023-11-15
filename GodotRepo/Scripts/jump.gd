@@ -25,8 +25,10 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
     
     var movement = Input.get_axis('ui_left', 'ui_right') * move_speed
     
-    if movement != 0:
-        parent.animations.flip_h = movement > 0
+    if(movement > 0):
+        parent.animations.flip_h = false
+    elif(movement < 0):
+        parent.animations.flip_h = true
         
 
     parent.velocity.y += gravity * delta + gravity_influence.y * delta

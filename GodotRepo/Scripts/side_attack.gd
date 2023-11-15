@@ -63,9 +63,9 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
     parent.velocity.x = movement + gravity_velocity_x
     
     if(movement > 0):
-        parent.animations.flip_h = true
-    elif(movement < 0):
         parent.animations.flip_h = false
+    elif(movement < 0):
+        parent.animations.flip_h = true
         
     get_tree().call_group("Debug Group", "update_velocity", parent.velocity)
     parent.move_and_slide()
