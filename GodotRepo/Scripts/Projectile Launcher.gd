@@ -7,6 +7,7 @@ var projectile_template = preload("res://Scenes/player_projectile.tscn")
 var main_scene
 var shooting_magnitude = 200 #velocity magnitude at which projectiles are launched
 var gravity_bar
+@export var shooting_offset : Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
     main_scene = get_tree().get_root().get_child(0)
@@ -41,14 +42,19 @@ func _process(delta):
     
     Player.aiming_angle = aiming_angle
     Player.is_aiming    = is_aiming
-        
-              
-        
+    
+             
+   
     if Input.is_action_just_pressed('shoot') and gravity_bar.has_mass(1):
+        Player.shooting = true
+        
+        if not is_aiming:
+            Player.process_non_aiming_offset() #set the player's projectile origin to a flip horizontal direction
+      
         gravity_bar.spend_mass(1)
         var shooting_projectile = projectile_template.instantiate()
         
-        shooting_projectile.global_position = Player.global_position
+        shooting_projectile.global_position = Player.global_position + Player.shooting_offset
         shooting_projectile.damage = Player.shooting_damage
         
         
@@ -67,7 +73,9 @@ func _process(delta):
         
         main_scene.add_child(shooting_projectile) #add projectiles to the main scene so they arent affected by player movement
         shooting_projectile.set_velocity(launch_velocity)
-        print("launched projectile")
+
+    elif not Input.is_action_pressed('shoot'):
+        Player.shooting = false
         
     pass
     

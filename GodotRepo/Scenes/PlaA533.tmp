@@ -24,8 +24,6 @@ size = Vector2(21.25, 22)
 [node name="Player" type="CharacterBody2D"]
 floor_stop_on_slope = false
 script = ExtResource("1_jtj3m")
-aiming_shooting_offset = Array[Vector2]([Vector2(0, -15), Vector2(10, -8), Vector2(13, 0), Vector2(10, 12), Vector2(0, 15), Vector2(-10, 12), Vector2(-13, 0), Vector2(-10, -8)])
-aiming_animation_name = Array[String](["aiming_90", "aiming_45", "aiming_0", "aiming_n_45", "aiming_n_90"])
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, -33)
@@ -48,7 +46,7 @@ shape = SubResource("CapsuleShape2D_ulmm2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visibility_layer = 4
 sprite_frames = ExtResource("2_7dg1n")
-animation = &"jump_fall"
+animation = &"aiming_n_90"
 
 [node name="SideAttackArea" type="Area2D" parent="."]
 
@@ -59,7 +57,6 @@ debug_color = Color(0.988235, 0, 0.286275, 0.419608)
 
 [node name="projectile_launcher" type="Node2D" parent="."]
 script = ExtResource("3_8vu7v")
-shooting_offset = Vector2(0, 3)
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "current_state", "side_attack_state")]
 script = ExtResource("3_ad318")
@@ -99,7 +96,6 @@ script = ExtResource("5_3oo7e")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
-aim_move_speed = 100.0
 aiming_animation_name = Array[String](["aiming_90", "aiming_45", "aiming_0", "aiming_n_45", "aiming_n_90"])
 animation_name = "move"
 
@@ -112,7 +108,6 @@ crouch_state = NodePath("../crouch")
 crouch_move_state = NodePath("../crouch_move")
 landing_animation_name = "jump_land"
 standing_animation_name = "stand"
-aiming_animation_name = "aiming_0"
 animation_name = "idle"
 
 [node name="crouch" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idle_state") groups=["Debug Group"]]

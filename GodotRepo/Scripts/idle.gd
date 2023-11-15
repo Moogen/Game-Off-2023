@@ -13,6 +13,7 @@ var crouch_move_state: State
 
 @export var landing_animation_name : String
 @export var standing_animation_name : String
+@export var aiming_animation_name : String
 var gravity_x = 0
 var previous_state
     
@@ -21,8 +22,7 @@ func enter(previous_state: State) -> void:
     self.previous_state = previous_state
     
     if(previous_state == fall_state):   
-        parent.animations.play(landing_animation_name)        
-               
+        parent.animations.play(landing_animation_name)                
     elif(previous_state == crouch_state or previous_state == crouch_move_state):   
         parent.animations.play(standing_animation_name)      
         
@@ -43,18 +43,32 @@ func process_input(event: InputEvent) -> State:
 func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_x: float) -> State:
     
     #bit of a janky way to queue up animations after the "enter ide"
-    if(previous_state == fall_state):   
-        if(parent.animations.frame == 2): #essentially check if animation is finished
-            parent.animations.play(animation_name)       
-    elif(previous_state == crouch_state):   
-        if(parent.animations.frame == 5): #essentially check if animation is finished
-            parent.animations.play(animation_name)   
+    #operate animations
+    if(parent.animations.get_animation() == landing_animation_name and parent.animations.frame < 1):   
+        # do nothing, we're still processing the animation 
+        print("do nothing falling")    
+    if(parent.animations.get_animation() == standing_animation_name and parent.animations.frame < 5):   
+        # do nothing, we're still processing the animation   
+        print("do nothing")
+    else:
+        
+        if(parent.is_aiming): #then if we aren't processing a fall animation
+            parent.process_aiming_animation(false)
+        elif(parent.shooting):
+            print("parent is shooting")
+            parent.animations.play(aiming_animation_name)
+        else:
+            parent.animations.play(animation_name) 
+            
     pass
+
+
     
     parent.velocity.y += gravity * delta + gravity_influence.y * delta
     parent.velocity.x = gravity_velocity_x
     parent.move_and_slide()
     
+
     if !parent.is_on_floor():
         return fall_state
     return null
