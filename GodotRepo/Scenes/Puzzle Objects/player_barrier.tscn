@@ -13,15 +13,12 @@ animation_name = "On"
 animations = NodePath("forcefield animation")
 
 [node name="forcefield animation" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1, 1)
 sprite_frames = ExtResource("2_ovo32")
 animation = &"Off"
 speed_scale = 2.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="forcefield animation"]
-scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="forcefield animation/StaticBody2D"]
 position = Vector2(2.38941e-07, 1.2494e-07)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_piwqx")

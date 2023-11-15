@@ -22,11 +22,11 @@ var coyote_timer : float = 0
 var jump_buffer_timer: float = 0
 
 var previous_state : State
+var fall_state : State
 
 func enter(previous_state: State) -> void:
     super(previous_state)
-    
-    parent.animations.play(animation_name)
+
     
     if(previous_state != jump_state):
         coyote_timer = coyote_time
@@ -61,8 +61,10 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
         
     var movement = Input.get_axis('ui_left', 'ui_right') * move_speed
     
-    if movement != 0:
-        parent.animations.flip_h = movement > 0
+    if(movement > 0):
+        parent.animations.flip_h = false
+    elif(movement < 0):
+        parent.animations.flip_h = true
         
     parent.velocity.y += gravity * delta + gravity_influence.y * delta
     parent.velocity.x = movement + gravity_velocity_x

@@ -227,7 +227,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cfpmi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ji7kp"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -286,7 +286,7 @@ animations = [{
 [node name="Crate" type="Node2D"]
 
 [node name="MassParticles" parent="." instance=ExtResource("1_bkkfb")]
-process_material = SubResource("ShaderMaterial_cfpmi")
+process_material = SubResource("ShaderMaterial_ji7kp")
 lifetime = 2.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
