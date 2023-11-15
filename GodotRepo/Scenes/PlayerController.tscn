@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3fxdij8gxr2p"]
+[gd_scene load_steps=13 format=3 uid="uid://d3fxdij8gxr2p"]
 
 [ext_resource type="Script" path="res://Scripts/BasicPlayer.gd" id="1_jtj3m"]
 [ext_resource type="SpriteFrames" uid="uid://tqtkw4xfceq6" path="res://sprites/Animations/PlayerController.tres" id="2_7dg1n"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/idle.gd" id="4_p82wp"]
 [ext_resource type="Script" path="res://Scripts/fall.gd" id="4_sobar"]
 [ext_resource type="Script" path="res://Scripts/move.gd" id="5_3oo7e"]
+[ext_resource type="Script" path="res://Scenes/crouch.gd" id="10_w885o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ulmm2"]
 radius = 7.0
@@ -37,7 +38,7 @@ shape = SubResource("CapsuleShape2D_ulmm2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visibility_layer = 4
 sprite_frames = ExtResource("2_7dg1n")
-animation = &"jump_fall"
+animation = &"stand"
 
 [node name="SideAttackArea" type="Area2D" parent="."]
 
@@ -89,10 +90,20 @@ idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 animation_name = "move"
 
-[node name="idle" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state") groups=["Debug Group"]]
+[node name="idle" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "crouch_state") groups=["Debug Group"]]
 script = ExtResource("4_p82wp")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
+crouch_state = NodePath("../crouch")
 landing_animation_name = "jump_land"
+standing_animation_name = "stand"
 animation_name = "idle"
+
+[node name="crouch" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "idle_state") groups=["Debug Group"]]
+script = ExtResource("10_w885o")
+fall_state = NodePath("../fall")
+jump_state = NodePath("../jump")
+move_state = NodePath("../move")
+idle_state = NodePath("../idle")
+animation_name = "crouch"
