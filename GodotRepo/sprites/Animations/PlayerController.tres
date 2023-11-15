@@ -1,8 +1,9 @@
-[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://tqtkw4xfceq6"]
+[gd_resource type="SpriteFrames" load_steps=33 format=3 uid="uid://tqtkw4xfceq6"]
 
 [ext_resource type="Texture2D" uid="uid://spxh4mrjgu20" path="res://sprites/jump.png" id="1_2mk1d"]
 [ext_resource type="Texture2D" uid="uid://8lgon44uyypk" path="res://sprites/duck (1).png" id="1_b5lno"]
 [ext_resource type="Texture2D" uid="uid://b4n5b42r6jkvq" path="res://sprites/idle.png" id="2_6ptcr"]
+[ext_resource type="Texture2D" uid="uid://da4abq2t2i6x0" path="res://sprites/roll.png" id="2_smi22"]
 [ext_resource type="Texture2D" uid="uid://btk03caqu2xfh" path="res://sprites/walk2.png" id="3_ne41w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0brtv"]
@@ -23,6 +24,26 @@ region = Rect2(72, 0, 24, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v33vl"]
 atlas = ExtResource("1_b5lno")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ul5i"]
+atlas = ExtResource("2_smi22")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nss67"]
+atlas = ExtResource("2_smi22")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i63ol"]
+atlas = ExtResource("2_smi22")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boopx"]
+atlas = ExtResource("2_smi22")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jgin"]
+atlas = ExtResource("2_smi22")
 region = Rect2(96, 0, 24, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8ksk"]
@@ -113,6 +134,26 @@ animations = [{
 }],
 "loop": false,
 "name": &"crouch",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_8ul5i")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_nss67")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_i63ol")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_boopx")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_3jgin")
+}],
+"loop": true,
+"name": &"crouch_move",
 "speed": 5.0
 }, {
 "frames": [{

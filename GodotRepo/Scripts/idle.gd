@@ -8,6 +8,8 @@ var jump_state: State
 var move_state: State
 @export
 var crouch_state: State
+@export
+var crouch_move_state: State
 
 @export var landing_animation_name : String
 @export var standing_animation_name : String
@@ -21,7 +23,7 @@ func enter(previous_state: State) -> void:
     if(previous_state == fall_state):   
         parent.animations.play(landing_animation_name)        
                
-    elif(previous_state == crouch_state):   
+    elif(previous_state == crouch_state or previous_state == crouch_move_state):   
         parent.animations.play(standing_animation_name)      
         
     if(previous_state != self):
@@ -40,7 +42,7 @@ func process_input(event: InputEvent) -> State:
      
 func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_x: float) -> State:
     
-    #bit of a janky way to queue up animations after the "enter idle" animations are done
+    #bit of a janky way to queue up animations after the "enter ide"
     if(previous_state == fall_state):   
         if(parent.animations.frame == 2): #essentially check if animation is finished
             parent.animations.play(animation_name)       

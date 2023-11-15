@@ -4,9 +4,14 @@ class_name Player extends CharacterBody2D
 var state_machine = $"State Machine"
 @onready 
 var animations = $"AnimatedSprite2D"
+@onready 
+var crouch_collider = $"Crouch Collider"
+@onready 
+var stand_collider = $"Stand Collider"
 
 var side_attack_damage = 1 #how much damage should each side attack do
 var shooting_damage = 1
+var aiming_angle = 0.0
 
 #implement some signal functions to pass player data to GUI
 func _ready() -> void:
@@ -27,4 +32,11 @@ func _process(delta: float) -> void:
 func set_influence(gravity: float, grav_center: Vector2, grav_center_radius:float) -> void:
     state_machine.set_influence(gravity, grav_center, self.global_position, grav_center_radius)
 
+func player_crouch(crouching: bool) -> void:
+    if(crouching):
+        stand_collider.disabled = true
+        crouch_collider.disabled = false
+    else:
+        stand_collider.disabled = false
+        crouch_collider.disabled = true        
 

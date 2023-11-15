@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3fxdij8gxr2p"]
+[gd_scene load_steps=15 format=3 uid="uid://d3fxdij8gxr2p"]
 
 [ext_resource type="Script" path="res://Scripts/BasicPlayer.gd" id="1_jtj3m"]
 [ext_resource type="SpriteFrames" uid="uid://tqtkw4xfceq6" path="res://sprites/Animations/PlayerController.tres" id="2_7dg1n"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://Scripts/fall.gd" id="4_sobar"]
 [ext_resource type="Script" path="res://Scripts/move.gd" id="5_3oo7e"]
 [ext_resource type="Script" path="res://Scenes/crouch.gd" id="10_w885o"]
+[ext_resource type="Script" path="res://Scenes/crouch_move.gd" id="11_xtdux"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rgyvi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ulmm2"]
 radius = 7.0
@@ -32,13 +35,18 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Crouch Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_rgyvi")
+disabled = true
+
+[node name="Stand Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ulmm2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visibility_layer = 4
 sprite_frames = ExtResource("2_7dg1n")
-animation = &"stand"
+animation = &"idle"
 
 [node name="SideAttackArea" type="Area2D" parent="."]
 
@@ -90,12 +98,13 @@ idle_state = NodePath("../idle")
 jump_state = NodePath("../jump")
 animation_name = "move"
 
-[node name="idle" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "crouch_state") groups=["Debug Group"]]
+[node name="idle" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "crouch_state", "crouch_move_state") groups=["Debug Group"]]
 script = ExtResource("4_p82wp")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 crouch_state = NodePath("../crouch")
+crouch_move_state = NodePath("../crouch_move")
 landing_animation_name = "jump_land"
 standing_animation_name = "stand"
 animation_name = "idle"
@@ -104,6 +113,13 @@ animation_name = "idle"
 script = ExtResource("10_w885o")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
-move_state = NodePath("../move")
+move_state = NodePath("../crouch_move")
 idle_state = NodePath("../idle")
 animation_name = "crouch"
+
+[node name="crouch_move" type="Node" parent="State Machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state")]
+script = ExtResource("11_xtdux")
+fall_state = NodePath("../fall")
+idle_state = NodePath("../crouch")
+jump_state = NodePath("../jump")
+animation_name = "crouch_move"
