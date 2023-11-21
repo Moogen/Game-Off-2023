@@ -79,5 +79,6 @@ func set_influence(gravity: float, grav_center: Vector2, player_center: Vector2,
         gravity_influence = norm_distance * gravity * 1/(radius-grav_center_radius)
     else:
         gravity_influence = Vector2(0,0)
+        
     get_tree().call_group("Debug Group", "update_gravity_influence", norm_distance * gravity * 1/(radius-grav_center_radius))
     

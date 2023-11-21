@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwriqxoxhlar3"]
+[gd_scene load_steps=4 format=3 uid="uid://dwriqxoxhlar3"]
+
+[ext_resource type="Script" path="res://Scenes/mass_particle_emitter.gd" id="1_yfbb5"]
 
 [sub_resource type="Shader" id="Shader_kfeqs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's ParticleProcessMaterial.
@@ -269,3 +271,4 @@ lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 visibility_rect = Rect2(-100, 100, 1000, 1000)
+script = ExtResource("1_yfbb5")
