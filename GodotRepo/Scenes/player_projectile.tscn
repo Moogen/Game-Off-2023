@@ -11,7 +11,7 @@ bounce = 1.0
 radius = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bbsun"]
-radius = 2.0
+radius = 3.0
 
 [node name="player_projectile" type="Node2D"]
 script = ExtResource("1_2xjik")
@@ -21,7 +21,7 @@ collision_layer = 14
 collision_mask = 14
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_1tdlr")
-max_contacts_reported = 1
+max_contacts_reported = 100
 contact_monitor = true
 constant_force = Vector2(0, -98000)
 
