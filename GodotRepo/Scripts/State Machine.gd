@@ -58,7 +58,7 @@ func process_input(event: InputEvent) -> void:
             Engine.set_time_scale(1)
     pass
     
-    if Input.is_action_just_pressed('side_attack'): #automatically send us to the side_attack state
+    if Input.is_action_just_pressed('side_attack') and current_state != side_attack_state: #automatically send us to the side_attack state
         new_state = side_attack_state 
     pass
     

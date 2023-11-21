@@ -49,7 +49,7 @@ shape = SubResource("CapsuleShape2D_ulmm2")
 visibility_layer = 4
 sprite_frames = ExtResource("2_7dg1n")
 animation = &"attack"
-frame = 3
+frame = 6
 frame_progress = 1.0
 
 [node name="SideAttackArea" type="Area2D" parent="."]
@@ -78,10 +78,6 @@ jump_state = NodePath("../jump")
 move_state = NodePath("../move")
 idle_state = NodePath("../idle")
 animation_name = "attack"
-
-[node name="Attack_Timer" type="Timer" parent="State Machine/side_attack"]
-
-[node name="Damage_Delay_Timer" type="Timer" parent="State Machine/side_attack"]
 
 [node name="fall" type="Node" parent="State Machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state")]
 script = ExtResource("4_sobar")

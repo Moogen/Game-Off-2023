@@ -9,41 +9,50 @@ var move_state: State
 @export
 var idle_state: State
 
+var main_scene
 var gravity_x = 0
 const attack_area_size : float = 10
-const attack_duration : float = .25
+const attack_duration : float = 0.4
 var anim_complete = 0
-var timer 
+var damage_delay_time = 0.2
+@onready var attack_timer = $Attack_Timer
+@onready var damage_delay_timer = $Damage_Delay_Timer
 @onready var side_attack_area : Area2D = $"../../SideAttackArea"
 @onready var side_attack_area_shape : CollisionShape2D = $"../../SideAttackArea/CollisionShape2D"
+var projectile_template_invis = preload("res://Scenes/player_projectile_invis.tscn")
 
 func enter(previous_state: State) -> void:
-    print("side attacker")
-
-        
+    
+    main_scene = get_tree().get_root().get_child(0)
+    #create a projectile to perform the physics portion of the player attack
+    var shooting_projectile = projectile_template_invis.instantiate()
+    main_scene.add_child(shooting_projectile)   
     #using parent.animations.flip_h to determine the side we'll attack on
     if(parent.animations.flip_h):
-        side_attack_area_shape.position.x = attack_area_size
-    else:
         side_attack_area_shape.position.x = -attack_area_size
+        shooting_projectile.global_position = parent.global_position + Vector2(-13,0)
+        var shooting_vector = Vector2(-100,0)
+        shooting_projectile.set_velocity(shooting_vector)
+    else:
+        side_attack_area_shape.position.x = attack_area_size
+        shooting_projectile.global_position = parent.global_position + Vector2(13,0)
+        var shooting_vector = Vector2(100,0)
+        shooting_projectile.set_velocity(shooting_vector)
 
     super(previous_state)
     anim_complete = 0 #set the animation complete sflag to 0
     
     #start an animation timer to change the state when the animation is completed
-    timer = Timer.new()
-    timer.wait_time = attack_duration
-    timer.connect("timeout", attack_timeout)
-    add_child(timer)
-    timer.start()
+    attack_timer.wait_time = attack_duration
+    attack_timer.connect("timeout", attack_timeout)
+    attack_timer.start()
     
-    #do damage to overlapping bodies
-    for body in side_attack_area.get_overlapping_bodies():
-        print("next to some bodies")
-        if body.is_in_group("Destroyable"):
-            print("do some damage to the object")       
-            body.damage_object(parent.side_attack_damage)
-        pass
+    #start a timer to check for overlapping bodies and do damage to them
+    damage_delay_timer.wait_time = damage_delay_time
+    damage_delay_timer.connect("timeout", on_damage_delay_timeout)
+    damage_delay_timer.start()
+    
+
         
 
 func process_input(event: InputEvent) -> State:
@@ -81,12 +90,17 @@ func process_frame(delta) -> State:
         return idle_state
     elif anim_complete == 1:
         return move_state #go to the move state if player is currently moving
-        
     return null
     
-func attack_timeout():
+func on_damage_delay_timeout():
+    damage_delay_timer.stop()
+    #do damage to overlapping bodies
+    for body in side_attack_area.get_overlapping_bodies():
+        if body.is_in_group("Destroyable"):
+            body.damage_object(parent.side_attack_damage)
+        pass
     
+func attack_timeout():
+    attack_timer.stop()
     #deactivate the attack area
-    remove_child(timer)
-    print("leaving state")
     anim_complete = 1 #set the anim_complete flag

@@ -227,7 +227,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hny4u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k66or"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -286,7 +286,7 @@ animations = [{
 [node name="Crate" type="Node2D"]
 
 [node name="MassParticles" parent="." instance=ExtResource("1_bkkfb")]
-process_material = SubResource("ShaderMaterial_hny4u")
+process_material = SubResource("ShaderMaterial_k66or")
 lifetime = 2.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
@@ -296,7 +296,7 @@ collision_mask = 3
 can_sleep = false
 constant_force = Vector2(0, 1)
 script = ExtResource("2_s46g1")
-object_health = 2.0
+object_health = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_tj8ej")
