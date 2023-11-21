@@ -1,11 +1,12 @@
 class_name GravityWell
-extends Node2D #make gravity well into a staticbody node instead
+extends RigidBody2D #make gravity well into a staticbody node instead
 
 @onready var grav_area          : Area2D            = $Blackhole
 @onready var grav_center_area   : Area2D            = $Center
 @onready var grav_shape         : CollisionShape2D  = $Blackhole/CollisionShape2D
 @onready var grav_center_shape  : CollisionShape2D  = $Center/CollisionShape2D
 @onready var blackhole_sprite   : Sprite2D          = $BlackholeSprite
+@onready var well_collider      : CollisionShape2D  = $WellCollider
 #all the variables for scaling the black hole
 
 const blackhole_gravity : float = 3000*10
@@ -56,7 +57,13 @@ func _process(delta):
     #set_size(55,55)
     set_particles_direction() #set the particle direction of the emitter
 
+    #check if the well has collided with anything
+    
+    var bodies = self.get_colliding_bodies()
+    for body in bodies:
+        self.freeze = true
    
+    #remove mass from the well over time
     if(well_active && Time.get_ticks_msec() - timer > well_dying_timer):
         timer = Time.get_ticks_msec()
         mass_cost -= well_dying_val
@@ -134,6 +141,7 @@ func set_size(click_time, mass_cost): #set size scales off thes duration of the 
     grav_area.gravity_point_unit_distance = center_size * click_timer_scale * click_time
     grav_shape.shape.radius = blackhole_size * click_timer_scale * click_time
     grav_center_shape.shape.radius = center_size * click_timer_scale * click_time
+    well_collider.shape.radius = center_size * click_timer_scale * click_time
     blackhole_sprite.scale = Vector2(sprite_scale * click_timer_scale * click_time, sprite_scale * click_timer_scale * click_time)
     pass
 
@@ -159,6 +167,6 @@ func _on_body_exited(body : PhysicsBody2D) -> void:
         body.set_influence(0, self.global_position, 0)
     pass
     
-func get_mass():
-    return mass_cost
+#func get_mass():
+    #return mass_cost
 
