@@ -23,7 +23,6 @@ func _input(event: InputEvent) -> void:
     pass
     
 func modify_mass(massToAdd: int):
-    print("modify mass", massToAdd)
     if(cur_mass + massToAdd <= max_mass && cur_mass + massToAdd >= 0):
         cur_mass += massToAdd
     elif(cur_mass + massToAdd > max_mass):

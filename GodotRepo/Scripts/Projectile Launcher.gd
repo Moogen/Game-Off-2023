@@ -8,12 +8,19 @@ var main_scene
 var shooting_magnitude = 200 #velocity magnitude at which projectiles are launched
 var gravity_bar
 @export var shooting_offset : Vector2
+@onready var state_machine = $"../State Machine"
+@export
+var idle_state: State
+@export
+var move_state: State
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     main_scene = get_tree().get_root().get_child(0)
     gravity_bar = get_node("../../CanvasLayer/GravityBar")
     pass # Replace with function body.
-
+    
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -21,6 +28,7 @@ func _process(delta):
     var aiming_angle = 0
     var is_aiming    = false
     
+    #Determine aiming angle, pass these to the main player
     if GlobalOptions.is_using_controller():
         var joystick_x = Input.get_action_strength("joystick_horizontal") - Input.get_action_strength("joystick_horizontal_back")
         var joystick_y =  Input.get_action_strength("joystick_vertical") - Input.get_action_strength("joystick_vertical_back")
@@ -39,13 +47,10 @@ func _process(delta):
         else:
             is_aiming = false
             
-    
     Player.aiming_angle = aiming_angle
-    Player.is_aiming    = is_aiming
-    
-             
-   
-    if Input.is_action_just_pressed('shoot') and gravity_bar.has_mass(1):
+    Player.is_aiming    = is_aiming         
+
+    if Input.is_action_just_pressed('shoot') and gravity_bar.has_mass(1) and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
         Player.shooting = true
         
         if not is_aiming:

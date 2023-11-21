@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx86aggwohfna"]
+[gd_scene load_steps=13 format=3 uid="uid://dx86aggwohfna"]
 
 [ext_resource type="PackedScene" uid="uid://cw4qiiaoo7gks" path="res://Scenes/parallax_background.tscn" id="1_japse"]
 [ext_resource type="Texture2D" uid="uid://di8j2j2iwxw7r" path="res://sprites/Portal_Tiles.png" id="2_8t5eh"]
+[ext_resource type="PackedScene" uid="uid://byov6sd1wck5m" path="res://Scenes/Destroyables/big_crate.tscn" id="3_8bcwf"]
 [ext_resource type="PackedScene" uid="uid://d3fxdij8gxr2p" path="res://Scenes/PlayerController.tscn" id="3_uorjl"]
 [ext_resource type="PackedScene" uid="uid://iuvnvfilq35o" path="res://Scenes/gui.tscn" id="4_6nwub"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="5_2ieyx"]
 [ext_resource type="PackedScene" uid="uid://bwyid7w1ptqjb" path="res://Scenes/Puzzle Objects/lever.tscn" id="6_tavke"]
-[ext_resource type="Script" path="res://Scripts/click_create.gd" id="9_h3jjg"]
+[ext_resource type="PackedScene" uid="uid://cghv5qiclr43p" path="res://Scenes/Destroyables/crate.tscn" id="11_7q2ht"]
 [ext_resource type="PackedScene" uid="uid://c1a7g4prruqay" path="res://Scenes/gravity_bar.tscn" id="11_bqpom"]
 [ext_resource type="PackedScene" uid="uid://bx3a0euctavgo" path="res://Scenes/Puzzle Objects/player_barrier.tscn" id="11_g42os"]
 
@@ -63,6 +64,8 @@ position = Vector2(842, -8)
 rotation = 1.5708
 scale = Vector2(1, 11.954)
 
+[node name="Big_Crate" parent="Level Objects" instance=ExtResource("3_8bcwf")]
+
 [node name="Map" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Map"]
@@ -72,6 +75,7 @@ layer_0/tile_data = PackedInt32Array(589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 5
 
 [node name="Player" parent="." instance=ExtResource("3_uorjl")]
 position = Vector2(121, 67)
+scale = Vector2(1.00615, 0.976669)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -150,10 +154,16 @@ Press F3 to toggle debug"
 fit_content = true
 autowrap_mode = 2
 
-[node name="GravityWells" type="Node2D" parent="."]
-script = ExtResource("9_h3jjg")
-
 [node name="Lever4" parent="." node_paths=PackedStringArray("logic_outputs") instance=ExtResource("6_tavke")]
 position = Vector2(825, -32)
 rotation = -1.5708
 logic_outputs = [NodePath("../Level Objects/barrier"), NodePath("../Level Objects/barrier2")]
+
+[node name="Crate" parent="." instance=ExtResource("11_7q2ht")]
+position = Vector2(48, 134)
+
+[node name="Crate2" parent="." instance=ExtResource("11_7q2ht")]
+position = Vector2(67, 134)
+
+[node name="Crate3" parent="." instance=ExtResource("11_7q2ht")]
+position = Vector2(88, 134)

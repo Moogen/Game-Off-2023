@@ -4,6 +4,7 @@ class_name Console extends Node
 @export  var ui_container : MarginContainer
 
 @onready var debug_text
+@onready var player_state = "none"
 @onready var player_velocity_x  = 0
 @onready var player_velocity_y  = 0
 @onready var gravity_velocity_x = 0
@@ -23,7 +24,7 @@ func _process(delta):
     #update the text of the object
     var coyote_time_text = ("Coyote time" if coyote_time else "")
     var jumb_buffer_text = ("Jump buffer" if jump_buffer else "")
-    self.text = "Velocity X: %0.2f\nVelocity Y: %0.2f\nGravity: X:%0.0f Y:%0.0f\nGravity Velocity: X:%0.0f\n%s \n%s" % [player_velocity_x, player_velocity_y, gravity_influence.x, gravity_influence.y, gravity_velocity_x,coyote_time_text, jumb_buffer_text] 
+    self.text = "State: %s\nVelocity X: %0.2f\nVelocity Y: %0.2f\nGravity: X:%0.0f Y:%0.0f\nGravity Velocity: X:%0.0f\n%s \n%s" % [player_state, player_velocity_x, player_velocity_y, gravity_influence.x, gravity_influence.y, gravity_velocity_x,coyote_time_text, jumb_buffer_text] 
     pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -46,6 +47,10 @@ func update_gravity_influence(_gravity_influence):
     
 func update_gravity_velocity_x(_gravity_velocity_x):
     gravity_velocity_x = _gravity_velocity_x
+    pass
+    
+func update_state(_player_state):
+    player_state = _player_state
     pass
     
     
