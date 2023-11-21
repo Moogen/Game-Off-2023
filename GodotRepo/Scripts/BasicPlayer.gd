@@ -25,14 +25,15 @@ func _ready() -> void:
     add_to_group("Player Group")
 
 # Pass a reference of the player to the state machine so it can react accordingly
-func _unhandled_input(event: InputEvent) -> void:
-    state_machine.process_input(event)
+#func _unhandled_input(event: InputEvent) -> void:
+    
     
 func _physics_process(delta: float) -> void:
     state_machine.process_physics(delta)
     
 func _process(delta: float) -> void:
     state_machine.process_frame(delta)
+    state_machine.process_input(null) # process input here instead
     
 func set_influence(gravity: float, grav_center: Vector2, grav_center_radius:float) -> void:
     state_machine.set_influence(gravity, grav_center, self.global_position, grav_center_radius)

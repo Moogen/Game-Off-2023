@@ -18,8 +18,10 @@ const growing_well_start_scale = 0.002
 const well_growing_scale = 0.001
 const well_start_offset = 25
 const well_growing_offset_scale = 0.3
+const aiming_window = 500
 var well_velocity = 100
 var click_scale_timer
+var aiming_timer = 0 #provides a window where the last aim will be used if the player drops aiming at the last second
 @onready var growing_well_sprite = $"../gravity_well_visualizer"
 
 # Called when the node enters the scene tree for the first time.
@@ -49,6 +51,9 @@ func _process(delta):
     elif Input.is_action_pressed('grow_well') and growing_well:
         
         var click_time = Time.get_ticks_msec() - click_scale_timer
+        
+        if(Player.is_aiming):
+            aiming_timer = Time.get_ticks_msec()
         
         if(click_time >= 100): #every 0.1 seconds add to the size 
             click_scale_timer = Time.get_ticks_msec()
@@ -89,8 +94,8 @@ func launch_well():
     main_scene.add_child(spawning_well)
     spawning_well.position = growing_well_sprite.global_position
     spawning_well.set_size(well_size, well_size)
-    
-    if Player.is_aiming:
+    var aiming_time =  Time.get_ticks_msec() - aiming_timer
+    if aiming_time < aiming_window:
         launching_well = true
         #set velocity of the well as a vector in the direction the player is aiming
         var x = cos(Player.aiming_angle)
