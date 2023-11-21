@@ -16,9 +16,10 @@
 [ext_resource type="Script" path="res://Scripts/crouch_move.gd" id="11_4uaxc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rgyvi"]
+radius = 9.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgiqm"]
-size = Vector2(20, 28)
+size = Vector2(11, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a488x"]
 size = Vector2(21.25, 22)
@@ -32,7 +33,7 @@ aiming_animation_name = Array[String](["aiming_90", "aiming_45", "aiming_0", "ai
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, -33)
 scale = Vector2(0.997601, 0.99516)
-offset = Vector2(0, 20)
+offset = Vector2(0, -20)
 limit_top = -1000
 limit_bottom = 200
 limit_smoothed = true
@@ -45,14 +46,8 @@ shape = SubResource("CircleShape2D_rgyvi")
 disabled = true
 
 [node name="Stand Collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_bgiqm")
-
-[node name="gravity_well_visualizer" type="Sprite2D" parent="."]
-position = Vector2(0, -25)
-scale = Vector2(0.025, 0.025)
-texture = ExtResource("2_c0utp")
-script = ExtResource("3_ff2ag")
 
 [node name="gravity_well_visualizer" type="Sprite2D" parent="."]
 position = Vector2(0, -25)
@@ -63,8 +58,8 @@ script = ExtResource("3_ff2ag")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visibility_layer = 4
 sprite_frames = ExtResource("2_7dg1n")
-animation = &"attack"
-frame = 3
+animation = &"crouch"
+frame = 4
 frame_progress = 1.0
 
 [node name="SideAttackArea" type="Area2D" parent="."]
