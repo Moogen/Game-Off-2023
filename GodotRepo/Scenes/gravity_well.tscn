@@ -233,7 +233,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gu06g"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0ohi"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -271,8 +271,7 @@ shader_parameter/player_loc = null
 shader_parameter/attractor_str = null
 shader_parameter/obj_destroy_distance = 10.0
 
-[node name="GravityWell" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="GravityWell" type="Node2D"]
 script = ExtResource("1_k6cux")
 
 [node name="BlackholeSprite" type="Sprite2D" parent="."]
@@ -312,5 +311,5 @@ angular_damp = 0.01
 shape = SubResource("CircleShape2D_xne5h")
 
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
-process_material = SubResource("ShaderMaterial_gu06g")
+process_material = SubResource("ShaderMaterial_l0ohi")
 lifetime = 2.0
