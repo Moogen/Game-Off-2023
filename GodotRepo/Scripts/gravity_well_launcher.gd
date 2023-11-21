@@ -10,12 +10,15 @@ var idle_state: State
 @export
 var move_state: State
 
+var spawning_well 
 var growing_well
+var launching_well
 var well_size
 const growing_well_start_scale = 0.002
 const well_growing_scale = 0.001
 const well_start_offset = 25
 const well_growing_offset_scale = 0.3
+var well_velocity = 100
 var click_scale_timer
 @onready var growing_well_sprite = $"../gravity_well_visualizer"
 
@@ -24,19 +27,25 @@ func _ready():
     main_scene = get_tree().get_root().get_child(0)
     gravity_bar = get_node("../../CanvasLayer/GravityBar")
     growing_well_sprite.visible = false
+    launching_well = false
     pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     
-    if Input.is_action_just_pressed('grow_well') and gravity_bar.has_mass(1) and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
+    if Input.is_action_just_pressed('grow_well') and launching_well == false and gravity_bar.has_mass(1) and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
         #start growing well while the "grow_well" button is pressed
         growing_well = true
         growing_well_sprite.visible = true
         well_size = 1
         click_scale_timer = Time.get_ticks_msec() #start timer
         update_well_sprite()
+    elif Input.is_action_just_pressed('grow_well') and launching_well:
+        launching_well = false
+        #send a signal to the spawning well to freeze it
+        spawning_well.freeze = true
+        spawning_well.well_affect_player = true
     elif Input.is_action_pressed('grow_well') and growing_well:
         
         var click_time = Time.get_ticks_msec() - click_scale_timer
@@ -54,19 +63,42 @@ func _process(delta):
         update_well_sprite()
     elif !Input.is_action_pressed('grow_well') and growing_well:
         launch_well()
+        
+        
+    #Also delete all wells in this node
+    if Input.is_action_just_pressed('return_wells'):
+        # Get all objects in the "Gravity Well Group".
+        var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
+
+        launching_well = false
+        # Iterate through each well in the group.
+        for well in wells_in_group:
+        # Ensure the well is not null and has a 'remove_gravity' method.
+            if well and well.has_method("remove_gravity"):
+                # Delete (free) the well.()
+                well.remove_gravity()
+                
     pass
     
 func launch_well():    
     growing_well_sprite.visible = false
     growing_well = false
     
+    spawning_well = gravity_well_template.instantiate()
+    main_scene.add_child(spawning_well)
+    spawning_well.position = growing_well_sprite.global_position
+    spawning_well.set_size(well_size, well_size)
+    
     if Player.is_aiming:
-        print("player is aiming, shoot well in that direction")
+        launching_well = true
+        #set velocity of the well as a vector in the direction the player is aiming
+        var x = cos(Player.aiming_angle)
+        var y = sin(Player.aiming_angle)
+                
+        var launch_velocity = Vector2(x, y).normalized()  * well_velocity + Player.velocity
+        spawning_well.linear_velocity = launch_velocity
     else:
-        var spawning_well = gravity_well_template.instantiate()
-        main_scene.add_child(spawning_well)
-        spawning_well.position = growing_well_sprite.global_position
-        spawning_well.set_size(well_size, well_size)
+        spawning_well.well_affect_player = true
     pass
     
 func update_well_sprite():

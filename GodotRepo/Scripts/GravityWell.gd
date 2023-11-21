@@ -1,5 +1,5 @@
 class_name GravityWell
-extends Node2D
+extends Node2D #make gravity well into a staticbody node instead
 
 @onready var grav_area          : Area2D            = $Blackhole
 @onready var grav_center_area   : Area2D            = $Center
@@ -18,7 +18,7 @@ const particle_ammount_coef     : float = 200
 const particle_dying_coef       : float = 1
 const particle_center_size      : float = 83/2
 const mass_particle_gravity     : float = 250 #controls the force at which the mass particles are attracted to the player
-const well_dying_timer : float = 1000 #lose 1 tick of mass on the well per second
+const well_dying_timer : float = 2000 #lose 1 tick of mass on the well per 2 second
 const well_dying_val   : int = 1
 
 
@@ -29,7 +29,7 @@ var mass_return_anim_time = 10
 var timer
 var well_active
 @onready var template_particle_emitter : GPUParticles2D = $MassParticles
-
+var well_affect_player = false
 var particle_emitter : GPUParticles2D
 var mass_returned
 # Called when the node enters the scene tree for the first time.
@@ -71,7 +71,7 @@ func _process(delta):
 
     #if we overlap with the player, apply gravity to them
     for body in grav_area.get_overlapping_bodies():
-        if body is Player:
+        if body is Player and well_affect_player:
             body.set_influence(grav_area.gravity*5, self.global_position, grav_center_shape.shape.radius)
     pass
 

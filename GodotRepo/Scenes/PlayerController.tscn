@@ -8,10 +8,10 @@
 [ext_resource type="Script" path="res://Scripts/BlackholeSprite.gd" id="3_ff2ag"]
 [ext_resource type="Script" path="res://Scripts/jump.gd" id="4_5f5su"]
 [ext_resource type="Script" path="res://Scripts/side_attack.gd" id="4_e1qiq"]
-[ext_resource type="Script" path="res://Scenes/gravity_well_launcher.gd" id="4_icfby"]
 [ext_resource type="Script" path="res://Scripts/idle.gd" id="4_p82wp"]
 [ext_resource type="Script" path="res://Scripts/fall.gd" id="4_sobar"]
 [ext_resource type="Script" path="res://Scripts/move.gd" id="5_3oo7e"]
+[ext_resource type="Script" path="res://Scripts/gravity_well_launcher.gd" id="6_r2wab"]
 [ext_resource type="Script" path="res://Scripts/crouch.gd" id="10_7v6uw"]
 [ext_resource type="Script" path="res://Scripts/crouch_move.gd" id="11_4uaxc"]
 
@@ -76,7 +76,7 @@ move_state = NodePath("../State Machine/move")
 
 [node name="gravity_well_launcher" type="Node2D" parent="." node_paths=PackedStringArray("idle_state", "move_state")]
 scale = Vector2(0.518168, 0.0699993)
-script = ExtResource("4_icfby")
+script = ExtResource("6_r2wab")
 idle_state = NodePath("../State Machine/idle")
 move_state = NodePath("../State Machine/move")
 
