@@ -77,7 +77,8 @@ func _process(delta):
             if well and well.has_method("remove_gravity"):
                 # Delete (free) the well.()
                 well.remove_gravity()
-                
+    
+         
     pass
     
 func launch_well():    
@@ -105,4 +106,14 @@ func update_well_sprite():
     var scale_val = well_size*well_growing_scale + growing_well_start_scale
     growing_well_sprite.scale = Vector2(scale_val, scale_val)
     var offset_val = well_size*well_growing_offset_scale + well_start_offset
-    growing_well_sprite.position = Vector2(0, -offset_val)
+    
+    
+    if Player.is_aiming:
+        #place the well sprite in line with this angle
+        var x = cos(Player.aiming_angle)
+        var y = sin(Player.aiming_angle)
+                
+        var well_sprite_offset = Vector2(x, y).normalized() * offset_val
+        growing_well_sprite.position = well_sprite_offset
+    else:    
+        growing_well_sprite.position = Vector2(0, -offset_val)
