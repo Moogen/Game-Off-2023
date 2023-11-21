@@ -10,11 +10,14 @@ var gravity_x : float = 0
 
 func enter(previous_state: State) -> void:
     super(previous_state)
-
+    parent.player_crouch(true)
+    
 func process_input(event: InputEvent) -> State:
     if Input.is_action_just_pressed('ui_accept') and parent.is_on_floor():
+        parent.player_crouch(false)
         return jump_state
     if !Input.is_action_pressed('crouch'):
+        parent.player_crouch(false)
         return idle_state        
     return null
 
@@ -37,5 +40,6 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
     parent.move_and_slide()
   
     if !parent.is_on_floor():
+        parent.player_crouch(false)
         return fall_state
     return null

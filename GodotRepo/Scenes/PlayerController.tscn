@@ -17,9 +17,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rgyvi"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ulmm2"]
-radius = 7.0
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgiqm"]
+size = Vector2(20, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a488x"]
 size = Vector2(21.25, 22)
@@ -46,7 +45,8 @@ shape = SubResource("CircleShape2D_rgyvi")
 disabled = true
 
 [node name="Stand Collider" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_ulmm2")
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_bgiqm")
 
 [node name="gravity_well_visualizer" type="Sprite2D" parent="."]
 position = Vector2(0, -25)

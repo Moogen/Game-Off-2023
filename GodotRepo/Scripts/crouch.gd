@@ -13,7 +13,7 @@ var gravity_x = 0
     
 func enter(previous_state: State) -> void:
     super(previous_state)
-    
+    parent.player_crouch(true)
     
     if(previous_state == move_state): 
         parent.animations.frame = 5
@@ -26,10 +26,12 @@ func enter(previous_state: State) -> void:
 
 func process_input(event: InputEvent) -> State:
     if Input.is_action_just_pressed('ui_accept') and parent.is_on_floor():
+        parent.player_crouch(false)
         return jump_state
     if Input.is_action_pressed('ui_left') or Input.is_action_pressed('ui_right'):
-        return move_state
+        return move_state #returns the crouch move state
     if !Input.is_action_pressed('crouch'):
+        parent.player_crouch(false)
         return idle_state
     return null
 
