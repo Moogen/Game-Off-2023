@@ -14,6 +14,8 @@ radius = 2.0
 radius = 3.0
 
 [node name="player_projectile" type="Node2D"]
+top_level = true
+z_index = 2
 script = ExtResource("1_2xjik")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]

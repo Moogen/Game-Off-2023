@@ -141,7 +141,7 @@ func set_size(click_time, mass_cost): #set size scales off thes duration of the 
     grav_area.gravity_point_unit_distance = center_size * click_timer_scale * click_time
     grav_shape.shape.radius = blackhole_size * click_timer_scale * click_time
     grav_center_shape.shape.radius = center_size * click_timer_scale * click_time
-    well_collider.shape.radius = center_size * click_timer_scale * click_time
+    well_collider.shape.radius = center_size * click_timer_scale * click_time /2 
     blackhole_sprite.scale = Vector2(sprite_scale * click_timer_scale * click_time, sprite_scale * click_timer_scale * click_time)
     pass
 
