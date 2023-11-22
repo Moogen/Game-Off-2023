@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cci46e4ph0pm5"]
 
-[ext_resource type="Script" path="res://Scenes/mass_generator.gd" id="1_inva2"]
+[ext_resource type="Script" path="res://Scripts/mass_generator.gd" id="1_1jc4x"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f40ly"]
 emission_shape = 3
@@ -37,7 +37,7 @@ size = Vector2(20, 46)
 
 [node name="MassGenerator" type="Node2D"]
 position = Vector2(888, 97)
-script = ExtResource("1_inva2")
+script = ExtResource("1_1jc4x")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(0, -32)

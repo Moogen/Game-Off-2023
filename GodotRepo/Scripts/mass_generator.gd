@@ -3,7 +3,7 @@ extends Node2D
 @onready var generator_area = $Area2D
 var gravity_bar
 var recharge_timer
-const recharge_time = 100
+const recharge_time = 50
 # Called when the node enters the scene tree for the first time.
 func _ready():
     gravity_bar = get_node("../../CanvasLayer/GravityBar")
