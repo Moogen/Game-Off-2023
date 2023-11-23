@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dx86aggwohfna"]
+[gd_scene load_steps=26 format=3 uid="uid://dx86aggwohfna"]
 
 [ext_resource type="PackedScene" uid="uid://cw4qiiaoo7gks" path="res://Scenes/parallax_background.tscn" id="1_japse"]
 [ext_resource type="TileSet" uid="uid://vabyvpqt8mmq" path="res://Tile Sets/Space Station.tres" id="2_ev7d7"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ci3qt33uhiapu" path="res://Scenes/Puzzle Objects/vent lever.tscn" id="16_tgh6b"]
 [ext_resource type="Texture2D" uid="uid://cbgfkqgmra2xc" path="res://sprites/arrow decal.png" id="16_tl5lm"]
 [ext_resource type="Texture2D" uid="uid://c7hpjgv1gkwpu" path="res://sprites/easter_egg_decal_1.png" id="19_wp43h"]
+[ext_resource type="Texture2D" uid="uid://cyal0gs0obgs3" path="res://sprites/escape_decal.png" id="20_htbu1"]
 [ext_resource type="Texture2D" uid="uid://dbv64kk8rebek" path="res://sprites/decal_level_3.png" id="21_gcxis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irbaq"]
@@ -185,6 +186,10 @@ texture = ExtResource("21_gcxis")
 [node name="EasterEggDecal1" type="Sprite2D" parent="Level Objects/Level3"]
 position = Vector2(2909, -272)
 texture = ExtResource("19_wp43h")
+
+[node name="EscapeDecal" type="Sprite2D" parent="Level Objects/Level3"]
+position = Vector2(3501, 5)
+texture = ExtResource("20_htbu1")
 
 [node name="Map" type="Node2D" parent="."]
 light_mask = 0
