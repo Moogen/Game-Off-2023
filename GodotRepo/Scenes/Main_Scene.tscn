@@ -1,14 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx86aggwohfna"]
+[gd_scene load_steps=16 format=3 uid="uid://dx86aggwohfna"]
 
 [ext_resource type="PackedScene" uid="uid://cw4qiiaoo7gks" path="res://Scenes/parallax_background.tscn" id="1_japse"]
 [ext_resource type="TileSet" uid="uid://vabyvpqt8mmq" path="res://Tile Sets/Space Station.tres" id="2_ev7d7"]
 [ext_resource type="PackedScene" uid="uid://d3fxdij8gxr2p" path="res://Scenes/PlayerController.tscn" id="3_uorjl"]
 [ext_resource type="PackedScene" uid="uid://cci46e4ph0pm5" path="res://Scenes/mass_generator.tscn" id="3_xw62n"]
 [ext_resource type="PackedScene" uid="uid://iuvnvfilq35o" path="res://Scenes/gui.tscn" id="4_6nwub"]
+[ext_resource type="PackedScene" uid="uid://bk125ytsyqjkk" path="res://Scenes/Puzzle Objects/door.tscn" id="4_b4i2t"]
 [ext_resource type="Texture2D" uid="uid://cvl4r6sn8qi63" path="res://sprites/mass_generator_pad.png" id="4_s4u1e"]
+[ext_resource type="PackedScene" uid="uid://bwyid7w1ptqjb" path="res://Scenes/Puzzle Objects/lever.tscn" id="5_smokv"]
 [ext_resource type="Texture2D" uid="uid://lfen4laa2la8" path="res://sprites/Sign-1.png" id="6_x207h"]
 [ext_resource type="Texture2D" uid="uid://ckkkq51y0cl6u" path="res://sprites/Sign-2.png" id="7_vekjq"]
+[ext_resource type="Texture2D" uid="uid://bx123n68vjtsu" path="res://sprites/capsule.png" id="10_70pbv"]
 [ext_resource type="PackedScene" uid="uid://c1a7g4prruqay" path="res://Scenes/gravity_bar.tscn" id="11_bqpom"]
+[ext_resource type="Texture2D" uid="uid://chcr6pmm8vduv" path="res://sprites/Capsule Sprite no cracks.png" id="11_hkgrw"]
+[ext_resource type="Texture2D" uid="uid://blwh8xp0p47in" path="res://sprites/counting_decal.png" id="12_mhhkl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irbaq"]
+size = Vector2(91, 13)
 
 [node name="Main" type="Node2D"]
 
@@ -16,17 +24,57 @@
 
 [node name="Level Objects" type="Node" parent="."]
 
+[node name="Level0" type="Node" parent="Level Objects"]
+
+[node name="Capsule" type="Sprite2D" parent="Level Objects/Level0"]
+position = Vector2(109, 35)
+texture = ExtResource("10_70pbv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level Objects/Level0/Capsule"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level Objects/Level0/Capsule/StaticBody2D"]
+position = Vector2(-0.5, 58.5)
+shape = SubResource("RectangleShape2D_irbaq")
+
+[node name="CapsuleSpriteNoCracks2" type="Sprite2D" parent="Level Objects/Level0"]
+position = Vector2(310, 35)
+texture = ExtResource("11_hkgrw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level Objects/Level0/CapsuleSpriteNoCracks2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level Objects/Level0/CapsuleSpriteNoCracks2/StaticBody2D"]
+position = Vector2(-0.5, 58.5)
+shape = SubResource("RectangleShape2D_irbaq")
+
+[node name="CapsuleSpriteNoCracks" type="Sprite2D" parent="Level Objects/Level0"]
+position = Vector2(211, 35)
+texture = ExtResource("11_hkgrw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level Objects/Level0/CapsuleSpriteNoCracks"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level Objects/Level0/CapsuleSpriteNoCracks/StaticBody2D"]
+position = Vector2(-0.5, 58.5)
+shape = SubResource("RectangleShape2D_irbaq")
+
+[node name="Door" parent="Level Objects/Level0" instance=ExtResource("4_b4i2t")]
+z_index = 1
+position = Vector2(512, 80)
+
+[node name="Lever" parent="Level Objects/Level0" node_paths=PackedStringArray("logic_outputs") instance=ExtResource("5_smokv")]
+position = Vector2(458, 88)
+logic_outputs = [NodePath("../Door")]
+
 [node name="Sign-1" type="Sprite2D" parent="Level Objects"]
 position = Vector2(1024, -60)
 texture = ExtResource("6_x207h")
 
 [node name="MassGenerator" parent="Level Objects" instance=ExtResource("3_xw62n")]
 
-[node name="MassGeneratorPad" type="Sprite2D" parent="Level Objects/MassGenerator"]
+[node name="MassGeneratorPad3" type="Sprite2D" parent="Level Objects/MassGenerator"]
 position = Vector2(0, -9)
 texture = ExtResource("4_s4u1e")
 
-[node name="MassGeneratorPad2" type="Sprite2D" parent="Level Objects/MassGenerator"]
+[node name="MassGeneratorPad4" type="Sprite2D" parent="Level Objects/MassGenerator"]
 position = Vector2(0, -25)
 rotation = 3.14159
 texture = ExtResource("4_s4u1e")
@@ -57,3 +105,7 @@ position = Vector2(0, 57)
 [node name="Sign-2" type="Sprite2D" parent="."]
 position = Vector2(822, 29)
 texture = ExtResource("7_vekjq")
+
+[node name="CountingDecal" type="Sprite2D" parent="."]
+position = Vector2(433, -57)
+texture = ExtResource("12_mhhkl")
