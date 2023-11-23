@@ -1,7 +1,7 @@
 extends Node2D
 
 var max_mass = 100;
-var cur_mass = 0;
+var cur_mass = 15;
 
 @onready var mass_bar : ProgressBar = $MassBar;
 

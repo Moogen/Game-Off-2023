@@ -6,7 +6,7 @@ var recharge_timer
 const recharge_time = 50
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    gravity_bar = get_node("../../CanvasLayer/GravityBar")
+    gravity_bar = get_node("../../../CanvasLayer/GravityBar")
     recharge_timer = Time.get_ticks_msec()
     pass # Replace with function body.
 

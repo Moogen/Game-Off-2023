@@ -239,7 +239,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkvvf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjm7e"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -327,5 +327,5 @@ angular_damp = 0.01
 shape = SubResource("CircleShape2D_xne5h")
 
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
-process_material = SubResource("ShaderMaterial_xkvvf")
+process_material = SubResource("ShaderMaterial_kjm7e")
 lifetime = 2.0

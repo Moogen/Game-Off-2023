@@ -55,7 +55,6 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
         if(parent.is_aiming): #then if we aren't processing a fall animation
             parent.process_aiming_animation(false)
         elif(parent.shooting):
-            print("parent is shooting")
             parent.animations.play(aiming_animation_name)
         else:
             parent.animations.play(animation_name) 
