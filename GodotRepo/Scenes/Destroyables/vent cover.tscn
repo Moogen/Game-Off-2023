@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://cksi16upgd7id"]
+
+[ext_resource type="Script" path="res://Scripts/crate.gd" id="1_owyds"]
+[ext_resource type="Texture2D" uid="uid://dn7pijgkdkgh5" path="res://sprites/Vent Cover-Sheet.png" id="2_nss3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ohnc"]
+size = Vector2(3.5, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx8ca"]
+atlas = ExtResource("2_nss3x")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31jmm"]
+atlas = ExtResource("2_nss3x")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okrbx"]
+atlas = ExtResource("2_nss3x")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kshcm"]
+atlas = ExtResource("2_nss3x")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8o2gm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx8ca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31jmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okrbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kshcm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="vent cover" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+disable_mode = 1
+collision_layer = 3
+collision_mask = 3
+mass = 100.0
+can_sleep = false
+freeze = true
+constant_force = Vector2(0, 1)
+script = ExtResource("1_owyds")
+object_health = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(4, 0)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_6ohnc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+sprite_frames = SubResource("SpriteFrames_8o2gm")
+autoplay = "default"
+frame_progress = 0.0966062

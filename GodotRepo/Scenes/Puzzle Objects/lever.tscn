@@ -21,7 +21,6 @@ interact_text = NodePath("RichTextLabel")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_p5fhy")
 animation = &"On"
-frame = 4
 frame_progress = 1.0
 flip_h = true
 
