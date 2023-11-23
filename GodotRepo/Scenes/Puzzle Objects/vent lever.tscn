@@ -1,0 +1,133 @@
+[gd_scene load_steps=18 format=3 uid="uid://ci3qt33uhiapu"]
+
+[ext_resource type="Script" path="res://Scripts/Lever.gd" id="1_63e2o"]
+[ext_resource type="Texture2D" uid="uid://6p640bqdhgnt" path="res://sprites/Vent Lever-Sheet.png" id="2_1jnf3"]
+[ext_resource type="Script" path="res://Scripts/LeverDamagable.gd" id="3_dkd7t"]
+[ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="4_w587m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kwbm"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mn3qm"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6dr7"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt4os"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f11qt"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f7n2"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8xnf"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2h02"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8agr"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swhst"]
+atlas = ExtResource("2_1jnf3")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q6ipl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kwbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mn3qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6dr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt4os")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f11qt")
+}],
+"loop": false,
+"name": &"Off",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f7n2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8xnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2h02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8agr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swhst")
+}],
+"loop": false,
+"name": &"On",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1y51"]
+size = Vector2(14, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfj2s"]
+size = Vector2(34, 18)
+
+[node name="Lever" type="Node2D" node_paths=PackedStringArray("animations", "collision_area", "interact_text")]
+script = ExtResource("1_63e2o")
+animation_name = "Off"
+animations = NodePath("AnimatedSprite2D")
+collision_area = NodePath("Area2D")
+interact_text = NodePath("RichTextLabel")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q6ipl")
+animation = &"Off"
+frame = 4
+frame_progress = 1.0
+flip_h = true
+
+[node name="LeverDamagable" type="RigidBody2D" parent="." groups=["Destroyables"]]
+collision_layer = 8
+collision_mask = 8
+freeze = true
+script = ExtResource("3_dkd7t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeverDamagable"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_j1y51")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_qfj2s")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -2.0
+offset_top = -25.0
+offset_right = 38.0
+offset_bottom = 15.0
+theme = ExtResource("4_w587m")
+text = "E"

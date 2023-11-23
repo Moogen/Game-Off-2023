@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://cci46e4ph0pm5"]
+
+[ext_resource type="Script" path="res://Scenes/mass_generator.gd" id="1_inva2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f40ly"]
+emission_shape = 3
+emission_box_extents = Vector3(15, 0, 0)
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0.431373, 0.317647, 0.505882, 1)
+turbulence_enabled = true
+turbulence_noise_strength = 9.57
+turbulence_noise_scale = 4.83
+turbulence_noise_speed_random = 3.42
+turbulence_influence_min = 0.13
+turbulence_influence_max = 0.15
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1jsjf"]
+emission_shape = 3
+emission_box_extents = Vector3(15, 0, 0)
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0.431373, 0.317647, 0.505882, 1)
+turbulence_enabled = true
+turbulence_noise_strength = 9.57
+turbulence_noise_scale = 4.83
+turbulence_noise_speed_random = 3.42
+turbulence_influence_min = 0.13
+turbulence_influence_max = 0.15
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1m7pa"]
+size = Vector2(20, 46)
+
+[node name="MassGenerator" type="Node2D"]
+position = Vector2(888, 97)
+script = ExtResource("1_inva2")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -32)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_f40ly")
+lifetime = 1.25
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_1jsjf")
+lifetime = 1.25
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_1m7pa")

@@ -15,7 +15,9 @@ animations = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_p53c5")
-animation = &"Closed"
+animation = &"Open"
+frame = 6
+frame_progress = 1.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 9

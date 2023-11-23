@@ -239,7 +239,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjm7e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nwkgv"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -278,9 +278,6 @@ shader_parameter/attractor_str = null
 shader_parameter/obj_destroy_distance = 10.0
 
 [node name="GravityWell" type="RigidBody2D"]
-z_index = 3
-collision_layer = 16
-collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_3pngc")
 gravity_scale = 0.0
 max_contacts_reported = 1
@@ -327,5 +324,5 @@ angular_damp = 0.01
 shape = SubResource("CircleShape2D_xne5h")
 
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
-process_material = SubResource("ShaderMaterial_kjm7e")
+process_material = SubResource("ShaderMaterial_nwkgv")
 lifetime = 2.0

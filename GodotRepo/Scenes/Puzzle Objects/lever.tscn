@@ -20,12 +20,13 @@ interact_text = NodePath("RichTextLabel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_p5fhy")
-animation = &"Off"
+animation = &"On"
+frame_progress = 1.0
+flip_h = true
 
 [node name="LeverDamagable" type="RigidBody2D" parent="." groups=["Destroyables"]]
-collision_mask = 9
-max_contacts_reported = 1
-contact_monitor = true
+collision_layer = 8
+collision_mask = 8
 freeze = true
 script = ExtResource("3_5usmg")
 

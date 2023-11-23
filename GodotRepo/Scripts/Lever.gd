@@ -11,6 +11,7 @@ var current_state = State.Off
     
 func _on_player_interaction() -> void:
     
+    print("interacted")
     if(current_state == State.Off):
         current_state = State.On
         _activate_outputs()

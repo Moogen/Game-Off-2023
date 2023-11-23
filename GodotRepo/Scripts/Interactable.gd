@@ -35,14 +35,14 @@ func _input(event: InputEvent) -> void:
 func _activate_outputs() -> void:
     #call activate on all outputs attached to the interactable\
     for output in logic_outputs:
-        output._activate()
+        output.call_deferred("_activate")
 
     pass
     
 func _deactivate_outputs() -> void:
     #call deactivate on all outputs attached to the interactable
     for output in logic_outputs:
-        output._deactivate()
+        output.call_deferred("_deactivate")
         
     pass
 
