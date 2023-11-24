@@ -9,13 +9,14 @@ extends RigidBody2D #make gravity well into a staticbody node instead
 @onready var well_collider      : CollisionShape2D  = $WellCollider
 #all the variables for scaling the black hole
 
-const blackhole_gravity : float = 3000*10
+const blackhole_gravity : float = 3000*2 #3000*10 
 const blackhole_size    : float = 83*5*2
 const center_size       : float = 83
 const click_timer_scale : float = 0.01 #.1 seconds is = the base size of the black hole
 const sprite_scale      : float = 1
 #const particle_disappear_coeff  : float = 0.015
 const particle_ammount_coef     : float = 200
+const player_influence_coef     : float = 0.25
 const particle_dying_coef       : float = 1
 const particle_center_size      : float = 83/2
 const mass_particle_gravity     : float = 250 #controls the force at which the mass particles are attracted to the player
@@ -78,7 +79,7 @@ func _process(delta):
     #if we overlap with the player, apply gravity to them
     for body in grav_area.get_overlapping_bodies():
         if body is Player and well_affect_player:
-            body.set_influence(grav_area.gravity*5, self.global_position, grav_center_shape.shape.radius)
+            body.set_influence(grav_area.gravity, self.global_position, grav_center_shape.shape.radius)
     pass
 
     
@@ -137,7 +138,7 @@ func set_size(click_time, mass_cost): #set size scales off thes duration of the 
     self.click_time = click_time
     self.mass_cost = mass_cost
     grav_area.gravity = blackhole_gravity * (click_timer_scale * click_time)
-    grav_area.gravity_point_unit_distance = center_size * click_timer_scale * click_time
+    #grav_area.gravity_point_unit_distance = center_size * click_timer_scale * click_time
     grav_shape.shape.radius = blackhole_size * click_timer_scale * click_time
     grav_center_shape.shape.radius = center_size * click_timer_scale * click_time
     well_collider.shape.radius = center_size * click_timer_scale * click_time /2 
