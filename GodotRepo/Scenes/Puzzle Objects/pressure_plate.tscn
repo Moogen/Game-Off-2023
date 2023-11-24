@@ -1,10 +1,65 @@
-[gd_scene load_steps=5 format=3 uid="uid://vqnkkxxobxse"]
+[gd_scene load_steps=12 format=3 uid="uid://vqnkkxxobxse"]
 
 [ext_resource type="Script" path="res://Scripts/Pressure Plate.gd" id="1_tnfli"]
-[ext_resource type="SpriteFrames" uid="uid://bnsk1u7atw4qn" path="res://sprites/Animations/Lever.tres" id="1_yvwhm"]
+[ext_resource type="Texture2D" uid="uid://bemd70fogj58w" path="res://sprites/Pressure Plate-Sheet.png" id="2_72kqj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imrl7"]
 size = Vector2(32, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x038s"]
+atlas = ExtResource("2_72kqj")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2lxc"]
+atlas = ExtResource("2_72kqj")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk7mo"]
+atlas = ExtResource("2_72kqj")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyr7f"]
+atlas = ExtResource("2_72kqj")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdmvm"]
+atlas = ExtResource("2_72kqj")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrygh"]
+atlas = ExtResource("2_72kqj")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iu1ri"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x038s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2lxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk7mo")
+}],
+"loop": false,
+"name": &"Off",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyr7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdmvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrygh")
+}],
+"loop": false,
+"name": &"On",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k410b"]
 size = Vector2(32, 6)
@@ -24,7 +79,7 @@ position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_imrl7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("1_yvwhm")
+sprite_frames = SubResource("SpriteFrames_iu1ri")
 animation = &"On"
 flip_h = true
 

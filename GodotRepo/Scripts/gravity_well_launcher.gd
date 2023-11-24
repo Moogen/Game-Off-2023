@@ -24,6 +24,7 @@ var click_scale_timer
 var aiming_timer = 0 #provides a window where the last aim will be used if the player drops aiming at the last second
 @onready var growing_well_sprite = $"../gravity_well_visualizer"
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     main_scene = get_tree().get_root().get_child(0)
@@ -39,9 +40,11 @@ func _process(delta):
     if Input.is_action_just_pressed('grow_well') and launching_well == false and gravity_bar.has_mass(1) and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
         #start growing well while the "grow_well" button is pressed
         growing_well = true
-        growing_well_sprite.visible = true
+        growing_well_sprite.visible = false
         well_size = 1
         click_scale_timer = Time.get_ticks_msec() #start timer
+        spawning_well = gravity_well_template.instantiate()
+        main_scene.add_child(spawning_well)
         update_well_sprite()
     elif Input.is_action_just_pressed('grow_well') and launching_well:
         launching_well = false
@@ -90,10 +93,9 @@ func launch_well():
     growing_well_sprite.visible = false
     growing_well = false
     
-    spawning_well = gravity_well_template.instantiate()
-    main_scene.add_child(spawning_well)
-    spawning_well.position = growing_well_sprite.global_position
-    spawning_well.set_size(well_size, well_size)
+   
+    #spawning_well.position = growing_well_sprite.global_position
+   
     var aiming_time =  Time.get_ticks_msec() - aiming_timer
     if aiming_time < aiming_window:
         launching_well = true
@@ -111,8 +113,8 @@ func update_well_sprite():
     var scale_val = well_size*well_growing_scale + growing_well_start_scale
     growing_well_sprite.scale = Vector2(scale_val, scale_val)
     var offset_val = well_size*well_growing_offset_scale + well_start_offset
-    
-    
+    spawning_well.set_size(well_size, well_size)
+    spawning_well.position = growing_well_sprite.global_position
     if Player.is_aiming:
         #place the well sprite in line with this angle
         var x = cos(Player.aiming_angle)
