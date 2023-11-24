@@ -9,9 +9,9 @@ extends RigidBody2D #make gravity well into a staticbody node instead
 @onready var well_collider      : CollisionShape2D  = $WellCollider
 #all the variables for scaling the black hole
 
-const blackhole_gravity : float = 3000*2 #3000*10 
-const blackhole_size    : float = 83*5*2
-const center_size       : float = 83
+const blackhole_gravity : float = 3000*4 #3000*10 
+const blackhole_size    : float = 83*5
+const center_size       : float = 83/2
 const click_timer_scale : float = 0.01 #.1 seconds is = the base size of the black hole
 const sprite_scale      : float = 1
 #const particle_disappear_coeff  : float = 0.015
@@ -58,7 +58,6 @@ func _process(delta):
     set_particles_direction() #set the particle direction of the emitter
 
     #check if the well has collided with anything
-    
     var bodies = self.get_colliding_bodies()
     for body in bodies:
         self.freeze = true
@@ -93,6 +92,7 @@ func remove_gravity():
         grav_center_area.linear_damp_space_override = Area2D.SPACE_OVERRIDE_DISABLED
         remove_child(grav_center_area)
         remove_child(grav_area)
+        remove_child(well_collider)
         particle_emitter.explosiveness = 1
         blackhole_sprite.visible = false
     #check if we overlap from the player and remove any gravity affects

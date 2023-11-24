@@ -31,7 +31,7 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
         parent.animations.flip_h = true
         
 
-    parent.velocity.y += gravity * delta + gravity_influence.y * delta
+    parent.velocity.y += parent.gravity * delta + gravity_influence.y * delta
     parent.velocity.x = movement + gravity_velocity_x
     
     get_tree().call_group("Debug Group", "update_velocity", parent.velocity)

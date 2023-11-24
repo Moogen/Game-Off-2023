@@ -10,7 +10,7 @@ var previous_state: State
 var side_attack_state : State
 
 var timestop = false
-
+@onready var Player = $".."
 var gravity_influence = Vector2(0,0)
 var gravity_velocity_x = 0
 
@@ -40,6 +40,7 @@ func process_physics(delta: float) -> void:
     #handle gravity velocity x for every state in the state machine
     gravity_velocity_x += gravity_influence.x * delta
     gravity_velocity_x *=  0.8 #multiply velocity by some coeff to reduce it
+    
 
     var new_state = current_state.process_physics(delta, gravity_influence, gravity_velocity_x)
     get_tree().call_group("Debug Group", "update_gravity_velocity_x", gravity_velocity_x)

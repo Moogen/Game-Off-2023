@@ -15,7 +15,8 @@ var aiming_angle = 0.0
 var is_aiming = false
 var shooting_offset : Vector2
 var shooting = true
-
+var gravity_invert = false
+var gravity = 980
 @export var aiming_shooting_offset : Array[Vector2] = []
 @export var aiming_animation_name : Array[String] = []
 
@@ -37,6 +38,17 @@ func _process(delta: float) -> void:
     
 func set_influence(gravity: float, grav_center: Vector2, grav_center_radius:float) -> void:
     state_machine.set_influence(gravity, grav_center, self.global_position, grav_center_radius)
+
+func set_inverse(invert: bool) -> void:
+    gravity_invert = invert
+    
+    if(invert):
+        gravity = -980
+        animations.flip_v = true
+    else:
+        gravity = 980
+        animations.flip_v = false
+    pass
 
 func player_crouch(crouching: bool) -> void:
     if(crouching):

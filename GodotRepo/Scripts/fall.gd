@@ -66,7 +66,7 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
     elif(movement < 0):
         parent.animations.flip_h = true
         
-    parent.velocity.y += gravity * delta + gravity_influence.y * delta
+    parent.velocity.y += parent.gravity * delta + gravity_influence.y * delta
     parent.velocity.x = movement + gravity_velocity_x
     parent.move_and_slide()
     

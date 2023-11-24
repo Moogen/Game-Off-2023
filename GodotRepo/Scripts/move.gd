@@ -42,7 +42,7 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
  
 
     #Update player velocity
-    parent.velocity.y += gravity * delta + gravity_influence.y * delta
+    parent.velocity.y += parent.gravity * delta + gravity_influence.y * delta
 
        
     if movement == 0:

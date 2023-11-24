@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1snwvwb00ey3"]
 
-[ext_resource type="Script" path="res://Scenes/Puzzle Objects/inverter.gd" id="1_bb8gm"]
+[ext_resource type="Script" path="res://Scripts/inverter.gd" id="1_bb8gm"]
 
 [node name="inverter" type="Node2D"]
 script = ExtResource("1_bb8gm")
