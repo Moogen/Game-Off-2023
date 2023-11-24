@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://bugpth50klabx" path="res://sprites/Animations/Door.tres" id="2_p53c5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifv5w"]
-size = Vector2(28, 30)
+size = Vector2(16, 30)
 
 [node name="Door" type="Node2D" node_paths=PackedStringArray("collision_shape", "animations")]
 position = Vector2(152, 128)
@@ -15,7 +15,7 @@ animations = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_p53c5")
-animation = &"Open"
+animation = &"Closed"
 frame = 6
 frame_progress = 1.0
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cghv5qiclr43p"]
+[gd_scene load_steps=8 format=3 uid="uid://c8i2tfoaosyfr"]
 
-[ext_resource type="PackedScene" uid="uid://dwriqxoxhlar3" path="res://Scenes/mass_particle_emitter.tscn" id="1_bkkfb"]
-[ext_resource type="Script" path="res://Scripts/crate.gd" id="2_s46g1"]
-[ext_resource type="Texture2D" uid="uid://dmtsk2dccunxe" path="res://sprites/crate.png" id="3_8nrum"]
+[ext_resource type="PackedScene" uid="uid://dwriqxoxhlar3" path="res://Scenes/mass_particle_emitter.tscn" id="1_47is3"]
+[ext_resource type="Texture2D" uid="uid://c1235kw56tjo7" path="res://sprites/indestructible crate.png" id="2_3ut2f"]
 
 [sub_resource type="Shader" id="Shader_kfeqs"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable.mono's ParticleProcessMaterial.
@@ -227,7 +226,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6tri"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hfk86"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -268,25 +267,25 @@ shader_parameter/obj_destroy_distance = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tj8ej"]
 size = Vector2(16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aptmc"]
-atlas = ExtResource("3_8nrum")
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4kfs"]
+atlas = ExtResource("2_3ut2f")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j34tc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aptmc")
+"texture": SubResource("AtlasTexture_u4kfs")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="Crate" type="Node2D"]
+[node name="Indestructible Crate" type="Node2D"]
 
-[node name="MassParticles" parent="." instance=ExtResource("1_bkkfb")]
-process_material = SubResource("ShaderMaterial_j6tri")
+[node name="MassParticles" parent="." instance=ExtResource("1_47is3")]
+process_material = SubResource("ShaderMaterial_hfk86")
 lifetime = 2.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
@@ -295,10 +294,6 @@ disable_mode = 1
 collision_layer = 3
 collision_mask = 3
 can_sleep = false
-constant_force = Vector2(0, 1)
-script = ExtResource("2_s46g1")
-object_health = 1.0
-particle_color = Color(0.423529, 0.929412, 0.929412, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("RectangleShape2D_tj8ej")

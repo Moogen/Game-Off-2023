@@ -1,27 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://btfvcoft6hbhj"]
+[gd_scene load_steps=5 format=3 uid="uid://vqnkkxxobxse"]
 
-[ext_resource type="SpriteFrames" uid="uid://bnsk1u7atw4qn" path="res://Sprites/Animations/Lever.tres" id="1_yvwhm"]
-[ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="2_4v6c0"]
+[ext_resource type="Script" path="res://Scripts/Pressure Plate.gd" id="1_tnfli"]
+[ext_resource type="SpriteFrames" uid="uid://bnsk1u7atw4qn" path="res://sprites/Animations/Lever.tres" id="1_yvwhm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g8kx7"]
-size = Vector2(34, 18)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imrl7"]
+size = Vector2(31, 3)
 
-[node name="Pressure Plate" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k410b"]
+size = Vector2(14, 6)
+
+[node name="Pressure Plate" type="Node2D" node_paths=PackedStringArray("animations")]
+script = ExtResource("1_tnfli")
+animation_name = "Off"
+animations = NodePath("AnimatedSprite2D")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 9
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 6.5)
+shape = SubResource("RectangleShape2D_imrl7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_yvwhm")
 animation = &"Off"
+frame = 2
+frame_progress = 1.0
+flip_h = true
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="LeverDamagable" type="RigidBody2D" parent="." groups=["Destroyables"]]
+collision_layer = 8
+collision_mask = 8
+freeze = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, -1)
-shape = SubResource("RectangleShape2D_g8kx7")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = -2.0
-offset_top = -24.0
-offset_right = 38.0
-offset_bottom = 16.0
-theme = ExtResource("2_4v6c0")
-text = "E"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeverDamagable"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_k410b")

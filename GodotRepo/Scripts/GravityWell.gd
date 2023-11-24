@@ -10,7 +10,7 @@ extends RigidBody2D #make gravity well into a staticbody node instead
 #all the variables for scaling the black hole
 
 const blackhole_gravity : float = 3000*10
-const blackhole_size    : float = 83*5
+const blackhole_size    : float = 83*5*2
 const center_size       : float = 83
 const click_timer_scale : float = 0.01 #.1 seconds is = the base size of the black hole
 const sprite_scale      : float = 1

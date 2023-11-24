@@ -3,8 +3,8 @@ class_name Interactable extends Node2D
 
 @export var animation_name: String #default animation name
 @export var animations : AnimatedSprite2D #Animated sprite for object
-@export var collision_area : Area2D #Interactable area
-@export var interact_text : RichTextLabel #text that appears when player can interact
+#@export var collision_area : Area2D #Interactable area
+#@export var interact_text : RichTextLabel #text that appears when player can interact
 @export var logic_outputs : Array[InteractableOutput] = []
 
 var is_interactable = false
@@ -13,19 +13,19 @@ var is_interactable = false
 func _ready():
     print(animation_name)
     animations.play(animation_name)
-    collision_area.connect("body_entered", self._on_body_entered)
-    collision_area.connect("body_exited", self._on_body_exited)
-    interact_text.visible = false 
+    #collision_area.connect("body_entered", self._on_body_entered)
+    #collision_area.connect("body_exited", self._on_body_exited)
+    #interact_text.visible = false 
     pass
     
 func _on_body_entered(body: PhysicsBody2D) -> void:
     if body is Player:
-        interact_text.visible = true
+        #interact_text.visible = true
         is_interactable = true
 
 func _on_body_exited(body: PhysicsBody2D) -> void:
     if body is Player:
-        interact_text.visible = false
+        #interact_text.visible = false
         is_interactable = false
 
 func _input(event: InputEvent) -> void:
