@@ -254,6 +254,12 @@ text = "TEST-0003
 GRAVITATIONAL MANIPULATION
 OF OBJECTS"
 
+[node name="MassGenerator" parent="Level Objects/Level5" instance=ExtResource("3_xw62n")]
+position = Vector2(4305, 1)
+
+[node name="Indestructible Crate" parent="Level Objects/Level5" instance=ExtResource("26_eduok")]
+position = Vector2(4377, -15)
+
 [node name="Level6" type="Node" parent="Level Objects"]
 
 [node name="Map" type="Node2D" parent="."]
@@ -278,6 +284,3 @@ scale = Vector2(1.00615, 0.976669)
 
 [node name="GravityBar" parent="CanvasLayer" instance=ExtResource("11_bqpom")]
 position = Vector2(0, 57)
-
-[node name="Indestructible Crate" parent="." instance=ExtResource("26_eduok")]
-position = Vector2(4377, -15)

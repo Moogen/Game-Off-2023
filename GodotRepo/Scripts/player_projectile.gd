@@ -44,6 +44,8 @@ func on_body_entered(body):
     if body.is_in_group("Destroyable"):    
         body.damage_object(damage)
         hit_kill_timer.start()
+    elif body.is_in_group("Plate Objects"):
+        hit_kill_timer.start()
     else:
         print("didnt hit nothing")
     pass
