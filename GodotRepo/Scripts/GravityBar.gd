@@ -31,7 +31,7 @@ func modify_mass(massToAdd: int):
         cur_mass = 0
     adjust_mass_bar()
     pass
-    
+
 func spend_mass(massToSpend: int) -> bool:
     if(massToSpend <= 0):
         print("What are you doing you big dummy you can't spend negative mass! You should be using the modify_mass function")

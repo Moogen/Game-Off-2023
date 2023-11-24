@@ -13,7 +13,7 @@ const blackhole_gravity : float = 3000*10
 const blackhole_size    : float = 83*5
 const center_size       : float = 83
 const click_timer_scale : float = 0.01 #.1 seconds is = the base size of the black hole
-const sprite_scale      : float = 0.025*4
+const sprite_scale      : float = 1
 #const particle_disappear_coeff  : float = 0.015
 const particle_ammount_coef     : float = 200
 const particle_dying_coef       : float = 1
@@ -21,7 +21,6 @@ const particle_center_size      : float = 83/2
 const mass_particle_gravity     : float = 250 #controls the force at which the mass particles are attracted to the player
 const well_dying_timer : float = 2000 #lose 1 tick of mass on the well per 2 second
 const well_dying_val   : int = 1
-
 
 var click_time = 0
 var mass_cost = 0

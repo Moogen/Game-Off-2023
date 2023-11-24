@@ -14,8 +14,8 @@ var spawning_well
 var growing_well
 var launching_well
 var well_size
-const growing_well_start_scale = 0.002
-const well_growing_scale = 0.001
+const growing_well_start_scale = 0.025
+const well_growing_scale = 0.01
 const well_start_offset = 25
 const well_growing_offset_scale = 0.3
 const aiming_window = 500
