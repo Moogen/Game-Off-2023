@@ -4,36 +4,32 @@
 [ext_resource type="SpriteFrames" uid="uid://bnsk1u7atw4qn" path="res://sprites/Animations/Lever.tres" id="1_yvwhm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imrl7"]
-size = Vector2(31, 3)
+size = Vector2(32, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k410b"]
-size = Vector2(14, 6)
+size = Vector2(32, 6)
 
-[node name="Pressure Plate" type="Node2D" node_paths=PackedStringArray("animations")]
+[node name="Pressure Plate" type="Node2D" node_paths=PackedStringArray("animations", "collision_area")]
 script = ExtResource("1_tnfli")
 animation_name = "Off"
 animations = NodePath("AnimatedSprite2D")
+collision_area = NodePath("Area2D")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 9
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-0.5, 6.5)
+position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_imrl7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_yvwhm")
-animation = &"Off"
-frame = 2
-frame_progress = 1.0
+animation = &"On"
 flip_h = true
 
-[node name="LeverDamagable" type="RigidBody2D" parent="." groups=["Destroyables"]]
-collision_layer = 8
-collision_mask = 8
-freeze = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeverDamagable"]
+[node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_k410b")

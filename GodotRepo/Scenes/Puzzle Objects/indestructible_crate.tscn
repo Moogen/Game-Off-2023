@@ -288,7 +288,7 @@ animations = [{
 process_material = SubResource("ShaderMaterial_hfk86")
 lifetime = 2.0
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="RigidBody2D" type="RigidBody2D" parent="." groups=["Plate Objects"]]
 visibility_layer = 4
 disable_mode = 1
 collision_layer = 3

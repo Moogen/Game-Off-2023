@@ -5,7 +5,7 @@ class_name InteractableOutput extends Node2D
 @export var animations : AnimatedSprite2D #Animated sprite for object
 
 
-var is_active = false #what is the state of the logic input to this output
+@export var is_active = false #what is the state of the logic input to this output
 
 
 # Called when the node enters the scene tree for the first time.

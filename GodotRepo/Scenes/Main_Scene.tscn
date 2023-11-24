@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dx86aggwohfna"]
+[gd_scene load_steps=30 format=3 uid="uid://dx86aggwohfna"]
 
 [ext_resource type="PackedScene" uid="uid://cw4qiiaoo7gks" path="res://Scenes/parallax_background.tscn" id="1_japse"]
 [ext_resource type="TileSet" uid="uid://vabyvpqt8mmq" path="res://Tile Sets/Space Station.tres" id="2_ev7d7"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cyal0gs0obgs3" path="res://sprites/escape_decal.png" id="20_htbu1"]
 [ext_resource type="Texture2D" uid="uid://dbv64kk8rebek" path="res://sprites/decal_level_3.png" id="21_gcxis"]
 [ext_resource type="PackedScene" uid="uid://vqnkkxxobxse" path="res://Scenes/Puzzle Objects/pressure_plate.tscn" id="23_cgu5o"]
+[ext_resource type="PackedScene" uid="uid://b1snwvwb00ey3" path="res://Scenes/Puzzle Objects/inverter.tscn" id="24_jlt13"]
 [ext_resource type="PackedScene" uid="uid://cghv5qiclr43p" path="res://Scenes/Destroyables/crate.tscn" id="25_baf0n"]
 [ext_resource type="PackedScene" uid="uid://c8i2tfoaosyfr" path="res://Scenes/Puzzle Objects/indestructible_crate.tscn" id="26_eduok"]
 
@@ -220,18 +221,38 @@ text = "TEST-0002
 GRAVITATIONAL INFLUENCE
 ON OBJECTS"
 
-[node name="Level5" type="Node" parent="Level Objects"]
+[node name="Pressure Plate" parent="Level Objects/Level4" node_paths=PackedStringArray("logic_outputs") instance=ExtResource("23_cgu5o")]
+position = Vector2(3640, 89)
+logic_outputs = [NodePath("../inverter")]
 
-[node name="Door" parent="Level Objects/Level5" instance=ExtResource("4_b4i2t")]
-position = Vector2(4702, -16)
-
-[node name="Crate" parent="Level Objects/Level5" instance=ExtResource("26_eduok")]
+[node name="Crate" parent="Level Objects/Level4" instance=ExtResource("26_eduok")]
 z_index = 1
 position = Vector2(3642, -46)
 scale = Vector2(1, 1.01288)
 
+[node name="inverter" parent="Level Objects/Level4" node_paths=PackedStringArray("logic_outputs") instance=ExtResource("24_jlt13")]
+logic_outputs = [NodePath("../Door")]
+
+[node name="Level5" type="Node" parent="Level Objects"]
+
+[node name="Door" parent="Level Objects/Level5" instance=ExtResource("4_b4i2t")]
+position = Vector2(4702, -16)
+is_active = true
+
 [node name="Pressure Plate" parent="Level Objects/Level5" instance=ExtResource("23_cgu5o")]
-position = Vector2(3640, 89)
+position = Vector2(4635, -6)
+
+[node name="Test Label" type="RichTextLabel" parent="Level Objects/Level5"]
+offset_left = 4346.0
+offset_top = -187.0
+offset_right = 4659.0
+offset_bottom = -82.0
+theme = ExtResource("12_3uxcs")
+theme_override_colors/default_color = Color(0.423529, 0.929412, 0.929412, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "TEST-0003
+GRAVITATIONAL MANIPULATION
+OF OBJECTS"
 
 [node name="Level6" type="Node" parent="Level Objects"]
 

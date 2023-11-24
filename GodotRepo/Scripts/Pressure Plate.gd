@@ -8,19 +8,9 @@ enum State {
 
 var current_state = State.Off
 @export var activated_animation : String = "On"
-    
-func _on_player_interaction() -> void:
-    
-    print("interacted")
-    if(current_state == State.Off):
-        current_state = State.On
-        _activate_outputs()
-    else:
-        current_state = State.Off
-        _deactivate_outputs()
-        
-    update_anim()
-    pass
+
+func _ready():
+    animations.play(animation_name)
     
 func update_anim() -> void:
     
@@ -30,9 +20,28 @@ func update_anim() -> void:
         animations.play(activated_animation)
     pass
 
-
-
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 # Overload this so we can just change lever states with damage
 func _process(delta):
+    
+    var found_obj = false
+    
+    for body in collision_area.get_overlapping_bodies():
+         if body.is_in_group("Plate Objects"):
+            found_obj = true
+            if(current_state == State.Off):
+                current_state = State.On
+                print("activated pressure plate")
+                _activate_outputs()
+                update_anim()
+            
+    
+    if not found_obj:
+        if(current_state == State.On):
+            current_state = State.Off
+            print("deactivated pressure plate")
+            _deactivate_outputs()
+            update_anim()
+    
     pass
+    
