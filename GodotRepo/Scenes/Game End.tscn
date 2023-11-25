@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="2_4n34p"]
 [ext_resource type="Texture2D" uid="uid://dkaks43li3q07" path="res://sprites/Fade out.png" id="2_nq5ep"]
 [ext_resource type="Texture2D" uid="uid://eko00i8uq1a4" path="res://sprites/Background.png" id="3_lcpwe"]
-[ext_resource type="Texture2D" uid="uid://b62ibsecqd6hk" path="res://sprites/ShipWPilot.png" id="5_46wxx"]
+[ext_resource type="Texture2D" uid="uid://0vvwsijoc2xa" path="res://sprites/ShipInSpace.png" id="5_4ao38"]
 
 [sub_resource type="Gradient" id="Gradient_lgsgl"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0470588)
@@ -54,7 +54,7 @@ Thank you for playing"
 [node name="ShipWPilot" type="Sprite2D" parent="."]
 z_index = 5
 position = Vector2(-50, 210)
-texture = ExtResource("5_46wxx")
+texture = ExtResource("5_4ao38")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="ShipWPilot"]
 show_behind_parent = true
