@@ -280,10 +280,6 @@ texture = ExtResource("29_76q18")
 
 [node name="Level4" type="Node" parent="Level Objects"]
 
-[node name="EscapeDecal-export" type="Sprite2D" parent="Level Objects/Level4"]
-position = Vector2(3592, -145)
-texture = ExtResource("34_fsh30")
-
 [node name="Door" parent="Level Objects/Level4" instance=ExtResource("4_b4i2t")]
 position = Vector2(3775, -16)
 
@@ -298,6 +294,10 @@ theme_override_font_sizes/normal_font_size = 32
 text = "TEST-0002
 GRAVITATIONAL INFLUENCE
 ON OBJECTS"
+
+[node name="EscapeDecal-export" type="Sprite2D" parent="Level Objects/Level4"]
+position = Vector2(3592, -145)
+texture = ExtResource("34_fsh30")
 
 [node name="Pressure Plate" parent="Level Objects/Level4" node_paths=PackedStringArray("logic_outputs") instance=ExtResource("23_cgu5o")]
 position = Vector2(3640, 89)
