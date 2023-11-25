@@ -3,8 +3,6 @@ class_name InteractableOutput extends Node2D
 
 @export var animation_name: String #default animation name
 @export var animations : AnimatedSprite2D #Animated sprite for object
-
-
 @export var is_active = false #what is the state of the logic input to this output
 
 

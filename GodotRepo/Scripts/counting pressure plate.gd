@@ -8,8 +8,9 @@ enum State {
 
 var current_state = State.Off
 @export var activated_animation : String = "On"
-var object_threshold = 10
+@export var object_threshold = 10
 @onready var counting_text = $RichTextLabel
+@export var plate_group : String = "Anti Plate Objects"
 
 func _ready():
     animations.play(animation_name)
@@ -29,7 +30,7 @@ func _process(delta):
     var object_count = 0
     
     for body in collision_area.get_overlapping_bodies():
-         if body.is_in_group("Anti Plate Objects"):
+         if body.is_in_group(plate_group):
             object_count += 1
 
     #update object count

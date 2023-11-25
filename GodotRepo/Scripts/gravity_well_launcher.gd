@@ -79,6 +79,7 @@ func _process(delta):
         var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
 
         launching_well = false
+        growing_well = false
         # Iterate through each well in the group.
         for well in wells_in_group:
         # Ensure the well is not null and has a 'remove_gravity' method.

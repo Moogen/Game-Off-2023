@@ -8,6 +8,7 @@ class_name Interactable extends Node2D
 @export var logic_outputs : Array[InteractableOutput] = []
 
 var is_interactable = false
+@export var state = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,16 +34,19 @@ func _input(event: InputEvent) -> void:
 
 func _activate_outputs() -> void:
     #call activate on all outputs attached to the interactable\
+    state = true #set the state of this output
+    
     for output in logic_outputs:
-        output.call_deferred("_activate")
-
+        output.call_deferred("_activate") 
     pass
     
 func _deactivate_outputs() -> void:
     #call deactivate on all outputs attached to the interactable
+    
+    state = false
+    
     for output in logic_outputs:
         output.call_deferred("_deactivate")
-        
     pass
 
 func _on_player_interaction() -> void:
