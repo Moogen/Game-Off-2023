@@ -263,10 +263,6 @@ position = Vector2(2506, -41)
 
 [node name="Level3" type="Node" parent="Level Objects"]
 
-[node name="DecalLevel3-export" type="Sprite2D" parent="Level Objects/Level3"]
-position = Vector2(2922, -98)
-texture = ExtResource("30_ie7k6")
-
 [node name="EasterEggDecal1" type="Sprite2D" parent="Level Objects/Level3"]
 position = Vector2(2909, -272)
 texture = ExtResource("22_p5xsd")
@@ -292,6 +288,10 @@ theme_override_colors/default_color = Color(0.423529, 0.929412, 0.929412, 1)
 theme_override_font_sizes/normal_font_size = 32
 text = "MAINT.
 SHAFT A"
+
+[node name="DecalLevel3-export" type="Sprite2D" parent="Level Objects/Level3"]
+position = Vector2(2922, -98)
+texture = ExtResource("30_ie7k6")
 
 [node name="M2" type="Sprite2D" parent="Level Objects/Level3"]
 position = Vector2(2150, 43)
