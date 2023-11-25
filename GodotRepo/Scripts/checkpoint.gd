@@ -1,5 +1,6 @@
-extends Area2D
+extends Node2D
 
+@onready var checkpoint_area = $Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,10 +9,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-    for body in self.get_overlapping_bodies():
-        if body is Player:
-            print("End of game")
-            get_tree().change_scene("res://path/to/scene.tscn")
-        pass
     
+    for body in checkpoint_area.get_overlapping_bodies():
+        if body is Player:
+            GlobalOptions.set_checkpoint_pos(self.global_position)
+        pass
+
     pass

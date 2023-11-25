@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://dx86aggwohfna"]
+[gd_scene load_steps=63 format=3 uid="uid://dx86aggwohfna"]
 
 [ext_resource type="PackedScene" uid="uid://cw4qiiaoo7gks" path="res://Scenes/parallax_background.tscn" id="1_japse"]
 [ext_resource type="TileSet" uid="uid://vabyvpqt8mmq" path="res://Tile Sets/Space Station.tres" id="2_ev7d7"]
@@ -51,12 +51,13 @@
 [ext_resource type="Texture2D" uid="uid://b11bg8kvdr41d" path="res://sprites/Decals/Level 9 decal.png" id="45_g2j2g"]
 [ext_resource type="Texture2D" uid="uid://dkaks43li3q07" path="res://sprites/Fade out.png" id="47_7in2a"]
 [ext_resource type="Script" path="res://Scripts/End Game Area.gd" id="48_agu2k"]
+[ext_resource type="Script" path="res://Scenes/Remove UI.gd" id="49_dcbx1"]
 [ext_resource type="Texture2D" uid="uid://brxfh41d0t42i" path="res://sprites/Restart Key.png" id="50_g0fsf"]
-[ext_resource type="Script" path="res://Scripts/Remove UI.gd" id="50_gct6v"]
 [ext_resource type="PackedScene" uid="uid://bow5a70pffpy0" path="res://Scenes/Puzzle Objects/antigravitonium_area.tscn" id="51_xvpde"]
-[ext_resource type="Texture2D" uid="uid://b1knssbki7rpc" path="res://sprites/reload_screen.png" id="56_ogtfq"]
+[ext_resource type="Script" path="res://Scenes/SpawnPlayer.gd" id="55_akkmc"]
+[ext_resource type="Texture2D" uid="uid://eko00i8uq1a4" path="res://sprites/Background.png" id="55_bj8kt"]
+[ext_resource type="Texture2D" uid="uid://bscvmr2imor70" path="res://sprites/End of Game Screen.png" id="56_8133d"]
 [ext_resource type="PackedScene" uid="uid://df4rns67xe8s2" path="res://Scenes/checkpoint.tscn" id="56_wlki5"]
-[ext_resource type="Script" path="res://Scripts/SpawnPlayer.gd" id="57_jjc8a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irbaq"]
 size = Vector2(102, 13)
@@ -184,9 +185,6 @@ texture = ExtResource("16_3l07l")
 position = Vector2(465, 47)
 texture = ExtResource("12_v6itp")
 
-[node name="checkpoint" parent="Level Objects/Level0" instance=ExtResource("56_wlki5")]
-position = Vector2(764, 53)
-
 [node name="Level1" type="Node" parent="Level Objects"]
 
 [node name="Door" parent="Level Objects/Level1" instance=ExtResource("4_b4i2t")]
@@ -208,9 +206,6 @@ texture = ExtResource("19_2p6wo")
 [node name="Level1Decal-export" type="Sprite2D" parent="Level Objects/Level1"]
 position = Vector2(1170, -32)
 texture = ExtResource("20_mtd3e")
-
-[node name="checkpoint" parent="Level Objects/Level1" instance=ExtResource("56_wlki5")]
-position = Vector2(1606, -40)
 
 [node name="Level2" type="Node" parent="Level Objects"]
 
@@ -258,9 +253,6 @@ texture = ExtResource("25_76k8e")
 position = Vector2(1974, 40)
 texture = ExtResource("26_ochit")
 
-[node name="checkpoint" parent="Level Objects/Level2" instance=ExtResource("56_wlki5")]
-position = Vector2(2506, -41)
-
 [node name="Level3" type="Node" parent="Level Objects"]
 
 [node name="DecalLevel3-export" type="Sprite2D" parent="Level Objects/Level3"]
@@ -301,9 +293,6 @@ texture = ExtResource("13_1brn4")
 position = Vector2(2095, 42)
 texture = ExtResource("29_76q18")
 
-[node name="checkpoint" parent="Level Objects/Level3" instance=ExtResource("56_wlki5")]
-position = Vector2(3237, -41)
-
 [node name="Level4" type="Node" parent="Level Objects"]
 
 [node name="Door" parent="Level Objects/Level4" instance=ExtResource("4_b4i2t")]
@@ -332,9 +321,6 @@ scale = Vector2(1, 1.01288)
 
 [node name="inverter" parent="Level Objects/Level4" node_paths=PackedStringArray("logic_outputs") instance=ExtResource("24_jlt13")]
 logic_outputs = [NodePath("../Door")]
-
-[node name="checkpoint" parent="Level Objects/Level4" instance=ExtResource("56_wlki5")]
-position = Vector2(4042, -40)
 
 [node name="Level5" type="Node" parent="Level Objects"]
 
@@ -376,9 +362,6 @@ position = Vector2(4305, 1)
 [node name="Indestructible Crate" parent="Level Objects/Level5" instance=ExtResource("26_eduok")]
 position = Vector2(4377, -15)
 
-[node name="checkpoint" parent="Level Objects/Level5" instance=ExtResource("56_wlki5")]
-position = Vector2(4968, -41)
-
 [node name="Level6" type="Node" parent="Level Objects"]
 
 [node name="Test Label" type="RichTextLabel" parent="Level Objects/Level6"]
@@ -408,9 +391,6 @@ position = Vector2(5498, -33)
 
 [node name="Door" parent="Level Objects/Level6" instance=ExtResource("4_b4i2t")]
 position = Vector2(5631, -16)
-
-[node name="checkpoint" parent="Level Objects/Level6" instance=ExtResource("56_wlki5")]
-position = Vector2(5894, -39)
 
 [node name="Level7" type="Node" parent="Level Objects"]
 
@@ -490,9 +470,6 @@ position = Vector2(6415, 119)
 [node name="Anti Barrier Indestructible Crate16" parent="Level Objects/Level7/Pyramid of Nodes" instance=ExtResource("35_bvimb")]
 position = Vector2(6403, 104)
 
-[node name="checkpoint2" parent="Level Objects/Level7" instance=ExtResource("56_wlki5")]
-position = Vector2(7209, -38)
-
 [node name="Level8" type="Node" parent="Level Objects"]
 
 [node name="barrier" parent="Level Objects/Level8" instance=ExtResource("33_iactj")]
@@ -539,9 +516,6 @@ theme_override_font_sizes/normal_font_size = 32
 text = "TEST-0005
 FINE OBJECT MANIPULATION"
 
-[node name="checkpoint" parent="Level Objects/Level8" instance=ExtResource("56_wlki5")]
-position = Vector2(8278, -41)
-
 [node name="Level9" type="Node" parent="Level Objects"]
 
 [node name="Level9Decal" type="Sprite2D" parent="Level Objects/Level9"]
@@ -568,9 +542,6 @@ position = Vector2(8701, -288)
 
 [node name="Door" parent="Level Objects/Level9" instance=ExtResource("4_b4i2t")]
 position = Vector2(8841, -16)
-
-[node name="checkpoint" parent="Level Objects/Level9" instance=ExtResource("56_wlki5")]
-position = Vector2(9172, -39)
 
 [node name="Level10" type="Node" parent="Level Objects"]
 
@@ -645,7 +616,7 @@ shape = SubResource("RectangleShape2D_mrahe")
 
 [node name="Remove UI" type="Area2D" parent="Level Objects/End Game"]
 position = Vector2(10084, -90)
-script = ExtResource("50_gct6v")
+script = ExtResource("49_dcbx1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level Objects/End Game/Remove UI"]
 position = Vector2(678, 55)
@@ -664,7 +635,7 @@ layer_0/tile_data = PackedInt32Array(1310750, 131072, 1, 1310749, 131072, 1, 131
 
 [node name="Player" parent="." instance=ExtResource("3_uorjl")]
 top_level = true
-position = Vector2(10179, -39)
+position = Vector2(-183, -67)
 scale = Vector2(1.00528, 0.976669)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -679,9 +650,17 @@ position = Vector2(0, 57)
 position = Vector2(29, 26)
 texture = ExtResource("50_g0fsf")
 
-[node name="ReloadScreen" type="Sprite2D" parent="CanvasLayer"]
+[node name="Background" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(240, 134)
+texture = ExtResource("55_bj8kt")
+
+[node name="EndOfGameScreen" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(240, 135)
-texture = ExtResource("56_ogtfq")
+texture = ExtResource("56_8133d")
 
 [node name="SpawnPlayer" type="Node" parent="."]
-script = ExtResource("57_jjc8a")
+script = ExtResource("55_akkmc")
+
+[node name="checkpoint" parent="." instance=ExtResource("56_wlki5")]
+position = Vector2(764, 53)
