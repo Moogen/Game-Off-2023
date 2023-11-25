@@ -20,12 +20,12 @@ func _ready():
     
 func _on_body_entered(body: PhysicsBody2D) -> void:
     if body is Player:
-        interact_text.visible = true
+        #interact_text.visible = true
         is_interactable = true
 
 func _on_body_exited(body: PhysicsBody2D) -> void:
     if body is Player:
-        interact_text.visible = false
+        #interact_text.visible = false
         is_interactable = false
 
 func _input(event: InputEvent) -> void:

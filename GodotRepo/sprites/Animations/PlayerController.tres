@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://8lgon44uyypk" path="res://sprites/duck (1).png" id="1_b5lno"]
 [ext_resource type="Texture2D" uid="uid://bddx7ebb2ckv4" path="res://sprites/point-shoot.png" id="1_crbnp"]
 [ext_resource type="Texture2D" uid="uid://b4n5b42r6jkvq" path="res://sprites/idle.png" id="2_6ptcr"]
-[ext_resource type="Texture2D" uid="uid://cok40wnwsb83r" path="res://sprites/attack.png" id="2_l0rmc"]
+[ext_resource type="Texture2D" uid="uid://cok40wnwsb83r" path="res://sprites/Decals/attack.png" id="2_l0rmc"]
 [ext_resource type="Texture2D" uid="uid://da4abq2t2i6x0" path="res://sprites/roll.png" id="2_smi22"]
 [ext_resource type="Texture2D" uid="uid://btk03caqu2xfh" path="res://sprites/walk2.png" id="3_ne41w"]
 

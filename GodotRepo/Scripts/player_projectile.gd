@@ -6,7 +6,7 @@ extends Node2D
 var hit_kill_timer #start timer when projectile hits, delete the projectile when this expires
 var damage = 0
 var kill_delay_time = 0.001
-var lifespan = 4
+var lifespan = 5
 # Called when the node enters the scene tree for the first time.
 func _ready():
     #set up the kill_timer for when we want to delete the projectile

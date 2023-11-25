@@ -23,9 +23,10 @@ collision_layer = 14
 collision_mask = 14
 mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_1tdlr")
+gravity_scale = 0.5
 max_contacts_reported = 100
 contact_monitor = true
-constant_force = Vector2(0, -98000)
+constant_force = Vector2(0, -49000)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CircleShape2D_j5y5y")

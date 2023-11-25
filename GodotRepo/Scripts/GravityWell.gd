@@ -106,7 +106,6 @@ func remove_gravity():
         if(mass_cost > 0): #if the well dies with 0 mass, don't return any mass particles
             particle_emitter.emitting = true
             
-        print("returning well of size %d", mass_cost)
         get_tree().call_group("Gravity Bar", "modify_mass", mass_cost)
         mass_returned = true
         
