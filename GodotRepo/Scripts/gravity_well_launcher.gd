@@ -37,7 +37,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     
-    if Input.is_action_just_pressed('grow_well') and launching_well == false and gravity_bar.has_mass(1) and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
+    if Input.is_action_just_pressed('grow_well') and launching_well == false and gravity_bar.has_mass(1): # and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
         #start growing well while the "grow_well" button is pressed
         growing_well = true
         growing_well_sprite.visible = false

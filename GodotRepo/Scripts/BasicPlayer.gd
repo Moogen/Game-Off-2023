@@ -17,6 +17,7 @@ var shooting_offset : Vector2
 var shooting = true
 var gravity_invert = false
 var gravity = 980
+var floating = false
 @export var aiming_shooting_offset : Array[Vector2] = []
 @export var aiming_animation_name : Array[String] = []
 
@@ -48,6 +49,17 @@ func set_inverse(invert: bool) -> void:
     else:
         gravity = 980
         animations.flip_v = false
+    pass
+    
+func set_grav(value: bool) -> void:
+    if(value):
+        floating = false
+        gravity = 980
+        #animations.flip_v = false
+    else:
+        gravity = 980/3
+        floating = true
+        #animations.flip_v = true
     pass
 
 func player_crouch(crouching: bool) -> void:

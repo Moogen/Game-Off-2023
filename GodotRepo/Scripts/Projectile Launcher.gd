@@ -50,7 +50,7 @@ func _process(delta):
     Player.aiming_angle = aiming_angle
     Player.is_aiming    = is_aiming         
 
-    if Input.is_action_just_pressed('shoot') and gravity_bar.has_mass(1) and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
+    if Input.is_action_just_pressed('shoot') and gravity_bar.has_mass(1): # and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
         Player.shooting = true
         
         if not is_aiming:

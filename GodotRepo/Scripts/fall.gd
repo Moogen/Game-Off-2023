@@ -58,7 +58,7 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
         
     if(coyote_timer < 0):
         get_tree().call_group("Debug Group", "update_coyote_time", false)
-        
+    
     var movement = Input.get_axis('ui_left', 'ui_right') * move_speed
     
     if(movement > 0):
@@ -67,7 +67,9 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
         parent.animations.flip_h = true
         
     parent.velocity.y += parent.gravity * delta + gravity_influence.y * delta
+    
     parent.velocity.x = movement + gravity_velocity_x
+        
     parent.move_and_slide()
     
     get_tree().call_group("Debug Group", "update_velocity", parent.velocity)
