@@ -329,3 +329,4 @@ shape = SubResource("CircleShape2D_xne5h")
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
 process_material = SubResource("ShaderMaterial_p68kw")
 lifetime = 2.0
+visibility_rect = Rect2(-500, -500, 1000, 1000)

@@ -49,9 +49,10 @@ func _process(delta):
     elif Input.is_action_just_pressed('grow_well') and launching_well:
         launching_well = false
         #send a signal to the spawning well to freeze it
-        if(spawning_well.freeze != null): #ensure well was not deleted by an antigrav field
+        if(is_instance_valid(spawning_well)): #ensure well was not deleted by an antigrav field
             spawning_well.freeze = true
             spawning_well.well_affect_player = true
+            
     elif Input.is_action_pressed('grow_well') and growing_well:
         
         var click_time = Time.get_ticks_msec() - click_scale_timer

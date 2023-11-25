@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c75lfv4odd11w"]
+
+[ext_resource type="Script" path="res://Scenes/Game End.gd" id="1_2q816"]
+[ext_resource type="Texture2D" uid="uid://bscvmr2imor70" path="res://sprites/End of Game Screen.png" id="1_78a6p"]
+[ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="2_4n34p"]
+[ext_resource type="Texture2D" uid="uid://dkaks43li3q07" path="res://sprites/Fade out.png" id="2_nq5ep"]
+
+[node name="Game End" type="Node2D"]
+script = ExtResource("1_2q816")
+
+[node name="FadeOut" type="Sprite2D" parent="."]
+position = Vector2(-1.99997, 147)
+scale = Vector2(72.375, 23.375)
+texture = ExtResource("2_nq5ep")
+
+[node name="EndOfGameScreen" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(240, 135)
+texture = ExtResource("1_78a6p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 73.0
+offset_top = 68.0
+offset_right = 415.0
+offset_bottom = 207.0
+theme = ExtResource("2_4n34p")
+theme_override_colors/default_color = Color(0.423529, 0.929412, 0.929412, 1)
+theme_override_font_sizes/normal_font_size = 64
+text = " You beat the game!
+Thank you for playing"
