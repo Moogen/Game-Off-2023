@@ -41,7 +41,6 @@ func _ready():
     well_active = true
     mass_returned = false
     timer = Time.get_ticks_msec()
-
    
     particle_emitter = template_particle_emitter.duplicate(true)
     add_child(particle_emitter)
@@ -61,6 +60,7 @@ func _process(delta):
     var bodies = self.get_colliding_bodies()
     for body in bodies:
         self.freeze = true
+        self.well_affect_player = true
    
     #remove mass from the well over time
     if(well_active && Time.get_ticks_msec() - timer > well_dying_timer):

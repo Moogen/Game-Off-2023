@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://dx86aggwohfna"]
+[gd_scene load_steps=63 format=3 uid="uid://dx86aggwohfna"]
 
 [ext_resource type="PackedScene" uid="uid://cw4qiiaoo7gks" path="res://Scenes/parallax_background.tscn" id="1_japse"]
 [ext_resource type="TileSet" uid="uid://vabyvpqt8mmq" path="res://Tile Sets/Space Station.tres" id="2_ev7d7"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://l3dlbrnoy0fp" path="res://sprites/Decals/counting_decal_2.png" id="19_8iiu2"]
 [ext_resource type="Texture2D" uid="uid://ctyngermrxai7" path="res://sprites/Decals/level 1 decal-export.png" id="20_mtd3e"]
 [ext_resource type="Texture2D" uid="uid://c7hpjgv1gkwpu" path="res://sprites/Decals/easter_egg_decal_1.png" id="22_p5xsd"]
+[ext_resource type="Texture2D" uid="uid://6ybc4herwejw" path="res://sprites/Decals/aim-decal.png" id="22_wp324"]
 [ext_resource type="PackedScene" uid="uid://vqnkkxxobxse" path="res://Scenes/Puzzle Objects/pressure_plate.tscn" id="23_cgu5o"]
 [ext_resource type="PackedScene" uid="uid://b1snwvwb00ey3" path="res://Scenes/Puzzle Objects/inverter.tscn" id="24_jlt13"]
 [ext_resource type="Texture2D" uid="uid://8gymjq35oh8a" path="res://sprites/Decals/Sign-1-export.png" id="25_76k8e"]
@@ -37,7 +38,6 @@
 [ext_resource type="Texture2D" uid="uid://la30skovtc8" path="res://sprites/Decals/Sign-2-export.png" id="26_ochit"]
 [ext_resource type="Texture2D" uid="uid://cssmwfserjc7g" path="res://sprites/Decals/Q.png" id="29_76q18"]
 [ext_resource type="PackedScene" uid="uid://bx3a0euctavgo" path="res://Scenes/Puzzle Objects/player_barrier.tscn" id="29_oysae"]
-[ext_resource type="Texture2D" uid="uid://5w3vk3q8kiof" path="res://sprites/Decals/decal_level_3-export.png" id="30_ie7k6"]
 [ext_resource type="PackedScene" uid="uid://c8dfqfew55et1" path="res://Scenes/Puzzle Objects/anti_gravity_field.tscn" id="30_vxj8f"]
 [ext_resource type="PackedScene" uid="uid://e6vn00e8wff5" path="res://Scenes/Puzzle Objects/player_anti_barrier.tscn" id="33_iactj"]
 [ext_resource type="PackedScene" uid="uid://bxtck1ji6cdto" path="res://Scenes/Puzzle Objects/counting pressure plate.tscn" id="34_4w3e6"]
@@ -57,6 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://b1knssbki7rpc" path="res://sprites/reload_screen.png" id="56_ogtfq"]
 [ext_resource type="PackedScene" uid="uid://df4rns67xe8s2" path="res://Scenes/checkpoint.tscn" id="56_wlki5"]
 [ext_resource type="Script" path="res://Scripts/SpawnPlayer.gd" id="57_jjc8a"]
+[ext_resource type="Texture2D" uid="uid://ckvi5ualyqndo" path="res://sprites/Decals/decal_level_3-export-export.png" id="58_rit8x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irbaq"]
 size = Vector2(102, 13)
@@ -212,6 +213,10 @@ texture = ExtResource("20_mtd3e")
 [node name="checkpoint" parent="Level Objects/Level1" instance=ExtResource("56_wlki5")]
 position = Vector2(1606, -40)
 
+[node name="Aim-decal" type="Sprite2D" parent="Level Objects/Level1"]
+position = Vector2(1169, 72)
+texture = ExtResource("22_wp324")
+
 [node name="Level2" type="Node" parent="Level Objects"]
 
 [node name="MassGenerator" parent="Level Objects/Level2" instance=ExtResource("3_xw62n")]
@@ -288,10 +293,6 @@ theme_override_colors/default_color = Color(0.0509804, 0, 0.101961, 1)
 theme_override_font_sizes/normal_font_size = 32
 text = "MAINT.
 SHAFT A"
-
-[node name="DecalLevel3-export" type="Sprite2D" parent="Level Objects/Level3"]
-position = Vector2(2922, -98)
-texture = ExtResource("30_ie7k6")
 
 [node name="M2" type="Sprite2D" parent="Level Objects/Level3"]
 position = Vector2(2150, 43)
@@ -692,3 +693,7 @@ script = ExtResource("57_jjc8a")
 
 [node name="MassGenerator" parent="." instance=ExtResource("3_xw62n")]
 position = Vector2(8142, -118)
+
+[node name="DecalLevel3-export-export" type="Sprite2D" parent="."]
+position = Vector2(2913, -107)
+texture = ExtResource("58_rit8x")
