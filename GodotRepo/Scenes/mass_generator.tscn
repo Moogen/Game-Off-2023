@@ -64,7 +64,7 @@ z_index = 2
 position = Vector2(0, -4)
 amount = 500
 process_material = SubResource("ParticleProcessMaterial_1jsjf")
-lifetime = 1.25
+lifetime = 0.63
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = 2
