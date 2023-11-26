@@ -33,6 +33,7 @@ var well_active
 var well_affect_player = false
 var particle_emitter : GPUParticles2D
 var mass_returned
+var well_launched = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
     print("Supermassive black hole")
@@ -57,10 +58,11 @@ func _process(delta):
     set_particles_direction() #set the particle direction of the emitter
 
     #check if the well has collided with anything
-    var bodies = self.get_colliding_bodies()
-    for body in bodies:
-        self.freeze = true
-        self.well_affect_player = true
+    if(well_launched):
+        var bodies = self.get_colliding_bodies()
+        for body in bodies:
+            self.freeze = true
+            self.well_affect_player = true
    
     #remove mass from the well over time
     if(well_active && Time.get_ticks_msec() - timer > well_dying_timer):

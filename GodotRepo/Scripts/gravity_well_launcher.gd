@@ -102,6 +102,7 @@ func launch_well():
     var aiming_time =  Time.get_ticks_msec() - aiming_timer
     if aiming_time < aiming_window:
         launching_well = true
+        spawning_well.well_launched = true #now the well can collide with walls
         #set velocity of the well as a vector in the direction the player is aiming
         var x = cos(Player.aiming_angle)
         var y = sin(Player.aiming_angle)
@@ -110,6 +111,7 @@ func launch_well():
         spawning_well.linear_velocity = launch_velocity
     else:
         spawning_well.well_affect_player = true
+        spawning_well.well_launched = true #now the well can collide with walls
     pass
     
 func update_well_sprite():
