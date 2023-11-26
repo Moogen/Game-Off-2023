@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Basic_Controller"
+config/name="Schawrz's Child"
 run/main_scene="res://Scenes/Main_Scene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://Sprites/icon.svg"
+config/icon="res://Sprites/icon.png"
 
 [autoload]
 
