@@ -266,6 +266,8 @@ texture = ExtResource("26_ochit")
 [node name="checkpoint" parent="Level Objects/Level2" instance=ExtResource("56_wlki5")]
 position = Vector2(2506, -41)
 
+[node name="Level2_5" type="Node" parent="Level Objects"]
+
 [node name="Level3" type="Node" parent="Level Objects"]
 
 [node name="EasterEggDecal1" type="Sprite2D" parent="Level Objects/Level3"]
@@ -304,6 +306,10 @@ texture = ExtResource("29_76q18")
 
 [node name="checkpoint" parent="Level Objects/Level3" instance=ExtResource("56_wlki5")]
 position = Vector2(3237, -41)
+
+[node name="DecalLevel3-export-export" type="Sprite2D" parent="Level Objects/Level3"]
+position = Vector2(2913, -107)
+texture = ExtResource("58_rit8x")
 
 [node name="Level4" type="Node" parent="Level Objects"]
 
@@ -576,6 +582,9 @@ position = Vector2(8841, -16)
 [node name="checkpoint" parent="Level Objects/Level9" instance=ExtResource("56_wlki5")]
 position = Vector2(9172, -39)
 
+[node name="MassGenerator" parent="Level Objects/Level9" instance=ExtResource("3_xw62n")]
+position = Vector2(8544, 1)
+
 [node name="Level10" type="Node" parent="Level Objects"]
 
 [node name="Test Label" type="RichTextLabel" parent="Level Objects/Level10"]
@@ -668,7 +677,7 @@ layer_0/tile_data = PackedInt32Array(1310750, 131072, 1, 1310749, 131072, 1, 131
 
 [node name="Player" parent="." instance=ExtResource("3_uorjl")]
 top_level = true
-position = Vector2(10179, -39)
+position = Vector2(2784, -15)
 scale = Vector2(1.00528, 0.976669)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -690,10 +699,3 @@ texture = ExtResource("56_ogtfq")
 
 [node name="SpawnPlayer" type="Node" parent="."]
 script = ExtResource("57_jjc8a")
-
-[node name="MassGenerator" parent="." instance=ExtResource("3_xw62n")]
-position = Vector2(8142, -118)
-
-[node name="DecalLevel3-export-export" type="Sprite2D" parent="."]
-position = Vector2(2913, -107)
-texture = ExtResource("58_rit8x")
