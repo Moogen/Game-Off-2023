@@ -20,7 +20,7 @@ const player_influence_coef     : float = 0.25
 const particle_dying_coef       : float = 1
 const particle_center_size      : float = 83/2
 const mass_particle_gravity     : float = 250 #controls the force at which the mass particles are attracted to the player
-const well_dying_timer : float = 2000 #lose 1 tick of mass on the well per 2 second
+const well_dying_timer : float = 10000 #lose 1 tick of mass on the well per 10 second
 const well_dying_val   : int = 1
 
 var click_time = 0
