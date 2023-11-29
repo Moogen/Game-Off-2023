@@ -22,19 +22,8 @@ sprite_frames = ExtResource("3_hq8xi")
 animation = &"4"
 offset = Vector2(3, 5)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 5.0
-offset_top = 128.0
-offset_right = 150.0
-offset_bottom = 185.0
-theme = ExtResource("4_p5icd")
-theme_override_font_sizes/normal_font_size = 0
-text = "Mass
-Press \"m\" to add
-Press \"e\" to return
-mass from wells"
-
 [node name="MassBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = 5.0
 offset_top = 24.0
 offset_right = 34.0

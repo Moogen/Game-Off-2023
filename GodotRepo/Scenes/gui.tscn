@@ -13,6 +13,7 @@ scale = Vector2(1.00155, 1)
 theme = ExtResource("1_db2cy")
 
 [node name="Debug Console" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="Debug Console"]

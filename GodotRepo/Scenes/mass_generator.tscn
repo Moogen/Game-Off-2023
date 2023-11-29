@@ -7,13 +7,14 @@
 size = Vector2(20, 46)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1jsjf"]
+lifetime_randomness = 1.0
 emission_shape = 3
 emission_box_extents = Vector3(15, 0, 0)
 particle_flag_disable_z = true
 gravity = Vector3(0, -98, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-color = Color(0.603922, 0.447059, 0.709804, 1)
+color = Color(0.0509804, 0, 0.101961, 1)
 turbulence_enabled = true
 turbulence_noise_strength = 9.57
 turbulence_noise_scale = 4.83
@@ -28,7 +29,7 @@ particle_flag_disable_z = true
 gravity = Vector3(0, 98, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-color = Color(0.603922, 0.447059, 0.709804, 1)
+color = Color(0.0509804, 0, 0.101961, 1)
 turbulence_enabled = true
 turbulence_noise_strength = 9.57
 turbulence_noise_scale = 4.83
@@ -63,7 +64,7 @@ z_index = 2
 position = Vector2(0, -4)
 amount = 500
 process_material = SubResource("ParticleProcessMaterial_1jsjf")
-lifetime = 1.25
+lifetime = 0.63
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = 2

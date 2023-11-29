@@ -6,7 +6,7 @@ enum State {
     Open
 }
 
-var current_state = State.Open
+@export var current_state = State.Open
 @export var activated_animation : String = "Open"
 @export var collision_shape : CollisionShape2D
 

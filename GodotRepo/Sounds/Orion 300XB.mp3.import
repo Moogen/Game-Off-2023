@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://duq1d6ueon1r5"
+path="res://.godot/imported/Orion 300XB.mp3-593088eaa5bae3ce9ce9dc98daf41012.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Orion 300XB.mp3"
+dest_files=["res://.godot/imported/Orion 300XB.mp3-593088eaa5bae3ce9ce9dc98daf41012.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -14,6 +14,8 @@ var idle_state: State
 @export
 var move_state: State
 
+var aiming_cursor = load("res://sprites/cursor.png")
+var not_aiming_cursor = load("res://sprites/cursor-export.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,15 +50,21 @@ func _process(delta):
             is_aiming = false
             
     Player.aiming_angle = aiming_angle
-    Player.is_aiming    = is_aiming         
+    Player.is_aiming    = is_aiming
+    
+    if(is_aiming):
+        Input.set_custom_mouse_cursor(aiming_cursor)       
+    else:
+        Input.set_custom_mouse_cursor(not_aiming_cursor)
 
-    if Input.is_action_just_pressed('shoot') and gravity_bar.has_mass(1) and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
+    if Input.is_action_just_pressed('shoot') and gravity_bar.has_mass(1): # and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
         Player.shooting = true
         
         if not is_aiming:
             Player.process_non_aiming_offset() #set the player's projectile origin to a flip horizontal direction
       
         gravity_bar.spend_mass(1)
+        get_tree().call_group("SoundManager", "play_shoot")
         var shooting_projectile = projectile_template.instantiate()
         
         shooting_projectile.global_position = Player.global_position + Player.shooting_offset

@@ -1,8 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://d3fxdij8gxr2p"]
+[gd_scene load_steps=20 format=3 uid="uid://d3fxdij8gxr2p"]
 
 [ext_resource type="Script" path="res://Scripts/BasicPlayer.gd" id="1_jtj3m"]
 [ext_resource type="SpriteFrames" uid="uid://tqtkw4xfceq6" path="res://sprites/Animations/PlayerController.tres" id="2_7dg1n"]
-[ext_resource type="Texture2D" uid="uid://raej4vyjje2t" path="res://sprites/dark_hole.png" id="2_c0utp"]
+[ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="2_kn7tn"]
+[ext_resource type="Texture2D" uid="uid://dkni6323n00ka" path="res://sprites/Black hole.png" id="2_lw2kk"]
+[ext_resource type="Script" path="res://Scripts/MassBar.gd" id="3_01qbc"]
 [ext_resource type="Script" path="res://Scripts/Projectile Launcher.gd" id="3_8vu7v"]
 [ext_resource type="Script" path="res://Scripts/State Machine.gd" id="3_ad318"]
 [ext_resource type="Script" path="res://Scripts/BlackholeSprite.gd" id="3_ff2ag"]
@@ -25,17 +27,30 @@ size = Vector2(11, 28)
 size = Vector2(21.25, 22)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 4
+collision_layer = 4353
+collision_mask = 4353
 floor_stop_on_slope = false
 script = ExtResource("1_jtj3m")
 aiming_shooting_offset = Array[Vector2]([Vector2(0, -15), Vector2(10, -8), Vector2(13, 0), Vector2(10, 12), Vector2(0, 15), Vector2(-10, 12), Vector2(-13, 0), Vector2(-10, -8)])
 aiming_animation_name = Array[String](["aiming_90", "aiming_45", "aiming_0", "aiming_n_45", "aiming_n_90"])
+
+[node name="MassBar" type="ProgressBar" parent="."]
+offset_left = -13.0
+offset_top = -21.0
+offset_right = 13.0
+offset_bottom = -18.0
+theme = ExtResource("2_kn7tn")
+value = 25.0
+show_percentage = false
+script = ExtResource("3_01qbc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, -33)
 scale = Vector2(0.997601, 0.99516)
 offset = Vector2(0, -20)
 limit_top = -1000
-limit_bottom = 200
+limit_bottom = 700
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
@@ -52,7 +67,7 @@ shape = SubResource("RectangleShape2D_bgiqm")
 [node name="gravity_well_visualizer" type="Sprite2D" parent="."]
 position = Vector2(0, -25)
 scale = Vector2(0.025, 0.025)
-texture = ExtResource("2_c0utp")
+texture = ExtResource("2_lw2kk")
 script = ExtResource("3_ff2ag")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -156,3 +171,4 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../crouch")
 jump_state = NodePath("../jump")
 animation_name = "crouch_move"
+move_speed = 300.0

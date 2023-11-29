@@ -10,7 +10,7 @@ var previous_state: State
 var side_attack_state : State
 
 var timestop = false
-
+@onready var Player = $".."
 var gravity_influence = Vector2(0,0)
 var gravity_velocity_x = 0
 
@@ -40,6 +40,7 @@ func process_physics(delta: float) -> void:
     #handle gravity velocity x for every state in the state machine
     gravity_velocity_x += gravity_influence.x * delta
     gravity_velocity_x *=  0.8 #multiply velocity by some coeff to reduce it
+    
 
     var new_state = current_state.process_physics(delta, gravity_influence, gravity_velocity_x)
     get_tree().call_group("Debug Group", "update_gravity_velocity_x", gravity_velocity_x)
@@ -50,14 +51,14 @@ func process_physics(delta: float) -> void:
 func process_input(event: InputEvent) -> void:
     var new_state = current_state.process_input(event)
 
-    if Input.is_action_just_pressed('timestop'): #time slows when pressing F4 as a debug feature
-        timestop = !timestop
-        if(timestop):
-            Engine.set_time_scale(0.1)
-        else:
-            Engine.set_time_scale(1)
-    pass
-    
+#if Input.is_action_just_pressed('timestop'): #time slows when pressing F4 as a debug feature
+#    timestop = !timestop
+#    if(timestop):
+#        Engine.set_time_scale(0.1)
+#    else:
+#        Engine.set_time_scale(1)
+#pass
+#
     if Input.is_action_just_pressed('side_attack') and current_state != side_attack_state: #automatically send us to the side_attack state
         new_state = side_attack_state 
     pass
@@ -76,9 +77,9 @@ func set_influence(gravity: float, grav_center: Vector2, player_center: Vector2,
     var norm_distance = distance.normalized()
     
     if(radius > grav_center_radius*1.25):
-        gravity_influence = norm_distance * gravity * 1/(radius-grav_center_radius)
+        gravity_influence =  norm_distance * gravity # (code for inverse square gravity) norm_distance * gravity * 1/(radius-grav_center_radius)
     else:
         gravity_influence = Vector2(0,0)
         
-    get_tree().call_group("Debug Group", "update_gravity_influence", norm_distance * gravity * 1/(radius-grav_center_radius))
+    #get_tree().call_group("Debug Group", "update_gravity_influence", norm_distance * gravity * 1/(radius-grav_center_radius))
     

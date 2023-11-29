@@ -9,19 +9,20 @@ extends RigidBody2D #make gravity well into a staticbody node instead
 @onready var well_collider      : CollisionShape2D  = $WellCollider
 #all the variables for scaling the black hole
 
-const blackhole_gravity : float = 3000*10
+const blackhole_gravity : float = 3000*4 #3000*10 
+const center_gravity : float = 1000 #3000*10 
 const blackhole_size    : float = 83*5
-const center_size       : float = 83
+const center_size       : float = 83/2
 const click_timer_scale : float = 0.01 #.1 seconds is = the base size of the black hole
-const sprite_scale      : float = 0.025*4
+const sprite_scale      : float = 2
 #const particle_disappear_coeff  : float = 0.015
 const particle_ammount_coef     : float = 200
+const player_influence_coef     : float = 0.25
 const particle_dying_coef       : float = 1
 const particle_center_size      : float = 83/2
 const mass_particle_gravity     : float = 250 #controls the force at which the mass particles are attracted to the player
-const well_dying_timer : float = 2000 #lose 1 tick of mass on the well per 2 second
+const well_dying_timer : float = 10000 #lose 1 tick of mass on the well per 10 second
 const well_dying_val   : int = 1
-
 
 var click_time = 0
 var mass_cost = 0
@@ -33,6 +34,7 @@ var well_active
 var well_affect_player = false
 var particle_emitter : GPUParticles2D
 var mass_returned
+var well_launched = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
     print("Supermassive black hole")
@@ -41,7 +43,6 @@ func _ready():
     well_active = true
     mass_returned = false
     timer = Time.get_ticks_msec()
-
    
     particle_emitter = template_particle_emitter.duplicate(true)
     add_child(particle_emitter)
@@ -58,10 +59,11 @@ func _process(delta):
     set_particles_direction() #set the particle direction of the emitter
 
     #check if the well has collided with anything
-    
-    var bodies = self.get_colliding_bodies()
-    for body in bodies:
-        self.freeze = true
+    if(well_launched):
+        var bodies = self.get_colliding_bodies()
+        for body in bodies:
+            self.freeze = true
+            self.well_affect_player = true
    
     #remove mass from the well over time
     if(well_active && Time.get_ticks_msec() - timer > well_dying_timer):
@@ -79,7 +81,7 @@ func _process(delta):
     #if we overlap with the player, apply gravity to them
     for body in grav_area.get_overlapping_bodies():
         if body is Player and well_affect_player:
-            body.set_influence(grav_area.gravity*5, self.global_position, grav_center_shape.shape.radius)
+            body.set_influence(grav_area.gravity, self.global_position, grav_center_shape.shape.radius)
     pass
 
     
@@ -93,6 +95,7 @@ func remove_gravity():
         grav_center_area.linear_damp_space_override = Area2D.SPACE_OVERRIDE_DISABLED
         remove_child(grav_center_area)
         remove_child(grav_area)
+        remove_child(well_collider)
         particle_emitter.explosiveness = 1
         blackhole_sprite.visible = false
     #check if we overlap from the player and remove any gravity affects
@@ -106,7 +109,6 @@ func remove_gravity():
         if(mass_cost > 0): #if the well dies with 0 mass, don't return any mass particles
             particle_emitter.emitting = true
             
-        print("returning well of size %d", mass_cost)
         get_tree().call_group("Gravity Bar", "modify_mass", mass_cost)
         mass_returned = true
         
@@ -138,7 +140,9 @@ func set_size(click_time, mass_cost): #set size scales off thes duration of the 
     self.click_time = click_time
     self.mass_cost = mass_cost
     grav_area.gravity = blackhole_gravity * (click_timer_scale * click_time)
-    grav_area.gravity_point_unit_distance = center_size * click_timer_scale * click_time
+    grav_center_area.gravity = center_gravity * (click_timer_scale * click_time)
+    print(grav_center_area.gravity)
+    #grav_area.gravity_point_unit_distance = center_size * click_timer_scale * click_time
     grav_shape.shape.radius = blackhole_size * click_timer_scale * click_time
     grav_center_shape.shape.radius = center_size * click_timer_scale * click_time
     well_collider.shape.radius = center_size * click_timer_scale * click_time /2 
@@ -150,9 +154,10 @@ func set_particles_direction():
    #@print(players[0].position)
     
     #The force should be = to the players position * gravity intensity
-    var particle_vector = players[0].global_position - self.global_position
-    var particle_grav = particle_vector.normalized() * mass_particle_gravity
-    particle_emitter.process_material.set_shader_parameter("player_loc", players[0].global_position)
+    if(players):
+        var particle_vector = players[0].global_position - self.global_position
+        var particle_grav = particle_vector.normalized() * mass_particle_gravity
+        particle_emitter.process_material.set_shader_parameter("player_loc", players[0].global_position)
    # particle_emitter.lifetime =  players[0].global_position.distance_to(self.global_position) * particle_disappear_coeff
   
     #print(mass_particle_emitter.lifetime)

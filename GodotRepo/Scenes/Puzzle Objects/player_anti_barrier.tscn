@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=3 uid="uid://e6vn00e8wff5"]
+
+[ext_resource type="Script" path="res://Scripts/player_barrier.gd" id="1_ujgh8"]
+[ext_resource type="Texture2D" uid="uid://cfc6em81wb3gf" path="res://sprites/Anti Grav Barrier-Sheet.png" id="2_8ast7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys27y"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xuc8"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5w2x"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibkv5"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43xbh"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paa8d"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mu7k"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reb8b"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1lts"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wik3p"]
+atlas = ExtResource("2_8ast7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s2gid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys27y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xuc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5w2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibkv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43xbh")
+}],
+"loop": false,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paa8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mu7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reb8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1lts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wik3p")
+}],
+"loop": false,
+"name": &"On",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_piwqx"]
+size = Vector2(6.01316, 16.7692)
+
+[node name="barrier" type="Node2D" node_paths=PackedStringArray("animations")]
+scale = Vector2(0.997812, 0.95413)
+script = ExtResource("1_ujgh8")
+animation_name = "On"
+animations = NodePath("forcefield animation")
+
+[node name="forcefield animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s2gid")
+animation = &"On"
+frame = 4
+frame_progress = 1.0
+speed_scale = 2.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="forcefield animation"]
+collision_layer = 4096
+collision_mask = 4096
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="forcefield animation/StaticBody2D"]
+position = Vector2(2.38941e-07, 1.2494e-07)
+shape = SubResource("RectangleShape2D_piwqx")

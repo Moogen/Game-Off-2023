@@ -63,7 +63,7 @@ func process_physics(delta: float, gravity_influence: Vector2, gravity_velocity_
 
 
     
-    parent.velocity.y += gravity * delta + gravity_influence.y * delta
+    parent.velocity.y += parent.gravity * delta + gravity_influence.y * delta
     parent.velocity.x = gravity_velocity_x
     parent.move_and_slide()
     

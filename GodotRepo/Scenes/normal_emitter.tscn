@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://bycdykpwowpxu"]
+
+[ext_resource type="Script" path="res://Scripts/normal_emitter.gd" id="1_1mt8v"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b22iu"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 29.78
+initial_velocity_max = 60.15
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 21.805
+damping_max = 30.075
+color = Color(0.0509804, 0, 0.101961, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+z_index = 12
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_b22iu")
+explosiveness = 1.0
+script = ExtResource("1_1mt8v")
+
+[node name="normal_emitter" type="Node2D" parent="."]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx6cup8e54h45"]
+
+[ext_resource type="Texture2D" uid="uid://bwv3k0h0htnks" path="res://sprites/broken fan.png" id="1_xufad"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtdcx"]
+size = Vector2(20, 16)
+
+[node name="BrokenFan" type="Sprite2D"]
+position = Vector2(-876, 624)
+texture = ExtResource("1_xufad")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 12)
+shape = SubResource("RectangleShape2D_xtdcx")

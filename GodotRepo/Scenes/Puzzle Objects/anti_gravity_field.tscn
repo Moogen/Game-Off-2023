@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8dfqfew55et1"]
+
+[ext_resource type="Script" path="res://Scripts/anti_gravity_field.gd" id="1_khmou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_noqyg"]
+size = Vector2(773, 348)
+
+[node name="AntiGravity Area" type="Area2D"]
+position = Vector2(6247, -105)
+priority = 2
+gravity_space_override = 1
+gravity_point_center = Vector2(0, -1)
+gravity_direction = Vector2(0, -1)
+script = ExtResource("1_khmou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(317.5, 95)
+shape = SubResource("RectangleShape2D_noqyg")

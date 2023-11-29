@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dptl7rt8a65hx"]
 
 [ext_resource type="Script" path="res://Scripts/GravityWell.gd" id="1_k6cux"]
-[ext_resource type="Texture2D" uid="uid://raej4vyjje2t" path="res://sprites/dark_hole.png" id="2_hmhry"]
+[ext_resource type="Texture2D" uid="uid://bn10y8xufq0st" path="res://sprites/Black hole-export.png" id="2_a2t2f"]
 [ext_resource type="Script" path="res://Scripts/BlackholeSprite.gd" id="3_jgrx1"]
 [ext_resource type="PackedScene" uid="uid://dwriqxoxhlar3" path="res://Scenes/mass_particle_emitter.tscn" id="4_qeu1r"]
 
@@ -239,7 +239,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjm7e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cc2kk"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -271,14 +271,14 @@ shader_parameter/anim_speed_max = 0.0
 shader_parameter/anim_offset_max = 0.0
 shader_parameter/lifetime_randomness = 0.0
 shader_parameter/emission_sphere_radius = 10.0
-shader_parameter/color_value = Color(0.431373, 0.317647, 0.505882, 1)
+shader_parameter/color_value = Color(0.0509804, 0, 0.101961, 1)
 shader_parameter/gravity = Vector3(0, -1e-06, 0)
 shader_parameter/player_loc = null
 shader_parameter/attractor_str = null
 shader_parameter/obj_destroy_distance = 10.0
 
-[node name="GravityWell" type="RigidBody2D"]
-z_index = 3
+[node name="GravityWell" type="RigidBody2D" groups=["Gravity Well"]]
+z_index = -1
 collision_layer = 16
 collision_mask = 16
 physics_material_override = SubResource("PhysicsMaterial_3pngc")
@@ -291,8 +291,8 @@ script = ExtResource("1_k6cux")
 shape = SubResource("CircleShape2D_q5lw2")
 
 [node name="BlackholeSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.025, 0.025)
-texture = ExtResource("2_hmhry")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_a2t2f")
 script = ExtResource("3_jgrx1")
 
 [node name="Blackhole" type="Area2D" parent="."]
@@ -318,14 +318,15 @@ gravity_space_override = 3
 gravity_point = true
 gravity_point_center = Vector2(0, 0)
 gravity_direction = Vector2(0, 0)
-gravity = 0.0
-linear_damp = 0.0
-angular_damp_space_override = 3
-angular_damp = 0.01
+linear_damp_space_override = 1
+linear_damp = 0.3
+angular_damp_space_override = 1
+angular_damp = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Center"]
 shape = SubResource("CircleShape2D_xne5h")
 
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
-process_material = SubResource("ShaderMaterial_kjm7e")
+process_material = SubResource("ShaderMaterial_cc2kk")
 lifetime = 2.0
+visibility_rect = Rect2(-500, -500, 1000, 1000)

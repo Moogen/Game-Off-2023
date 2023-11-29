@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4to3k2n8y7q0"]
+
+[ext_resource type="Script" path="res://Scripts/Inverse Gravity Field.gd" id="1_tvv75"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5im0"]
+size = Vector2(729, 219)
+
+[node name="Inverse Gravity Field" type="Area2D"]
+position = Vector2(5364, -105)
+gravity_space_override = 1
+gravity_point_center = Vector2(0, -1)
+gravity_direction = Vector2(0, -1)
+gravity = 1960.0
+script = ExtResource("1_tvv75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(248.5, 8.5)
+shape = SubResource("RectangleShape2D_l5im0")
