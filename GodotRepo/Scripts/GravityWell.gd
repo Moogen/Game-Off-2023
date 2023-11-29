@@ -10,6 +10,7 @@ extends RigidBody2D #make gravity well into a staticbody node instead
 #all the variables for scaling the black hole
 
 const blackhole_gravity : float = 3000*4 #3000*10 
+const center_gravity : float = 1000 #3000*10 
 const blackhole_size    : float = 83*5
 const center_size       : float = 83/2
 const click_timer_scale : float = 0.01 #.1 seconds is = the base size of the black hole
@@ -139,6 +140,8 @@ func set_size(click_time, mass_cost): #set size scales off thes duration of the 
     self.click_time = click_time
     self.mass_cost = mass_cost
     grav_area.gravity = blackhole_gravity * (click_timer_scale * click_time)
+    grav_center_area.gravity = center_gravity * (click_timer_scale * click_time)
+    print(grav_center_area.gravity)
     #grav_area.gravity_point_unit_distance = center_size * click_timer_scale * click_time
     grav_shape.shape.radius = blackhole_size * click_timer_scale * click_time
     grav_center_shape.shape.radius = center_size * click_timer_scale * click_time

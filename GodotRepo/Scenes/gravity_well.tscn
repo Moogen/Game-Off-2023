@@ -239,7 +239,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7olek"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g1xnk"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -315,9 +315,9 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 collision_layer = 5
 collision_mask = 5
 gravity_space_override = 3
+gravity_point = true
 gravity_point_center = Vector2(0, 0)
 gravity_direction = Vector2(0, 0)
-gravity = 0.0
 linear_damp_space_override = 1
 linear_damp = 0.3
 angular_damp_space_override = 1
@@ -327,6 +327,6 @@ angular_damp = 0.3
 shape = SubResource("CircleShape2D_xne5h")
 
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
-process_material = SubResource("ShaderMaterial_7olek")
+process_material = SubResource("ShaderMaterial_g1xnk")
 lifetime = 2.0
 visibility_rect = Rect2(-500, -500, 1000, 1000)
