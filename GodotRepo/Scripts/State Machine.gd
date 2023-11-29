@@ -51,14 +51,14 @@ func process_physics(delta: float) -> void:
 func process_input(event: InputEvent) -> void:
     var new_state = current_state.process_input(event)
 
-    if Input.is_action_just_pressed('timestop'): #time slows when pressing F4 as a debug feature
-        timestop = !timestop
-        if(timestop):
-            Engine.set_time_scale(0.1)
-        else:
-            Engine.set_time_scale(1)
-    pass
-    
+#if Input.is_action_just_pressed('timestop'): #time slows when pressing F4 as a debug feature
+#    timestop = !timestop
+#    if(timestop):
+#        Engine.set_time_scale(0.1)
+#    else:
+#        Engine.set_time_scale(1)
+#pass
+#
     if Input.is_action_just_pressed('side_attack') and current_state != side_attack_state: #automatically send us to the side_attack state
         new_state = side_attack_state 
     pass
