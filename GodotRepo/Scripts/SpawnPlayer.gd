@@ -6,7 +6,7 @@ extends Node
 func _ready():
     
     #on restart of a level set the player position to their checkpoint position
-    #player_node.global_position = GlobalOptions.get_checkpoint_pos()
+    player_node.global_position = GlobalOptions.get_checkpoint_pos()
     var tween = get_tree().create_tween()
     loading_sprite.visible = true
     tween.tween_property(loading_sprite, "modulate", Color.WHITE, 1)
