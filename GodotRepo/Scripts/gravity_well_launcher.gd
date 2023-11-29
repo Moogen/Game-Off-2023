@@ -54,7 +54,7 @@ func _process(delta):
             spawning_well.freeze = true
             spawning_well.well_affect_player = true
             
-    elif Input.is_action_pressed('grow_well') and growing_well:
+    elif Input.is_action_pressed('grow_well') and Player.is_aiming and growing_well:
         
         var click_time = Time.get_ticks_msec() - click_scale_timer
         
