@@ -11,6 +11,7 @@ var current_state = State.Off
 @export var object_threshold = 10
 @onready var counting_text = $RichTextLabel
 @export var plate_group : String = "Anti Plate Objects"
+@export var show_number = true
 
 func _ready():
     animations.play(animation_name)
@@ -48,8 +49,9 @@ func _process(delta):
             update_anim()
             
     #update object count text
-    if counting_text and object_threshold - object_count >= 0:
+    if show_number and counting_text and object_threshold - object_count >= 0:
         counting_text.bbcode_text = "%s" % [object_threshold- object_count]
-        
+    elif show_number == false:
+        counting_text.bbcode_text = " "       
     pass
     

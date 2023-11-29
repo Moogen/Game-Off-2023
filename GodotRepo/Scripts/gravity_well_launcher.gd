@@ -31,13 +31,14 @@ func _ready():
     gravity_bar = get_node("../../CanvasLayer/GravityBar")
     growing_well_sprite.visible = false
     launching_well = false
+    growing_well = false
     pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     
-    if Input.is_action_just_pressed('grow_well') and launching_well == false and gravity_bar.has_mass(1): # and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
+    if Input.is_action_just_pressed('grow_well') and launching_well == false and growing_well == false and gravity_bar.has_mass(1): # and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
         #start growing well while the "grow_well" button is pressed
         growing_well = true
         growing_well_sprite.visible = false
@@ -71,7 +72,12 @@ func _process(delta):
                 print("Out of mass to add")  
         
         update_well_sprite()
-    elif !Input.is_action_pressed('grow_well') and growing_well:
+    elif Player.is_aiming and growing_well:
+        update_well_sprite()
+        
+        if(Player.is_aiming):
+            aiming_timer = Time.get_ticks_msec()
+    elif !Player.is_aiming and growing_well:
         launch_well()
         
         

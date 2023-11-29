@@ -226,7 +226,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hfk86"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbqih"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -283,9 +283,10 @@ animations = [{
 }]
 
 [node name="Indestructible Crate" type="Node2D"]
+z_index = 5
 
 [node name="MassParticles" parent="." instance=ExtResource("1_47is3")]
-process_material = SubResource("ShaderMaterial_hfk86")
+process_material = SubResource("ShaderMaterial_bbqih")
 lifetime = 2.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." groups=["Plate Objects"]]
@@ -293,6 +294,7 @@ visibility_layer = 4
 disable_mode = 1
 collision_layer = 259
 collision_mask = 259
+mass = 100.0
 can_sleep = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]

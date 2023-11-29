@@ -8,5 +8,5 @@ func _ready():
     pass # Replace with function body.
 
 func _process(delta):
-    rotation += rotation_speed * delta
+    #rotation += rotation_speed * delta
     pass

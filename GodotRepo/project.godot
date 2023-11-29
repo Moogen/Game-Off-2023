@@ -13,6 +13,9 @@ config_version=5
 config/name="Schawrz's Child"
 run/main_scene="res://Scenes/Main_Scene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+boot_splash/bg_color=Color(0.0509804, 0, 0.101961, 1)
+boot_splash/image="res://sprites/mmoRGB_transparent_top.png"
+boot_splash/fullsize=false
 config/icon="res://Sprites/icon.png"
 
 [autoload]

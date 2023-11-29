@@ -13,7 +13,7 @@ const blackhole_gravity : float = 3000*4 #3000*10
 const blackhole_size    : float = 83*5
 const center_size       : float = 83/2
 const click_timer_scale : float = 0.01 #.1 seconds is = the base size of the black hole
-const sprite_scale      : float = 1
+const sprite_scale      : float = 2
 #const particle_disappear_coeff  : float = 0.015
 const particle_ammount_coef     : float = 200
 const player_influence_coef     : float = 0.25
@@ -151,9 +151,10 @@ func set_particles_direction():
    #@print(players[0].position)
     
     #The force should be = to the players position * gravity intensity
-    var particle_vector = players[0].global_position - self.global_position
-    var particle_grav = particle_vector.normalized() * mass_particle_gravity
-    particle_emitter.process_material.set_shader_parameter("player_loc", players[0].global_position)
+    if(players):
+        var particle_vector = players[0].global_position - self.global_position
+        var particle_grav = particle_vector.normalized() * mass_particle_gravity
+        particle_emitter.process_material.set_shader_parameter("player_loc", players[0].global_position)
    # particle_emitter.lifetime =  players[0].global_position.distance_to(self.global_position) * particle_disappear_coeff
   
     #print(mass_particle_emitter.lifetime)

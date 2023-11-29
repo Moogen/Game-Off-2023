@@ -20,6 +20,15 @@ func _process(delta):
     pass
     
 func on_Timer_timeout():
+    var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
+
+    # Iterate through each well in the group.
+    for well in wells_in_group:
+    # Ensure the well is not null and has a 'remove_gravity' method.
+        if well and well.has_method("remove_gravity"):
+            # Delete (free) the well.()
+            well.remove_gravity()
+            
     get_tree().reload_current_scene()
 #get_tree().change_scene_to_file("res://Scenes/Game End.tscn")
 

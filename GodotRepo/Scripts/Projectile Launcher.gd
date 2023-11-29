@@ -64,6 +64,7 @@ func _process(delta):
             Player.process_non_aiming_offset() #set the player's projectile origin to a flip horizontal direction
       
         gravity_bar.spend_mass(1)
+        get_tree().call_group("SoundManager", "play_shoot")
         var shooting_projectile = projectile_template.instantiate()
         
         shooting_projectile.global_position = Player.global_position + Player.shooting_offset

@@ -5,7 +5,7 @@ extends Node2D
 
 var hit_kill_timer #start timer when projectile hits, delete the projectile when this expires
 var damage = 0
-var kill_delay_time = 0.001
+var kill_delay_time = 0.02
 var lifespan = 5
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,7 +44,7 @@ func on_body_entered(body):
     if body.is_in_group("Destroyable"):    
         body.damage_object(damage)
         hit_kill_timer.start()
-    elif body.is_in_group("Plate Objects"):
+    elif body.is_in_group("Plate Objects") or body.is_in_group("Anti Plate Objects"):
         hit_kill_timer.start()
     else:
         print("didnt hit nothing")

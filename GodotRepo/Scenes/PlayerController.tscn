@@ -27,6 +27,7 @@ size = Vector2(11, 28)
 size = Vector2(21.25, 22)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 4
 collision_layer = 4353
 collision_mask = 4353
 floor_stop_on_slope = false

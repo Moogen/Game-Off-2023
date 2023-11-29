@@ -13,7 +13,7 @@ var jump_force: float = 900.0
 var gravity_x : float = 0
 
 func enter(previous_state: State) -> void:
-    
+    get_tree().call_group("SoundManager", "play_jump_sound")
     super(previous_state)
     parent.velocity.y = -jump_force
     get_tree().call_group("Debug Group", "update_velocity", parent.velocity)
