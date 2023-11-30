@@ -1,26 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1a7g4prruqay"]
+[gd_scene load_steps=3 format=3 uid="uid://c1a7g4prruqay"]
 
 [ext_resource type="Script" path="res://Scripts/GravityBar.gd" id="1_lpdci"]
-[ext_resource type="Texture2D" uid="uid://h5x3amanm0fp" path="res://sprites/GravityBar.png" id="2_a3off"]
-[ext_resource type="SpriteFrames" uid="uid://dsjx5ysii1cyg" path="res://sprites/Animations/Gravity_bar.tres" id="3_hq8xi"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="4_p5icd"]
 
 [node name="GravityBar" type="Node2D"]
 script = ExtResource("1_lpdci")
-
-[node name="Frame" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(16, 64)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_a3off")
-
-[node name="Bar" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(16, 64)
-scale = Vector2(0.1, 0.1)
-sprite_frames = ExtResource("3_hq8xi")
-animation = &"4"
-offset = Vector2(3, 5)
 
 [node name="MassBar" type="ProgressBar" parent="."]
 visible = false
