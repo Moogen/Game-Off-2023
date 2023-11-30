@@ -295,20 +295,29 @@ position = Vector2(662, 399)
 texture = ExtResource("29_030ch")
 
 [node name="ScaleDecal" type="Sprite2D" parent="Level Objects/Level2"]
+z_index = -2
 position = Vector2(628, 450)
 texture = ExtResource("29_fi1tl")
 
 [node name="FreezeDecal" type="Sprite2D" parent="Level Objects/Level2"]
+z_index = -2
 position = Vector2(759, 480)
 texture = ExtResource("30_6m1ad")
 
 [node name="Level2_5" type="Node" parent="Level Objects"]
 
+[node name="Target4" type="Sprite2D" parent="Level Objects/Level2_5"]
+z_index = -2
+position = Vector2(1620, 89)
+texture = ExtResource("35_84y5x")
+
 [node name="Target2" type="Sprite2D" parent="Level Objects/Level2_5"]
+z_index = -2
 position = Vector2(1730, 187)
 texture = ExtResource("35_84y5x")
 
 [node name="Target3" type="Sprite2D" parent="Level Objects/Level2_5"]
+z_index = -2
 position = Vector2(1533, 23)
 texture = ExtResource("35_84y5x")
 
@@ -358,14 +367,14 @@ z_index = -2
 position = Vector2(1833, 244)
 texture = ExtResource("61_r2t7k")
 
+[node name="Target5" type="Sprite2D" parent="Level Objects/Level2_5"]
+z_index = -2
+position = Vector2(1964, -63)
+texture = ExtResource("35_84y5x")
+
 [node name="Target" type="Sprite2D" parent="Level Objects/Level2_5"]
 z_index = -2
 position = Vector2(1756, -72)
-texture = ExtResource("35_84y5x")
-
-[node name="Target" type="Sprite2D" parent="Level Objects/Level2_5/Target"]
-z_index = -2
-position = Vector2(208, 9)
 texture = ExtResource("35_84y5x")
 
 [node name="Level3" type="Node" parent="Level Objects"]
