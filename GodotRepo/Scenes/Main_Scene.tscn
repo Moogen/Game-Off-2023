@@ -35,9 +35,9 @@
 [ext_resource type="PackedScene" uid="uid://c8i2tfoaosyfr" path="res://Scenes/Puzzle Objects/indestructible_crate.tscn" id="26_eduok"]
 [ext_resource type="Texture2D" uid="uid://nvief4xjla8d" path="res://sprites/Decals/QQ_decal.png" id="29_030ch"]
 [ext_resource type="Texture2D" uid="uid://cssmwfserjc7g" path="res://sprites/Decals/Q.png" id="29_76q18"]
-[ext_resource type="Texture2D" uid="uid://dy5la4x6e8v8o" path="res://sprites/Decals/scale_decal.png" id="29_fi1tl"]
+[ext_resource type="Texture2D" path="res://sprites/Decals/scale_decal.png" id="29_fi1tl"]
 [ext_resource type="PackedScene" uid="uid://bx3a0euctavgo" path="res://Scenes/Puzzle Objects/player_barrier.tscn" id="29_oysae"]
-[ext_resource type="Texture2D" uid="uid://pnbgn721j5di" path="res://sprites/Decals/freeze_decal.png" id="30_6m1ad"]
+[ext_resource type="Texture2D" path="res://sprites/Decals/freeze_decal.png" id="30_6m1ad"]
 [ext_resource type="PackedScene" uid="uid://c8dfqfew55et1" path="res://Scenes/Puzzle Objects/anti_gravity_field.tscn" id="30_vxj8f"]
 [ext_resource type="PackedScene" uid="uid://d37md2dqsaywx" path="res://Scenes/restart_area.tscn" id="31_gkjl3"]
 [ext_resource type="Texture2D" uid="uid://dc05gjgqbt0ko" path="res://sprites/Decals/climb_decal.png" id="32_moh5x"]
@@ -64,8 +64,8 @@
 [ext_resource type="Texture2D" uid="uid://bxgjggu74tygq" path="res://sprites/Decals/Rkey.png" id="61_r2t7k"]
 [ext_resource type="Texture2D" uid="uid://po755q4e853f" path="res://sprites/Decals/level2_5_decal.png" id="62_br0rx"]
 [ext_resource type="Script" path="res://Scripts/Background Music.gd" id="64_exur4"]
-[ext_resource type="AudioStream" uid="uid://bepkcj6vfm1u6" path="res://Sounds/Chiptune Vol2 Evil Grudge Cut 60.wav" id="65_mprui"]
-[ext_resource type="AudioStream" uid="uid://ek12rrbhfhs" path="res://Sounds/retro_move_walk_tick_02.wav" id="66_hbgrd"]
+[ext_resource type="AudioStream" path="res://Sounds/Chiptune Vol2 Evil Grudge Cut 60.wav" id="65_mprui"]
+[ext_resource type="AudioStream" path="res://Sounds/retro_move_walk_tick_02.wav" id="66_hbgrd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_irbaq"]
 size = Vector2(102, 13)

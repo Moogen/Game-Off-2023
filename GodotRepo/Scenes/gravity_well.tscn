@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bn10y8xufq0st" path="res://sprites/Black hole-export.png" id="2_a2t2f"]
 [ext_resource type="Script" path="res://Scripts/BlackholeSprite.gd" id="3_jgrx1"]
 [ext_resource type="PackedScene" uid="uid://dwriqxoxhlar3" path="res://Scenes/mass_particle_emitter.tscn" id="4_qeu1r"]
-[ext_resource type="AudioStream" uid="uid://hl564n4t3g58" path="res://Sounds/BlackHole.wav" id="5_n0jm5"]
+[ext_resource type="AudioStream" path="res://Sounds/BlackHole.wav" id="5_n0jm5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3pngc"]
 rough = true
@@ -240,7 +240,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eju45"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_37clx"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -328,7 +328,7 @@ angular_damp = 0.3
 shape = SubResource("CircleShape2D_xne5h")
 
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
-process_material = SubResource("ShaderMaterial_eju45")
+process_material = SubResource("ShaderMaterial_37clx")
 lifetime = 100.0
 visibility_rect = Rect2(-500, -500, 1000, 1000)
 

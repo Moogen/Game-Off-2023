@@ -226,7 +226,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ldn3q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5u86k"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -286,7 +286,7 @@ animations = [{
 z_index = 5
 
 [node name="MassParticles" parent="." instance=ExtResource("1_47is3")]
-process_material = SubResource("ShaderMaterial_ldn3q")
+process_material = SubResource("ShaderMaterial_5u86k")
 lifetime = 2.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." groups=["Plate Objects"]]
