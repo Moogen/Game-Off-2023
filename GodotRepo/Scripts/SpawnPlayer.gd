@@ -33,6 +33,7 @@ func on_Timer_timeout():
 #get_tree().change_scene_to_file("res://Scenes/Game End.tscn")
 
 func restart():
+    get_tree().call_group("SoundManager", "play_die")
     var tween = get_tree().create_tween()
     tween.tween_property(loading_sprite, "modulate", Color.WHITE, 1)
     var kill_timer = Timer.new()

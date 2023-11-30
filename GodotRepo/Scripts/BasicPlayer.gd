@@ -69,7 +69,9 @@ func player_crouch(crouching: bool) -> void:
     else:
         stand_collider.disabled = false
         crouch_collider.disabled = true        
-
+        
+        
+        
 func process_non_aiming_offset():
         if animations.flip_h:
             shooting_offset = aiming_shooting_offset[6]

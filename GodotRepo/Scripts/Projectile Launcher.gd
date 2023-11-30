@@ -52,10 +52,10 @@ func _process(delta):
     Player.aiming_angle = aiming_angle
     Player.is_aiming    = is_aiming
     
-    if(is_aiming):
-        Input.set_custom_mouse_cursor(aiming_cursor)       
-    else:
-        Input.set_custom_mouse_cursor(not_aiming_cursor)
+#    if(is_aiming):
+#        Input.set_custom_mouse_cursor(aiming_cursor)       
+#    else:
+#        Input.set_custom_mouse_cursor(not_aiming_cursor)
 
     if Input.is_action_just_pressed('shoot') and gravity_bar.has_mass(1): # and (state_machine.current_state == idle_state or state_machine.current_state == move_state):
         Player.shooting = true

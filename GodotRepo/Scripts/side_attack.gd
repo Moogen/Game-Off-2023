@@ -22,7 +22,7 @@ var damage_delay_time = 0.2
 var projectile_template_invis = preload("res://Scenes/player_projectile_invis.tscn")
 
 func enter(previous_state: State) -> void:
-    
+    get_tree().call_group("SoundManager", "play_attack")
     main_scene = get_tree().get_root().get_child(0)
     #create a projectile to perform the physics portion of the player attack
     var shooting_projectile = projectile_template_invis.instantiate()

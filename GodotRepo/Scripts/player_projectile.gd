@@ -44,8 +44,10 @@ func on_body_entered(body):
     if body.is_in_group("Destroyable"):    
         body.damage_object(damage)
         hit_kill_timer.start()
+        get_tree().call_group("SoundManager", "play_collision")
     elif body.is_in_group("Plate Objects") or body.is_in_group("Anti Plate Objects"):
         hit_kill_timer.start()
+        get_tree().call_group("SoundManager", "play_collision")
     else:
         print("didnt hit nothing")
     pass

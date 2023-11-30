@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dane1a5kx1bin"
+path="res://.godot/imported/Chiptune Action Cool cut 60.wav-64c949659a5d2be9ed11ca17842eb2d2.sample"
+
+[deps]
+
+source_file="res://Sounds/Chiptune Action Cool cut 60.wav"
+dest_files=["res://.godot/imported/Chiptune Action Cool cut 60.wav-64c949659a5d2be9ed11ca17842eb2d2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
