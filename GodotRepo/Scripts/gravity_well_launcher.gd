@@ -47,12 +47,14 @@ func _process(delta):
         spawning_well = gravity_well_template.instantiate()
         main_scene.add_child(spawning_well)
         update_well_sprite()
+        
     elif Input.is_action_just_pressed('grow_well') and launching_well:
         launching_well = false
         #send a signal to the spawning well to freeze it
         if(is_instance_valid(spawning_well)): #ensure well was not deleted by an antigrav field
             spawning_well.freeze = true
             spawning_well.well_affect_player = true
+            get_tree().call_group("SoundManager", "play_freeze")
             
     elif Input.is_action_pressed('grow_well') and Player.is_aiming and growing_well:
         
@@ -85,7 +87,7 @@ func _process(delta):
     if Input.is_action_just_pressed('return_wells'):
         # Get all objects in the "Gravity Well Group".
         var wells_in_group = get_tree().get_nodes_in_group("Gravity Well Group")
-
+        get_tree().call_group("SoundManager", "play_returning_well")
         launching_well = false
         growing_well = false
         # Iterate through each well in the group.

@@ -7,6 +7,7 @@ extends RigidBody2D #make gravity well into a staticbody node instead
 @onready var grav_center_shape  : CollisionShape2D  = $Center/CollisionShape2D
 @onready var blackhole_sprite   : Sprite2D          = $BlackholeSprite
 @onready var well_collider      : CollisionShape2D  = $WellCollider
+@onready var audio_stream       : AudioStreamPlayer2D = $AudioStreamPlayer2D
 #all the variables for scaling the black hole
 
 const blackhole_gravity : float = 3000*4 #3000*10 
@@ -23,6 +24,7 @@ const particle_center_size      : float = 83/2
 const mass_particle_gravity     : float = 250 #controls the force at which the mass particles are attracted to the player
 const well_dying_timer : float = 10000 #lose 1 tick of mass on the well per 10 second
 const well_dying_val   : int = 1
+const audio_stream_scale : float = 10
 
 var click_time = 0
 var mass_cost = 0
@@ -57,13 +59,15 @@ func _ready():
 func _process(delta):
     #set_size(55,55)
     set_particles_direction() #set the particle direction of the emitter
-
+    if(!audio_stream.playing):
+        audio_stream.playing = true
     #check if the well has collided with anything
-    if(well_launched):
+    if(well_launched and self.freeze == false):
         var bodies = self.get_colliding_bodies()
         for body in bodies:
             self.freeze = true
             self.well_affect_player = true
+            get_tree().call_group("SoundManager", "play_freeze")
    
     #remove mass from the well over time
     if(well_active && Time.get_ticks_msec() - timer > well_dying_timer):
@@ -141,12 +145,14 @@ func set_size(click_time, mass_cost): #set size scales off thes duration of the 
     self.mass_cost = mass_cost
     grav_area.gravity = blackhole_gravity * (click_timer_scale * click_time)
     grav_center_area.gravity = center_gravity * (click_timer_scale * click_time)
-    print(grav_center_area.gravity)
     #grav_area.gravity_point_unit_distance = center_size * click_timer_scale * click_time
     grav_shape.shape.radius = blackhole_size * click_timer_scale * click_time
     grav_center_shape.shape.radius = center_size * click_timer_scale * click_time
     well_collider.shape.radius = center_size * click_timer_scale * click_time /2 
     blackhole_sprite.scale = Vector2(sprite_scale * click_timer_scale * click_time, sprite_scale * click_timer_scale * click_time)
+    audio_stream.volume_db = audio_stream_scale * click_time * click_timer_scale
+    audio_stream.max_distance = grav_shape.shape.radius * 2
+    print(audio_stream.volume_db)
     pass
 
 func set_particles_direction():

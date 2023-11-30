@@ -1,30 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://c75lfv4odd11w"]
+[gd_scene load_steps=8 format=3 uid="uid://c75lfv4odd11w"]
 
 [ext_resource type="Script" path="res://Scripts/Game End.gd" id="1_76kgo"]
 [ext_resource type="Theme" uid="uid://7xvcsbe3ap11" path="res://Theme/Default_Theme.tres" id="2_4n34p"]
 [ext_resource type="Texture2D" uid="uid://dkaks43li3q07" path="res://sprites/Fade out.png" id="2_nq5ep"]
 [ext_resource type="Texture2D" uid="uid://eko00i8uq1a4" path="res://sprites/Background.png" id="3_lcpwe"]
 [ext_resource type="Texture2D" uid="uid://0vvwsijoc2xa" path="res://sprites/ShipInSpace.png" id="5_4ao38"]
+[ext_resource type="AudioStream" uid="uid://c3xe0w33pp512" path="res://Sounds/Chiptune Action Mysterious cut 60.wav" id="6_6fbn1"]
 
-[sub_resource type="Gradient" id="Gradient_lgsgl"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0470588)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dmt8j"]
-gradient = SubResource("Gradient_lgsgl")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4bvct"]
-lifetime_randomness = 1.0
-emission_shape = 3
-emission_box_extents = Vector3(1, 10, 1)
-particle_flag_disable_z = true
-direction = Vector3(-1, 0, 0)
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 15.04
-initial_velocity_max = 84.63
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-color = Color(0.423529, 0.929412, 0.929412, 1)
-color_ramp = SubResource("GradientTexture1D_dmt8j")
+[sub_resource type="Gradient" id="Gradient_nnsbv"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.0431373)
 
 [node name="Game End" type="Node2D"]
 script = ExtResource("1_76kgo")
@@ -56,8 +40,21 @@ z_index = 5
 position = Vector2(-50, 210)
 texture = ExtResource("5_4ao38")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="ShipWPilot"]
-show_behind_parent = true
-position = Vector2(-38, -2)
-amount = 1000
-process_material = SubResource("ParticleProcessMaterial_4bvct")
+[node name="CPUParticles2D" type="CPUParticles2D" parent="ShipWPilot"]
+z_index = -1
+position = Vector2(-26, -4)
+amount = 500
+lifetime = 2.0
+direction = Vector2(-1, 0)
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+color = Color(0.423529, 0.929412, 0.929412, 1)
+color_ramp = SubResource("Gradient_nnsbv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6fbn1")
+volume_db = -10.0
+autoplay = true
+stream_paused = true

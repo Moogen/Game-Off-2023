@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dptl7rt8a65hx"]
+[gd_scene load_steps=12 format=3 uid="uid://dptl7rt8a65hx"]
 
 [ext_resource type="Script" path="res://Scripts/GravityWell.gd" id="1_k6cux"]
 [ext_resource type="Texture2D" uid="uid://bn10y8xufq0st" path="res://sprites/Black hole-export.png" id="2_a2t2f"]
 [ext_resource type="Script" path="res://Scripts/BlackholeSprite.gd" id="3_jgrx1"]
 [ext_resource type="PackedScene" uid="uid://dwriqxoxhlar3" path="res://Scenes/mass_particle_emitter.tscn" id="4_qeu1r"]
+[ext_resource type="AudioStream" path="res://Sounds/BlackHole.wav" id="5_n0jm5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3pngc"]
 rough = true
@@ -239,7 +240,7 @@ void process() {
 
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cc2kk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_37clx"]
 resource_local_to_scene = true
 shader = SubResource("Shader_kfeqs")
 shader_parameter/direction = Vector3(0, 0, 0)
@@ -327,6 +328,11 @@ angular_damp = 0.3
 shape = SubResource("CircleShape2D_xne5h")
 
 [node name="MassParticles" parent="." instance=ExtResource("4_qeu1r")]
-process_material = SubResource("ShaderMaterial_cc2kk")
-lifetime = 2.0
+process_material = SubResource("ShaderMaterial_37clx")
+lifetime = 100.0
 visibility_rect = Rect2(-500, -500, 1000, 1000)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_n0jm5")
+autoplay = true
+max_distance = 200.0

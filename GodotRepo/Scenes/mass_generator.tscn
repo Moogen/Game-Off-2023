@@ -1,41 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cci46e4ph0pm5"]
+[gd_scene load_steps=5 format=3 uid="uid://cci46e4ph0pm5"]
 
 [ext_resource type="Script" path="res://Scripts/mass_generator.gd" id="1_1jc4x"]
 [ext_resource type="Texture2D" uid="uid://cvl4r6sn8qi63" path="res://sprites/mass_generator_pad.png" id="2_1qvwa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1m7pa"]
 size = Vector2(20, 46)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1jsjf"]
-lifetime_randomness = 1.0
-emission_shape = 3
-emission_box_extents = Vector3(15, 0, 0)
-particle_flag_disable_z = true
-gravity = Vector3(0, -98, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-color = Color(0.0509804, 0, 0.101961, 1)
-turbulence_enabled = true
-turbulence_noise_strength = 9.57
-turbulence_noise_scale = 4.83
-turbulence_noise_speed_random = 3.42
-turbulence_influence_min = 0.13
-turbulence_influence_max = 0.15
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f40ly"]
-emission_shape = 3
-emission_box_extents = Vector3(15, 0, 0)
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-color = Color(0.0509804, 0, 0.101961, 1)
-turbulence_enabled = true
-turbulence_noise_strength = 9.57
-turbulence_noise_scale = 4.83
-turbulence_noise_speed_random = 3.42
-turbulence_influence_min = 0.13
-turbulence_influence_max = 0.15
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_202f1"]
 points = PackedVector2Array(-20, -1, 20, -1, 25, 2, -25, 2)
@@ -59,22 +28,35 @@ position = Vector2(0, -25)
 rotation = 3.14159
 texture = ExtResource("2_1qvwa")
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
-z_index = 2
-position = Vector2(0, -4)
-amount = 500
-process_material = SubResource("ParticleProcessMaterial_1jsjf")
-lifetime = 0.63
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-z_index = 2
-position = Vector2(0, -32)
-amount = 500
-process_material = SubResource("ParticleProcessMaterial_f40ly")
-lifetime = 1.25
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, -2.5)
 shape = SubResource("ConvexPolygonShape2D_202f1")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 5
+position = Vector2(0, -6)
+amount = 100
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(15, 3)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 7.0
+initial_velocity_max = 20.0
+color = Color(0.0509804, 0, 0.101961, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+z_index = 5
+position = Vector2(-1, -29)
+amount = 100
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(15, 3)
+direction = Vector2(0, 1)
+spread = 31.86
+gravity = Vector2(0, 0)
+initial_velocity_min = 14.3
+initial_velocity_max = 28.9
+color = Color(0.00392157, 0, 0.0117647, 1)
